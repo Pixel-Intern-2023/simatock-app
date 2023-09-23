@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('Layouts.base')
 @section('content')
     <main class="p-6">
 

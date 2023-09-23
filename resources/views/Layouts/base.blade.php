@@ -8,9 +8,9 @@
     <meta
         content="A fully featured admin theme which can be used to build CRM, CMS, etc., Tailwind, TailwindCSS, Tailwind CSS 3"
         name="description">
-    <meta content="coderthemes" name="author">
-    <!-- App favicon -->
-    <link href="{{ asset('assets/images/favicon.ico') }}" rel="shortcut icon">
+        <meta content="coderthemes" name="author">
+        <!-- App favicon -->
+        <link href="{{ asset('assets/images/favicon.ico') }}" rel="shortcut icon">
 
     <!-- plugin css -->
     <link href="{{ asset('assets/libs/jsvectormap/css/jsvectormap.min.css') }}" rel="stylesheet" type="text/css">
@@ -37,14 +37,13 @@
             <a class="logo-box" href="index.html">
                 <!-- Light Logo -->
                 <div class="logo-light">
-                    <img alt="Light logo" class="logo-lg h-6" src="assets/images/logo-light.png">
-                    <img alt="Small logo" class="logo-sm h-6" src="assets/images/logo-sm.png">
+                    <h1 class="logo-lg text-xl">WareHouse</h1>
+                    <h1 class="logo-sm text-xl">WH</h1>
                 </div>
-
                 <!-- Dark Logo -->
                 <div class="logo-dark">
-                    <img alt="Dark logo" class="logo-lg h-6" src="assets/images/logo-dark.png">
-                    <img alt="Small logo" class="logo-sm h-6" src="assets/images/logo-sm.png">
+                    <h1 class="logo-lg text-xl">WareHouse</h1>
+                    <h1 class="logo-sm text-xl">WH</h1>
                 </div>
             </a>
 
@@ -58,117 +57,68 @@
                                 <i data-lucide="home"></i>
                             </span>
                             <span class="menu-text"> Dashboard </span>
-                            <span class="badge bg-success rounded">02</span>
                         </a>
                     </li>
 
-                    <li class="menu-title">Apps</li>
+                    <li class="menu-title">Main</li>
                     <li class="menu-item">
                         <a class="menu-link" data-hs-collapse="#menuEmail" href="javascript:void(0)">
                             <span class="menu-icon">
-                                <i data-lucide="mail"></i>
+                                <i data-lucide="archive"></i>
                             </span>
-                            <span class="menu-text"> Email </span>
+                            <span class="menu-text"> Main Data </span>
                             <span class="menu-arrow"></span>
                         </a>
-
                         <ul class="sub-menu hidden" id="menuEmail">
                             <li class="menu-item">
-                                <a class="menu-link" href="email-inbox.html">
-                                    <span class="menu-text">Inbox</span>
+                                <a class="menu-link" href="{{ route('list-products') }}">
+                                    <span class="menu-text">Data Barang</span>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a class="menu-link" href="email-read.html">
-                                    <span class="menu-text">Read Email</span>
+                                    <span class="menu-text">Data Suplier</span>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a class="menu-link" href="email-compose.html">
-                                    <span class="menu-text">Compose Email</span>
+                                    <span class="menu-text">Data Satuan</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
-
-                    <li class="menu-title">Custom</li>
-
+                    <li class="menu-title">Activities</li>
                     <li class="menu-item">
                         <a class="menu-link" data-hs-collapse="#menuPages" href="javascript:void(0)">
-                            <span class="menu-icon"><i data-lucide="file-text"></i></span>
-                            <span class="menu-text"> Pages </span>
+                            <span class="menu-icon"><i data-lucide="truck"></i></span>
+                            <span class="menu-text"> Barang Masuk </span>
                             <span class="menu-arrow"></span>
                         </a>
-
                         <ul class="sub-menu hidden" id="menuPages">
                             <li class="menu-item">
-                                <a class="menu-link" href="pages-starter.html">
-                                    <span class="menu-text">Starter</span>
+                                <a class="menu-link" href="">
+                                    <span class="menu-text">History In</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" data-hs-collapse="#menuProjects" class="menu-link">
+                            <span class="menu-icon">
+                                <i data-lucide="arrow-left-from-line"></i>
+                            </span>
+                            <span class="menu-text"> Barang Keluar </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul id="menuProjects" class="sub-menu hidden">
+                            <li class="menu-item">
+                                <a href="project-list.html" class="menu-link">
+                                    <span class="menu-text">List</span>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a class="menu-link" href="pages-profile.html">
-                                    <span class="menu-text">Profile</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-activity.html">
-                                    <span class="menu-text">Activity</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-invoice.html">
-                                    <span class="menu-text">Invoice</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-pricing.html">
-                                    <span class="menu-text">Pricing</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-maintenance.html">
-                                    <span class="menu-text">Maintenance</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-login.html">
-                                    <span class="menu-text">Login</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-register.html">
-                                    <span class="menu-text">Register</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-logout.html">
-                                    <span class="menu-text">Logout</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-recoverpw.html">
-                                    <span class="menu-text">Recover Password</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-lock-screen.html">
-                                    <span class="menu-text">Lock Screen</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-confirm-mail.html">
-                                    <span class="menu-text">Confirm</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-404.html">
-                                    <span class="menu-text">Error 404</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="pages-500.html">
-                                    <span class="menu-text">Error 500</span>
+                                <a href="project-detail.html" class="menu-link">
+                                    <span class="menu-text">Details</span>
                                 </a>
                             </li>
                         </ul>
@@ -555,7 +505,7 @@
                         <button class="hs-dropdown-toggle nav-link flex items-center gap-2" type="button">
                             <img alt="user-image" class="h-8 rounded-full" src="assets/images/users/avatar-1.jpg">
                             <span class="hidden gap-0.5 text-start md:flex">
-                                <h5 class="text-sm">Nik Patel</h5>
+                                <h5 class="text-sm">{{ Auth::user()->name }}</h5>
                                 <i class="uil uil-angle-down"></i>
                             </span>
                         </button>
@@ -582,7 +532,7 @@
                             <hr class="my-1 dark:border-gray-600">
                             <!-- item-->
                             <a class="flex items-center gap-2 px-4 py-1.5 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                href="pages-logout.html">
+                                href="{{ route('logout') }}">
                                 <i class="fill-secondary/20 h-4 w-4" data-lucide="log-out"></i>
                                 <span>Logout</span>
                             </a>

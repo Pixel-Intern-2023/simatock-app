@@ -1,26 +1,6 @@
 @extends('Layouts.base')
 @section('content')
-    <main class="p-6">
 
-        <!-- Page Title Start -->
-        <div class="mb-5 flex items-center justify-between">
-            <h4 class="text-lg font-medium text-gray-900 dark:text-gray-200">Dashboard</h4>
-
-            <div class="hidden items-center gap-2.5 font-semibold md:flex">
-                <div class="flex items-center gap-2">
-                    <a class="text-sm font-medium text-gray-700 dark:text-gray-400" href="#">Shreyu</a>
-                </div>
-                <span class="opacity-30">/</span>
-                <div class="flex items-center">
-                    <a class="text-sm font-medium text-gray-700 dark:text-gray-400" href="#">Menu</a>
-                </div>
-                <span class="opacity-30">/</span>
-                <div class="flex items-center">
-                    <a aria-current="page" class="text-sm font-medium text-gray-500 dark:text-gray-300"
-                        href="#">Dashboard</a>
-                </div>
-            </div>
-        </div>
         <!-- Page Title End -->
 
         <div class="space-y-5">
@@ -31,7 +11,7 @@
                             <div class="flex-grow">
                                 <span class="text-xs font-bold uppercase text-gray-500 dark:text-gray-400">Today
                                     Revenue</span>
-                                <h3 class="text-2xl text-black dark:text-gray-300">$2100</h3>
+                                <h3 class="text-2xl dark:text-gray-300">$2100</h3>
                             </div>
                             <div class="flex-shrink-0 text-center">
                                 <div class="apex-charts" id="today-revenue-chart"></div>
@@ -842,5 +822,5 @@
             </div>
             <!-- end row -->
         </div>
-    </main>
+
 @endsection

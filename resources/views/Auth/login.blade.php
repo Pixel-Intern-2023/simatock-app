@@ -14,7 +14,7 @@
                     </span>
                 </div>
                 <input class="form-input border-none dark:bg-transparent" id="username" name="username"
-                    placeholder="admin123" type="username">
+                    placeholder="Enter Your Username" type="username">
             </div>
             @error('username')
                 <small class="mt-1 block" style="color:red;">{{ $message }}</small>

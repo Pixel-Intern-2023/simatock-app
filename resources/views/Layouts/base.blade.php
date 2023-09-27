@@ -8,22 +8,28 @@
     <meta
         content="A fully featured admin theme which can be used to build CRM, CMS, etc., Tailwind, TailwindCSS, Tailwind CSS 3"
         name="description">
-        <meta content="coderthemes" name="author">
-        <!-- App favicon -->
-        <link href="{{ asset('assets/images/favicon.ico') }}" rel="shortcut icon">
-
+    <meta content="coderthemes" name="author">
+    @vite('resources/css/app.css')
+    <!-- App favicon -->
+    <link href="{{ asset('assets/images/favicon.ico') }}" rel="shortcut icon">
+    {{-- flat picker --}}
+    <link href="{{ asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet">
     <!-- plugin css -->
     <link href="{{ asset('assets/libs/jsvectormap/css/jsvectormap.min.css') }}" rel="stylesheet" type="text/css">
-
     <!-- App css -->
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css">
-
     <!-- Icons css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/libs/%40iconscout/unicons/css/line.css') }}" rel="stylesheet" type="text/css">
-
+    <link href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    rel="stylesheet">
     <!-- Theme Config Js -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
+    <!-- Alpine Plugins -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine Core -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body>
@@ -34,7 +40,7 @@
         <div class="app-menu">
 
             <!-- App Logo -->
-            <a class="logo-box" href="index.html">
+            <a class="logo-box" href="{{ route('dashboard') }}">
                 <!-- Light Logo -->
                 <div class="logo-light">
                     <h1 class="logo-lg text-xl">WareHouse</h1>
@@ -52,7 +58,7 @@
                 <ul class="menu" data-hs-collapse="accordion">
 
                     <li class="menu-item">
-                        <a class="menu-link" href="javascript:void(0)">
+                        <a class="menu-link" href="{{ route('dashboard') }}">
                             <span class="menu-icon">
                                 <i data-lucide="home"></i>
                             </span>
@@ -71,18 +77,13 @@
                         </a>
                         <ul class="sub-menu hidden" id="menuEmail">
                             <li class="menu-item">
-                                <a class="menu-link" href="{{ route('list-products') }}">
+                                <a class="menu-link" href="{{ route('list-barang') }}">
                                     <span class="menu-text">Data Barang</span>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a class="menu-link" href="email-read.html">
-                                    <span class="menu-text">Data Suplier</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="email-compose.html">
-                                    <span class="menu-text">Data Satuan</span>
+                                <a class="menu-link" href="{{ route('Data Tambahan') }}">
+                                    <span class="menu-text">Data Tambahan</span>
                                 </a>
                             </li>
                         </ul>
@@ -96,28 +97,28 @@
                         </a>
                         <ul class="sub-menu hidden" id="menuPages">
                             <li class="menu-item">
-                                <a class="menu-link" href="">
-                                    <span class="menu-text">History In</span>
+                                <a class="menu-link" href="#">
+                                    <span class="menu-text">History</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="menu-item">
-                        <a href="javascript:void(0)" data-hs-collapse="#menuProjects" class="menu-link">
+                        <a class="menu-link" data-hs-collapse="#menuProjects" href="javascript:void(0)">
                             <span class="menu-icon">
                                 <i data-lucide="arrow-left-from-line"></i>
                             </span>
                             <span class="menu-text"> Barang Keluar </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <ul id="menuProjects" class="sub-menu hidden">
+                        <ul class="sub-menu hidden" id="menuProjects">
                             <li class="menu-item">
-                                <a href="project-list.html" class="menu-link">
-                                    <span class="menu-text">List</span>
+                                <a class="menu-link" href="{{ route('orders') }}">
+                                    <span class="menu-text">Orders</span>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="project-detail.html" class="menu-link">
+                                <a class="menu-link" href="project-detail.html">
                                     <span class="menu-text">Details</span>
                                 </a>
                             </li>
@@ -132,7 +133,6 @@
                             <span class="menu-text"> Tables </span>
                             <span class="menu-arrow"></span>
                         </a>
-
                         <ul class="sub-menu hidden" id="menuTables">
                             <li class="menu-item">
                                 <a class="menu-link" href="tables-basic.html">
@@ -220,75 +220,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Topbar Search Input -->
-                <div class="relative hidden lg:block">
-                    <div class="hs-dropdown relative">
-                        <form class="hs-dropdown-toggle" type="button">
-                            <input class="form-input relative border-none bg-black/5 ps-8" placeholder="Search..."
-                                type="search">
-                            <span
-                                class="uil uil-search absolute start-2 top-1/2 z-10 -translate-y-1/2 text-base"></span>
-                        </form>
-
-                        <div
-                            class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 !mt-1 hidden w-80 rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800">
-                            <!-- item-->
-                            <h5 class="flex items-center gap-2 px-3 py-2 text-sm text-gray-800 dark:text-gray-400">
-                                Found
-                                <b class="text-decoration-underline">05</b> results
-                            </h5>
-
-                            <!-- item-->
-                            <a class="flex items-center px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                href="javascript:void(0);">
-                                <i class="uil uil-sliders-v-alt me-1"></i>
-                                <span>User profile settings</span>
-                            </a>
-
-                            <!-- item-->
-                            <a class="flex items-center px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                href="javascript:void(0);">
-                                <i class="uil uil-home-alt me-1"></i>
-                                <span>Analytics Report</span>
-                            </a>
-
-                            <!-- item-->
-                            <a class="flex items-center px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                href="javascript:void(0);">
-                                <i class="uil uil-life-ring me-1"></i>
-                                <span>How can I help you?</span>
-                            </a>
-
-                            <!-- item-->
-                            <h6 class="flex items-center px-3 py-2 text-sm uppercase text-gray-800 dark:text-gray-400">
-                                Users</h6>
-
-                            <!-- item-->
-                            <a class="flex items-center px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                href="javascript:void(0);">
-                                <img alt="Generic placeholder image" class="me-2 h-8 rounded-full"
-                                    src="assets/images/users/avatar-2.jpg">
-                                <div class="flex-grow">
-                                    <h5 class="fs-14 m-0">Shirley Miller</h5>
-                                    <span class="fs-12">UI Designer</span>
-                                </div>
-                            </a>
-
-                            <!-- item-->
-                            <a class="flex items-center px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                href="javascript:void(0);">
-                                <img alt="Generic placeholder image" class="me-2 h-8 rounded-full"
-                                    src="assets/images/users/avatar-5.jpg">
-                                <div class="flex-grow">
-                                    <h5 class="fs-14 m-0">Timothy Moreno</h5>
-                                    <span class="fs-12">Frontend Developer</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Fullscreen Toggle Button -->
                 <div class="hidden md:flex">
                     <button class="nav-link p-2" data-toggle="fullscreen" type="button">
@@ -298,8 +229,6 @@
                         </span>
                     </button>
                 </div>
-
-
                 <!-- Language Dropdown Button -->
                 <div class="relative hidden lg:block">
                     <div class="hs-dropdown relative">
@@ -308,7 +237,8 @@
                             <!-- item-->
                             <a class="flex items-center gap-2.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
                                 href="javascript:void(0);">
-                                <img alt="user-image" class="h-4" src="assets/images/flags/us.jpg">
+                                <img alt="user-image" class="h-4"
+                                    src="{{ asset('assets/images/flags/us.jpg') }}">
                                 <span class="align-middle">English</span>
                             </a>
 
@@ -503,7 +433,8 @@
                 <div class="relative">
                     <div class="hs-dropdown relative">
                         <button class="hs-dropdown-toggle nav-link flex items-center gap-2" type="button">
-                            <img alt="user-image" class="h-8 rounded-full" src="assets/images/users/avatar-1.jpg">
+                            <img alt="user-image" class="h-8 rounded-full"
+                                src="{{ asset('assets/images/users/avatar-1.jpg') }}">
                             <span class="hidden gap-0.5 text-start md:flex">
                                 <h5 class="text-sm">{{ Auth::user()->name }}</h5>
                                 <i class="uil uil-angle-down"></i>
@@ -553,7 +484,26 @@
             </header>
             <!-- Topbar End -->
             {{-- content start --}}
-            @yield('content')
+            <main class="p-6">
+                <!-- Page Title Start -->
+                <div class="mb-5 flex items-center justify-between">
+                    <h4 class="text-lg font-medium text-gray-900 first-letter:uppercase dark:text-gray-200">
+                        {{ Route::currentRouteName() }}
+                    </h4>
+                    <div class="hidden items-center gap-2.5 font-semibold md:flex">
+                        <div class="flex items-center gap-2">
+                            <a class="text-sm font-medium text-gray-700 first-letter:uppercase dark:text-gray-400"
+                                href="{{ Route::currentRouteName() }}">{{ Route::currentRouteName() }}</a>
+                        </div>
+                        <span class="opacity-30">/</span>
+                        <div class="flex items-center">
+                            <a aria-current="page" class="text-sm font-medium text-gray-500 dark:text-gray-300"
+                                href="{{ route('dashboard') }}">Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+                @yield('content')
+            </main>
             {{-- end content --}}
             <!-- Footer Start -->
             <footer class="footer mt-auto flex h-16 items-center border-t border-gray-200 px-6 dark:border-gray-600">
@@ -742,17 +692,19 @@
         </div>
     </div>
 
+    @yield('script')
+    <!-- Flatpickr Plugin Js -->
+    <script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
+    <!-- Flatpickr Demo js -->
+    <script src="{{ asset('assets/js/pages/form-flatpickr.js') }}"></script>
     <!-- Plugin Js -->
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
     <script src="{{ asset('assets/libs/preline/preline.js') }}"></script>
-
     <!-- App Js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
-
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-
     <!-- page js -->
     <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 

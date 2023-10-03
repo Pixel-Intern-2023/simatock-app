@@ -32,7 +32,7 @@
             <h3 class="my-3 sm:text-2xl text-xl dark:text-gray-300">We couldn't connect the dots</h3>
             <p class="text-gray-500 mb-7 dark:text-gray-400">This page was not found. <br> You may have mistyped the address or the page may have moved.</p>
 
-            <a href="#" onclick="history.back()" class="btn text-base bg-primary text-white">Take me back to Home</a>
+            <a href="#" onclick="history.back()" class="btn text-base bg-primary text-white">Take me back</a>
         </div>
     </div>
 

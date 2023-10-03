@@ -1,9 +1,16 @@
 @extends('Layouts.authBase')
 @section('content')
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    A simple danger alert—check it out!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    @if (session()->has('registerError'))
+        <div class="bg-danger/10 text-danger border-danger/20 flex items-center justify-between rounded border px-5 py-3 text-sm"
+            id="dismiss-example-secondary">
+            <p>
+                <span class="font-bold"> {{ session()->get('registerError') }}
+            </p>
+            <button class="text-xl/[0]" data-hs-remove-element="#dismiss-example-secondary" type="button">
+                <i class="uil uil-multiply text-xl"></i>
+            </button> <!-- button end -->
+        </div>
+    @endif
     <form action="#" class="space-y-5" method="POST">
         @csrf
         <div class="mb-3 flex flex-col">
@@ -39,7 +46,7 @@
                     placeholder="Masukkan Username" type="text" value="{{ old('username') }}">
             </div>
             @error('username')
-                <small class=" mt-1 block" style="color:red;">{{ $message }}</small>
+                <small class="mt-1 block" style="color:red;">{{ $message }}</small>
             @enderror
         </div>
         <div class="mb-3 flex flex-col">
@@ -104,12 +111,12 @@
                         placeholder="Masukkan password" type="password">
                 </div>
                 @error('confirmPassword')
-                    <small class="mt-1 block " style="color:red;">{{ $message }}</small>
+                    <small class="mt-1 block" style="color:red;">{{ $message }}</small>
                 @enderror
             </div>
         </div>
         <div class="text-center">
-            <button class="btn bg-primary w-full text-white" type="submit">Log In</button>
+            <button class="btn bg-primary w-full text-white" type="submit">Register</button>
         </div>
     </form>
 @endsection

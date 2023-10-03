@@ -10,4 +10,5 @@ class Suplier extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'tb_suplier';
+    protected $fillable = ['id', 'suplier'];
 }

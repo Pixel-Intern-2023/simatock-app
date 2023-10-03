@@ -27,7 +27,7 @@
                             style="border: 1px solid red"
                             @enderror
                             class="form-input" id="datetime-datepicker" name="receivingDate" type="text"
-                            value="{{ now()->format('Y-m-d H:i:s') }}">
+                            value="{{ now()->format('Y-m-d') }}">
                         <small>Silahkan Ganti tanggal sesuai barang masuk</small>
                         @error('receivingDate')
                             <small class="text-red-600">{{ $message }}</small>
@@ -91,7 +91,7 @@
                                 style="border: 1px solid red"
                                 @enderror
                                 class="form-input w-full placeholder:text-gray-400" min="0" name="purchPrice"
-                                placeholder="Cth: 10.000"  value="{{ old('purchPrice') }}" x-data
+                                placeholder="Cth: 10.000" value="{{ old('purchPrice') }}" x-data
                                 x-mask:dynamic="$money($input)">
                             @error('purchPrice')
                                 <small class="text-red-600">{{ $message }}</small>

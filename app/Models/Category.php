@@ -10,4 +10,5 @@ class Category extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'tb_category';
+    protected $fillable = ['id', 'category'];
 }

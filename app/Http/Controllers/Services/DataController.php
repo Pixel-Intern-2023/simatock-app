@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Services;
 
-
+use App\Models\Unit;
+use App\Models\Suplier;
+use App\Models\Category;
 use App\Models\Products;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
-use App\Models\Category;
-use App\Models\Suplier;
-use App\Models\Unit;
+use Illuminate\Http\Request;
 
 // Main data controller
 class DataController extends Controller
@@ -23,7 +23,6 @@ class DataController extends Controller
     public function store(StoreProductRequest $request)
     {
         if ($request->isMethod('POST')) {
-            // dd($cust_price);
             $request->validated();
             $purch_price = str_replace(',', '', $request->purchPrice);
             $cust_price = str_replace(',', '', $request->custPrice);
@@ -36,7 +35,7 @@ class DataController extends Controller
                 'purch_price' => $purch_price,
                 'cust_price' => $cust_price,
                 'receiving_date' => $request->receivingDate,
-                'suplier_id' => $request->suplier
+                'suplier_id' => $request->suplier,
             ]);
             return to_route('list-barang');
         }
@@ -53,7 +52,7 @@ class DataController extends Controller
     public function form_edit($id)
     {
         $context = [
-            'unit' => Unit::all(),
+            'unit' => Unit::orderByAsc('created_at')->get(),
             'category' => Category::all(),
             'suplier' => Suplier::all(),
             'product' => Products::find($id),
@@ -72,13 +71,13 @@ class DataController extends Controller
                 'purch_price' => $request->purchPrice,
                 'cust_price' => $request->custPrice,
                 'receiving_date' => $request->receivingDate,
-                'suplier_id' => $request->suplier
+                'suplier_id' => $request->suplier,
             ]);
 
             return to_route('list-barang');
         }
     }
-    public function destroy($id)
+    public function removeProduct($id)
     {
         Products::find($id)->delete();
         return to_route('list-barang');
@@ -87,19 +86,60 @@ class DataController extends Controller
     public function additional_data()
     {
         $context = [
-            'unit' => Unit::all(),
-            'category' => Category::all(),
-            'suplier' => Suplier::all(),
+            'unit' => Unit::orderBy('created_at', 'DESC')->paginate(4),
+            'category' => Category::orderBy('created_at', 'DESC')->paginate(4),
+            'suplier' => Suplier::orderBy('created_at', 'DESC')->paginate(4),
         ];
         return view('Services.Data-utils.list-data-utils', $context);
     }
-    // issuing product method
-    public function orders()
+    public function addAdditional(Request $request, $val)
     {
-        return view('Services.Products.orders');
+        // 1 represent to suplier
+        if ($val == 1) {
+            $request->validate([
+                'suplier' => 'required',
+            ]);
+            Suplier::create([
+                'id' => Str::uuid(),
+                'suplier' => $request->suplier,
+            ]);
+            return to_route('Data Tambahan');
+            // 2 represent to unit
+        } elseif ($val == 2) {
+            $request->validate([
+                'unit' => 'required',
+            ]);
+            Unit::create([
+                'id' => Str::uuid(),
+                'unit' => $request->unit,
+            ]);
+            return to_route('Data Tambahan');
+            // 3 represent to category
+        } elseif ($val == 3) {
+            $request->validate([
+                'category' => 'required',
+            ]);
+            Category::create([
+                'id' => Str::uuid(),
+                'category' => $request->category,
+            ]);
+            return to_route('Data Tambahan');
+        }
     }
-    public function list_unit()
+    public function removeAdditionalData($val, $id)
     {
-        return view('Services.units.units');
+        // 1 represent to suplier
+        if ($val == 1) {
+            Suplier::find($id)->delete();
+            return to_route('Data Tambahan');
+            // 2 represent to unit
+        } elseif ($val == 2) {
+            Unit::find($id)->delete();
+            return to_route('Data Tambahan');
+            // 3 represent to category
+        } elseif ($val == 3) {
+            Category::find($id)->delete();
+            return to_route('Data Tambahan');
+        }
     }
 }

@@ -25,7 +25,7 @@
                                 product => product
                                 .products_name
                                 .toLowerCase()
-                                .startsWith(this.search.toLowerCase())
+                                .includes(this.search.toLowerCase())
                             )
                         }
 
@@ -68,8 +68,8 @@
                                 <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
                                     <template x-for="product in searchResults">
                                         <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                            <td class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400"
-                                                x-text='"BRG-"+product.id.slice(24,36)'>
+                                            <td class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400 uppercase"
+                                            x-text='"#"+product.id.slice(24,36)'>
                                             </td>
                                             <td class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400"
                                                 x-text="product.products_name">

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Dashboard | Shreyu - Responsive Tailwind CSS 3 Admin Dashboard</title>
+    <title>{{ Route::currentRouteName() }} | Simatock-app</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta
         content="A fully featured admin theme which can be used to build CRM, CMS, etc., Tailwind, TailwindCSS, Tailwind CSS 3"
@@ -28,6 +28,7 @@
     <!-- Alpine Plugins -->
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <!-- Alpine Core -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
@@ -98,7 +99,7 @@
                         <ul class="sub-menu hidden" id="menuPages">
                             <li class="menu-item">
                                 <a class="menu-link" href="#">
-                                    <span class="menu-text">History</span>
+                                    <span class="menu-text">History Barang Masuk</span>
                                 </a>
                             </li>
                         </ul>
@@ -113,8 +114,8 @@
                         </a>
                         <ul class="sub-menu hidden" id="menuProjects">
                             <li class="menu-item">
-                                <a class="menu-link" href="{{ route('orders') }}">
-                                    <span class="menu-text">Orders</span>
+                                <a class="menu-link" href="{{ route('Barang Keluar') }}">
+                                    <span class="menu-text">Barang Keluar</span>
                                 </a>
                             </li>
                             <li class="menu-item">
@@ -493,7 +494,7 @@
                     <div class="hidden items-center gap-2.5 font-semibold md:flex">
                         <div class="flex items-center gap-2">
                             <a class="text-sm font-medium text-gray-700 first-letter:uppercase dark:text-gray-400"
-                                href="{{ Route::currentRouteName() }}">{{ Route::currentRouteName() }}</a>
+                                href="#">{{ Route::currentRouteName() }}</a>
                         </div>
                         <span class="opacity-30">/</span>
                         <div class="flex items-center">
@@ -704,7 +705,6 @@
     <script src="{{ asset('assets/libs/preline/preline.js') }}"></script>
     <!-- App Js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <!-- page js -->
     <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 

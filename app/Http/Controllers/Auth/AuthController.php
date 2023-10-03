@@ -39,7 +39,7 @@ class AuthController extends Controller
                 'confirmPassword' => 'required|min:8',
             ]);
             if ($credentials['password'] !== $credentials['confirmPassword']) {
-                return session()->flash('registerError', 'Password tidak Cocok!');
+                return back()->with('registerError', 'Password tidak Cocok!');
             }
             $credentials['password'] = Hash::make($credentials['password']);
             User::create($credentials);

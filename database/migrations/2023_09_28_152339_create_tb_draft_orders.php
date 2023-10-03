@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('address')->nullable()->after('email');
+        Schema::create('tb_draft_orders', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('product_id');
+            $table->integer('amount_product');
+            $table->foreign('product_id')->references('id')->on('tb_products');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('address')->after('email');
-        });
+        Schema::dropIfExists('tb_draft_orders');
     }
 };

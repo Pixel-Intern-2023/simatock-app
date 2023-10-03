@@ -1,5 +1,17 @@
 @extends('Layouts.authBase')
 @section('content')
+    @if (session()->has('loginError'))
+        <div class="bg-danger/10 text-danger border-danger/20 flex items-center justify-between rounded border px-5 py-3 text-sm"
+            id="dismiss-example-secondary">
+            <p>
+                <span class="font-bold"> {{ session()->get('loginError') }}
+            </p>
+            <button class="text-xl/[0]" data-hs-remove-element="#dismiss-example-secondary" type="button">
+                <i class="uil uil-multiply text-xl"></i>
+            </button> <!-- button end -->
+        </div>
+    @endif
+
     <form action="#" class="space-y-5" method="POST">
         @csrf
         <div class="mb-3 flex flex-col">
@@ -14,7 +26,7 @@
                     </span>
                 </div>
                 <input class="form-input border-none dark:bg-transparent" id="username" name="username"
-                    placeholder="Enter Your Username" type="username">
+                    placeholder="Enter Your Username" type="username" value="{{ old('username') }}">
             </div>
             @error('username')
                 <small class="mt-1 block" style="color:red;">{{ $message }}</small>

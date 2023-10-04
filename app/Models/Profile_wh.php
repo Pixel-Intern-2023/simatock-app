@@ -10,4 +10,5 @@ class Profile_wh extends Model
     use HasFactory;
 
     protected $table = 'tb_wh_profile';
+    protected $fillable = ['id', 'warehouse_name'];
 }

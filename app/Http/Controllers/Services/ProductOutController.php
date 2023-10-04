@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Services;
 
 use App\Models\Orders;
-use App\Models\ProductOut;
 use App\Models\Products;
-use App\Models\User;
+use App\Models\ProductOut;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductOutController extends Controller
 {
@@ -21,14 +21,17 @@ class ProductOutController extends Controller
     {
         if ($request->isMethod('GET')) {
             $context = [
-                'products' => Products::select('id', 'products_name')->where('quantity', '!=', '0')->get(),
-                'orders' => Orders::with('products')->where('user_id', $request->user()->id)->get(),
+                'products' => Products::select('id', 'products_name')
+                    ->where('quantity', '!=', '0')
+                    ->get(),
+                'orders' => Orders::with('products')
+                    ->where('user_id', $request->user()->id)
+                    ->get(),
             ];
             return view('Services.Products.form-out', $context);
         } elseif ($request->isMethod('POST')) {
             $productsData = $request->input('items');
             $insertData = [];
-
             foreach ($productsData as $productDetails) {
                 $productDetails['total'] = preg_replace('/[^0-9]/', '', $productDetails['total']);
                 $productsData['total'] = (int) $productDetails['total'];

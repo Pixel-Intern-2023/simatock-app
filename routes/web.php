@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\ProductOutController;
-use App\Http\Controllers\Services\DashboardController;
-use App\Http\Controllers\Services\DataController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Services\DataController;
+use App\Http\Controllers\Services\DashboardController;
+use App\Http\Controllers\Services\ProductOutController;
+use App\Http\Controllers\Services\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +41,9 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::match(['get', 'post'], '/form-produk-keluar', [ProductOutController::class, 'formProductOut'])->name('Form Barang Keluar');
         Route::post('/add-cart', [ProductOutController::class, 'addToCart'])->name('addToCart');
         Route::match(['delete', 'get'], '/delete-cart/{id}', [ProductOutController::class, 'deleteCart'])->name('deleteCart');
+    });
+    Route::prefix('profile')->group(function () {
+        Route::get('/admin', [ProfileController::class, 'profile'])->name('Profile');
+        Route::post('/add-warehouse-profile', [ProfileController::class, 'addProfileWH'])->name('addWareProfile');
     });
 });

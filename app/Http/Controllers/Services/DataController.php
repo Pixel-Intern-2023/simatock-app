@@ -36,6 +36,7 @@ class DataController extends Controller
                 'cust_price' => $cust_price,
                 'receiving_date' => $request->receivingDate,
                 'suplier_id' => $request->suplier,
+                'user_id' => $request->user()->id,
             ]);
             return to_route('list-barang');
         }
@@ -52,7 +53,7 @@ class DataController extends Controller
     public function form_edit($id)
     {
         $context = [
-            'unit' => Unit::orderByAsc('created_at')->get(),
+            'unit' => Unit::orderByDesc('created_at')->get(),
             'category' => Category::all(),
             'suplier' => Suplier::all(),
             'product' => Products::find($id),

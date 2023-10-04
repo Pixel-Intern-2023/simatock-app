@@ -449,9 +449,9 @@
 
                             <!-- item-->
                             <a class="flex items-center gap-2 px-4 py-1.5 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                href="pages-profile.html">
+                                href="{{ route('Profile') }}">
                                 <i class="fill-secondary/20 h-4 w-4" data-lucide="user-2"></i>
-                                <span>My Account</span>
+                                <span>Profile</span>
                             </a>
 
                             <!-- item-->

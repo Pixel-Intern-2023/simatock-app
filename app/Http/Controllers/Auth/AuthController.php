@@ -40,7 +40,6 @@ class AuthController extends Controller
                 'password' => 'required|min:8',
                 'confirmPassword' => 'required|min:8',
             ]);
-            dd($request);
             if ($credentials['password'] !== $credentials['confirmPassword']) {
                 return back()->with('registerError', 'Password tidak Cocok!');
             }

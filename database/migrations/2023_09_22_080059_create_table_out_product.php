@@ -17,6 +17,7 @@ return new class extends Migration
             // define uuid
             $table->uuid('products_id');
             $table->uuid('user_id');
+            $table->integer('total');
             $table->integer('amount_out');
             $table->timestamps();
             // define foreign

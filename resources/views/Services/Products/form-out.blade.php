@@ -86,9 +86,9 @@
                             </td>
                             <tr>
                                 <td>
-                                    <label class="mb-2 block font-semibold" for="picker">Nama Barang</label>
+                                    <label class="mb-2 block font-semibold" for="picker">Picker</label>
                                     <input class="form-input w-full" name="picker" placeholder="Cth: Ali" type="text">
-                                    <button type="submit">kirim</button>
+                                    <button type="submit" class="mt-2 btn bg-primary/90 btn-sm text-white hover:bg-blue-800">kirim</button>
                                 </td>
                             </tr>
                         </form>

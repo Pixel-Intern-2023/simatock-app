@@ -35,9 +35,12 @@ class AuthController extends Controller
                 'name' => 'required',
                 'username' => 'required',
                 'email' => 'required|email:dns',
+                'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:13',
+                'address' => 'required',
                 'password' => 'required|min:8',
                 'confirmPassword' => 'required|min:8',
             ]);
+            dd($request);
             if ($credentials['password'] !== $credentials['confirmPassword']) {
                 return back()->with('registerError', 'Password tidak Cocok!');
             }

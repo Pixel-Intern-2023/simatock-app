@@ -9,14 +9,14 @@
                 <p class="mb-4 text-gray-400 dark:text-gray-400">Admin</p>
                 <hr class="mt-5 dark:border-gray-600">
                 <div class="mt-6 text-start">
-                    <div class="space-y-7">
+                    <div class="space-y-7" x-data="{open:false}">
                         <p class="text-zinc-400 dark:text-gray-400"><strong>Email :</strong> <span
                                 class="ms-2">{{ Auth::user()->email }}</span></p>
                         <p class="text-zinc-400 dark:text-gray-400"><strong>Phone :</strong> <span class="ms-2"> (123) 123
                                 1234</span></p>
-                        <p class="flex items-start text-zinc-400 dark:text-gray-400"><strong
-                                class="flex-shrink">Address:</strong> <span class="ms-2">1975 Boring Lane, San Francisco,
-                                California, United States - 94108</span></p>
+                        <p class="flex items-start gap-1 text-zinc-400 dark:text-gray-400"><strong
+                                class="flex-shrink">Address:{{ Auth::user()->address }}</strong>
+                        </p>
                     </div>
                 </div>
                 <hr class="my-5 dark:border-gray-600">
@@ -89,7 +89,8 @@
                                                                 <div class="relative me-5 ps-10 md:ps-0">
                                                                     <div class="pt-3">
                                                                         <h4 class="mb-1.5 text-base dark:text-gray-300">
-                                                                            {{ $item->products_name }}</h4>
+                                                                            {{ $item->quantity . ' ' . $item->unit->unit . ' ' . $item->products_name }}
+                                                                        </h4>
                                                                         <p class="mb-4 text-gray-500 dark:text-gray-400">
                                                                             Menerima barang dari suplier <span
                                                                                 class="font-bold">{{ $item->suplier->suplier }}</span>
@@ -147,7 +148,8 @@
                                                                 <div class="relative me-5 ps-10 md:ps-0">
                                                                     <div class="pt-3">
                                                                         <h4 class="mb-1.5 text-base dark:text-gray-300">
-                                                                            {{ $item->product->products_name }}</h4>
+                                                                            {{ $item->amount_out . ' ' . $item->product->unit->unit . ' ' . $item->product->products_name }}
+                                                                        </h4>
                                                                         <p class="mb-4 text-gray-500 dark:text-gray-400">
                                                                             Mengirim barang ke <span
                                                                                 class="font-bold">{{ $item->picker }}</span>
@@ -174,23 +176,24 @@
                                             <div class="mb-3 w-full">
                                                 <label class="mb-2 block font-semibold" for="example-email">Nama
                                                     Gudang</label>
-                                                    @foreach ($whProfile as $item)
+                                                @foreach ($whProfile as $item)
                                                     <input
                                                         @error('whName')
                                                         style="border: 1px solid red"
                                                         @enderror
-                                                        class="form-input w-full" name="whName" placeholder="Cth: CV. Kelaras"
-                                                        type="text" value="{{ $item->warehouse_name }}">
-                                                        @error('whName')
-                                                            <small class="text-red-600">{{ $message }}</small>
-                                                        @enderror
-                                                    @endforeach
+                                                        class="form-input w-full" name="whName"
+                                                        placeholder="Cth: CV. Kelaras" type="text"
+                                                        value="{{ $item->warehouse_name }}">
+                                                    @error('whName')
+                                                        <small class="text-red-600">{{ $message }}</small>
+                                                    @enderror
+                                                @endforeach
                                             </div>
                                         </form>
                                     </div>
                                     <div class="relative overflow-hidden py-2.5">
-                                        <div class="float-left me-3.5 block"><img alt="" class="h-14 rounded-full"
-                                                src="assets/images/users/avatar-3.jpg"></div>
+                                        <div class="float-left me-3.5 block"><img alt=""
+                                                class="h-14 rounded-full" src="assets/images/users/avatar-3.jpg"></div>
                                         <p class="mb-0.5 block font-semibold text-gray-700 dark:text-gray-300">Theodore</p>
                                         <p class="text-gray-400">Everyone realizes why a new common language</p>
                                     </div>
@@ -204,8 +207,8 @@
                                         <p class="text-gray-400">To an English person, it will seem like simplified</p>
                                     </div>
                                     <div class="relative overflow-hidden py-2.5">
-                                        <div class="float-left me-3.5 block"><img alt="" class="h-14 rounded-full"
-                                                src="assets/images/users/avatar-5.jpg"></div>
+                                        <div class="float-left me-3.5 block"><img alt=""
+                                                class="h-14 rounded-full" src="assets/images/users/avatar-5.jpg"></div>
                                         <p class="mb-0.5 block font-semibold text-gray-700 dark:text-gray-300">Tony Lindsey
                                         </p>
                                         <p class="text-gray-400">If several languages coalesce the grammar</p>

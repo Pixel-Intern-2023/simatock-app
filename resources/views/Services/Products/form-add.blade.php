@@ -5,8 +5,8 @@
             <h4 class="mb-5 uppercase dark:text-gray-300">Form Tambah Barang</h4>
             <form action="{{ route('addProduct') }}" method="POST">
                 @csrf
-                <div class="flex gap-2">
-                    <div class="mb-3 w-3/4">
+                <div class="gap-2 sm:flex">
+                    <div class="mb-3 w-full sm:w-2/3">
                         <label class="mb-2 block font-semibold" for="example-email">Nama Barang</label>
                         <div>
                             <input
@@ -20,7 +20,7 @@
                             <small class="text-red-600">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="mb-3 w-1/4">
+                    <div class="mb-3 w-full sm:w-1/4">
                         <label class="mb-2 font-semibold">Tanggal Masuk</label>
                         <input
                             @error('receivingDate')

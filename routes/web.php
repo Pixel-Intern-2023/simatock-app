@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Services\AdditionalDataController;
 use App\Http\Controllers\Services\DataController;
 use App\Http\Controllers\Services\DashboardController;
 use App\Http\Controllers\Services\ProductOutController;
@@ -32,9 +33,9 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::get('edit-form/{id}', [DataController::class, 'form_edit'])->name('Edit Data');
         Route::put('edit/{id}', [DataController::class, 'edit'])->name('edit');
         Route::match(['get', 'delete'], '/delete-product/{id}', [DataController::class, 'removeProduct'])->name('delete');
-        Route::get('/data-tambahan', [DataController::class, 'additional_data'])->name('Data Tambahan');
-        Route::match(['get', 'post'], '/additional-data/{val}', [DataController::class, 'addAdditional'])->name('Tambah Data Tambahan');
-        Route::match(['get', 'delete'], 'delete-additional/{val},{id}', [DataController::class, 'removeAdditionalData'])->name('Hapus Data Tambahan');
+        Route::get('/data-tambahan', [AdditionalDataController::class, 'additional_data'])->name('Data Tambahan');
+        Route::match(['get', 'post'], '/additional-data/{val}', [AdditionalDataController::class, 'addAdditional'])->name('Tambah Data Tambahan');
+        Route::match(['get', 'delete'], 'delete-additional/{val},{id}', [AdditionalDataController::class, 'removeAdditionalData'])->name('Hapus Data Tambahan');
     });
     Route::prefix('activities')->group(function () {
         Route::get('/product-keluar', [ProductOutController::class, 'product_out'])->name('Barang Keluar');

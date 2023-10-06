@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('products_name');
             $table->integer('quantity');
             // define uuid
-            $table->uuid('category_id');
-            $table->uuid('unit_id');
-            $table->uuid('suplier_id');
+            $table->uuid('category_id')->nullable();
+            $table->uuid('unit_id')->nullable();
+            $table->uuid('suplier_id')->nullable();
             $table->integer('purch_price');
             $table->integer('cust_price');
             $table->date('receiving_date');

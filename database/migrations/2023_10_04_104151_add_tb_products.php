@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tb_products', function (Blueprint $table) {
-            $table->uuid('user_id')->after('suplier_id');
+            $table->uuid('user_id')->nullable()->after('suplier_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

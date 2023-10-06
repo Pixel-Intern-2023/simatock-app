@@ -11,4 +11,8 @@ class Category extends Model
     use HasFactory, HasUuids;
     protected $table = 'tb_category';
     protected $fillable = ['id', 'category'];
+    public function products()
+    {
+        return $this->hasMany(Products::class);
+    }
 }

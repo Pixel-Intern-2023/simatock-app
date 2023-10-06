@@ -11,4 +11,8 @@ class Suplier extends Model
     use HasFactory, HasUuids;
     protected $table = 'tb_suplier';
     protected $fillable = ['id', 'suplier'];
+    public function products()
+    {
+        return $this->hasMany(Products::class);
+    }
 }

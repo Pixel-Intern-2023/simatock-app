@@ -15,8 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('picker');
             // define uuid
-            $table->uuid('products_id');
-            $table->uuid('user_id');
+            $table->uuid('products_id')->nullable();
+            $table->uuid('user_id')->nullable();
             $table->integer('total');
             $table->integer('amount_out');
             $table->timestamps();

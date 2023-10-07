@@ -31,4 +31,14 @@ class ProductOut extends Model
             ->orderBy('total_keluar', 'DESC')
             ->get();
     }
+    public static function chart()
+    {
+        return static::select('tb_products.products_name as name', DB::raw('CAST(SUM(tb_out_product.amount_out) AS INTEGER) as y'))
+            ->join('tb_products', 'tb_out_product.products_id', '=', 'tb_products.id')
+            ->groupBy('tb_products.id', 'tb_products.products_name')
+            ->havingRaw('SUM(tb_out_product.amount_out) > 0')
+            ->orderBy('y', 'DESC')
+            ->take(10)
+            ->get();
+    }
 }

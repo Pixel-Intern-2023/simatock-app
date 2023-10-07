@@ -46,6 +46,7 @@
                                 @enderror
                                 class="form-input w-full placeholder:text-gray-400" min="0" name="quantity"
                                 placeholder="Cth: 10" type="number" value="{{ $product->quantity }}">
+                            <small>Tambah Stok Barang Di sini</small>
                             @error('quantity')
                                 <small class="text-red-600">{{ $message }}</small>
                             @enderror
@@ -124,11 +125,12 @@
                             <option value="{{ $item->id }}">{{ $item->suplier }}</option>
                         @endforeach
                     </select>
+                    <small>Ubah Suplier Jika Suplier barang berubah</small>
                     @error('suplier')
                         <small class="text-red-600">{{ $message }}</small>
                     @enderror
                 </div>
-                <button class="btn bg-primary/90 hover:bg-primary text-white" type="submit">Submit</button>
+                <button class="btn bg-primary/90 hover:bg-primary text-white" type="submit">Simpan Perubahan</button>
             </form>
         </div>
     </div> <!-- end card -->

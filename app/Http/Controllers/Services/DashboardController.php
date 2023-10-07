@@ -15,10 +15,11 @@ class DashboardController extends Controller
         $context = [
             'product' => Products::count(),
             'productOut' => ProductOut::count(),
-            'outOfProduct' => Products::where('quantity', '<=', 3)->count(),
+            'outOfProduct' => Products::where('quantity', '==', 0)->count(),
             'totalMoney' => ProductOut::sum('total'),
             'bestSell' => ProductOut::mostSoldProduct(),
-            // 'admin' => User::count(),
+            'stockAlmostOut' => Products::with('suplier')->where('quantity', '<=', 3)->orderBy('quantity', 'DESC')->get(),
+            'chart' => ProductOut::chart(),
         ];
         return view('Services.dashboard.dashboard', $context);
     }

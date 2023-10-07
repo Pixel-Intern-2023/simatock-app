@@ -9,7 +9,7 @@
                 <p class="mb-4 text-gray-400 dark:text-gray-400">Admin</p>
                 <hr class="mt-5 dark:border-gray-600">
                 <div class="mt-6 text-start">
-                    <div class="space-y-7" x-data="{open:false}">
+                    <div class="space-y-7" x-data="{ open: false }">
                         <p class="text-zinc-400 dark:text-gray-400"><strong>Email :</strong> <span
                                 class="ms-2">{{ Auth::user()->email }}</span></p>
                         <p class="text-zinc-400 dark:text-gray-400"><strong>Phone :</strong> <span class="ms-2"> (123) 123
@@ -80,10 +80,13 @@
                                                             <div
                                                                 class="ms-10 mt-5 flex flex-wrap items-center gap-6 md:mt-0 md:flex-nowrap">
                                                                 <div class="ms-10">
+                                                                    @php
+                                                                        $recentDate = $item->updated_at > $item->created_at ? $item->updated_at : $item->created_at;
+                                                                    @endphp
                                                                     <h2
                                                                         class="bg-primary/20 text-primary flex items-center justify-center rounded p-2">
-                                                                        {{ date('D, d-m-Y', strtotime($item->created_at)) }}
-                                                                        <br>{{ date('H:i', strtotime($item->created_at)) }}
+                                                                        {{ date('D, d-m-Y', strtotime($recentDate)) }}
+                                                                        <br>{{ date('H:i', strtotime($recentDate)) }}
                                                                     </h2>
                                                                 </div>
                                                                 <div class="relative me-5 ps-10 md:ps-0">
@@ -171,31 +174,30 @@
                                 id="basic-tabs-2" role="tabpanel">
                                 <div class="divide-y dark:divide-gray-600">
                                     <div class="relative overflow-hidden py-2.5">
-                                        <form action="{{ route('addWareProfile') }}" method="POST">
+                                        <form action="{{ route('editWhName') }}" method="POST">
+                                            @method('PUT')
                                             @csrf
-                                            <div class="mb-3 w-full">
-                                                <label class="mb-2 block font-semibold" for="example-email">Nama
-                                                    Gudang</label>
-                                                @foreach ($whProfile as $item)
-                                                    <input
-                                                        @error('whName')
-                                                        style="border: 1px solid red"
-                                                        @enderror
-                                                        class="form-input w-full" name="whName"
-                                                        placeholder="Cth: CV. Kelaras" type="text"
-                                                        value="{{ $item->warehouse_name }}">
+                                            @foreach ($whProfile as $item)
+                                                <div class="mb-3 w-full">
+                                                    <label class="mb-2 block font-semibold" for="example-email">Nama
+                                                        Gudang</label>
+                                                    <input class="form-input w-full" name="id" type="hidden"
+                                                        value="{{ $item->id }}">
+                                                    <div class="flex">
+                                                        <input @error('whName') style="border: 1px solid red" @enderror
+                                                            class="form-input w-full" name="whName"
+                                                            placeholder="Cth: CV. Kelaras" type="text"
+                                                            value="{{ $item->warehouse_name }}">
+                                                        <button class="btn bg-primary btn-sm rounded text-white"
+                                                            type="submit">Kirim</button>
+                                                    </div>
+                                                    <small>Silahkan ubah nama gudang di sini</small>
                                                     @error('whName')
                                                         <small class="text-red-600">{{ $message }}</small>
                                                     @enderror
-                                                @endforeach
-                                            </div>
+                                                </div>
+                                            @endforeach
                                         </form>
-                                    </div>
-                                    <div class="relative overflow-hidden py-2.5">
-                                        <div class="float-left me-3.5 block"><img alt=""
-                                                class="h-14 rounded-full" src="assets/images/users/avatar-3.jpg"></div>
-                                        <p class="mb-0.5 block font-semibold text-gray-700 dark:text-gray-300">Theodore</p>
-                                        <p class="text-gray-400">Everyone realizes why a new common language</p>
                                     </div>
                                     <div class="relative overflow-hidden py-2.5">
                                         <div class="float-left me-3.5 block">

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Profile_wh;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->composer('Layouts.base', function ($view) {
+            $data = Profile_wh::all();
+            $view->with('data', $data);
+        });
     }
 }

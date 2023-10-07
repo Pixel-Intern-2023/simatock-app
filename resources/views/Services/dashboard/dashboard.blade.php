@@ -1,3 +1,6 @@
+@section('scriptTop')
+    <script src="https://code.highcharts.com/10/highcharts.js"></script>
+@endsection
 @extends('Layouts.base')
 @section('content')
     <div class="space-y-5">
@@ -176,10 +179,7 @@
                 <div class="card">
                     <div class="p-5">
                         <div class="flex items-center justify-between">
-                            <h5 class="uppercase">Recent Orders</h5>
-                            <a class="btn bg-primary/90 btn-sm hover:bg-primary text-white" href="#">
-                                <i class='uil uil-export me-1'></i> Export
-                            </a>
+                            <h5 class="uppercase">Stok Hampir Habis</h5>
                         </div>
                         <div class="overflow-auto">
                             <div class="inline-block min-w-full align-middle">
@@ -195,115 +195,38 @@
                                                     Product</th>
                                                 <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
                                                     scope="col">
-                                                    Customer</th>
+                                                    Suplier</th>
                                                 <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
                                                     scope="col">
-                                                    Price</th>
+                                                    Stok</th>
                                                 <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
                                                     scope="col">
-                                                    Status</th>
+                                                    Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
-                                            <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                    #98754</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    ASOS Ridley High</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Otto B</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    $79.49</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    <span
-                                                        class="bg-warning/10 text-warning inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-xs font-medium">Pending</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                    #98753</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Marco Lightweight Shirt</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Mark P</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    $125.49</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    <span
-                                                        class="bg-success/10 text-success inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-xs font-medium">Delivered</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                    #98752</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Half Sleeve Shirt</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Dave B</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    $35.49</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    <span
-                                                        class="bg-danger/10 text-danger inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-xs font-medium">Declined</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                    #98751</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Lightweight Jacket</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Shreyu N</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    $49.49</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    <span
-                                                        class="bg-success/10 text-success inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-xs font-medium">Declined</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                    #98750</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Marco Shoes</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Rik N</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    $69.49</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    <span
-                                                        class="bg-danger/10 text-danger inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-xs font-medium">Declined</span>
-                                                </td>
-                                            </tr>
+                                            @forelse ($stockAlmostOut as $item)
+                                                <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
+                                                        {{ $loop->iteration }}</td>
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                                        {{ $item->products_name }}</td>
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                                        {{ $item->suplier->suplier }}</td>
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                                        {{ $item->quantity }}</td>
+                                                    <td class="whitespace-nowrap px-4 py-4 text-start text-white">
+                                                        <a class="rounded bg-yellow-400 px-3 py-1 font-semibold"
+                                                            href="{{ route('Edit Data', ['id' => $item->id]) }}">Detail</a>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                no Data
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>
@@ -312,401 +235,64 @@
                     </div>
                 </div> <!-- end card-->
             </div> <!-- end col-->
-        </div>
-        <!-- end row -->
-
-        <!-- widgets -->
-        <div class="grid gap-5 xl:grid-cols-3">
-            <div class="card">
-                <div class="p-6">
-                    <div class="divide-y dark:divide-gray-600">
-                        <h6 class="mb-4 uppercase dark:text-gray-300">Top Performers</h6>
-
-                        <div class="flex py-2.5">
-                            <img alt="shreyu" class="me-3 h-12 rounded" src="assets/images/users/avatar-7.jpg">
-                            <div class="flex-grow">
-                                <h5 class="mt-1 dark:text-gray-300">Shreyu N</h5>
-                                <h6 class="mt-1 font-normal text-gray-500 dark:text-gray-400">Senior Sales
-                                    Guy</h6>
-                            </div>
-                            <div class="h-4">
-                                <div
-                                    class="hs-dropdown relative inline-flex [--placement:left-top] rtl:[--placement:bottom-left]">
-                                    <button class="hs-dropdown-toggle rounded" type="button">
-                                        <i class="uil uil-ellipsis-v text-base"></i>
-                                    </button>
-
-                                    <div
-                                        class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 z-10 hidden w-52 rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:divide-gray-600 dark:border dark:border-gray-700 dark:bg-gray-800">
-                                        <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                            href="javascript:;">
-                                            <i class="uil uil-edit-alt me-1.5"></i>
-                                            <span>Edit</span>
-                                        </a>
-                                        <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                            href="javascript:;">
-                                            <i class="uil uil-signout me-1.5"></i>
-                                            <span>Remove from Team</span>
-                                        </a>
-                                        <hr class="my-2 dark:border-gray-600">
-                                        <a class="text-danger flex items-center gap-x-3.5 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-                                            href="javascript:;">
-                                            <i class="uil uil-trash-alt me-1.5"></i>
-                                            <span>Delete</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex py-2.5">
-                            <img alt="shreyu" class="me-3 h-12 rounded" src="assets/images/users/avatar-9.jpg">
-                            <div class="flex-grow">
-                                <h5 class="mt-1 dark:text-gray-300">Greeva Y</h5>
-                                <h6 class="mt-1 font-normal text-gray-500 dark:text-gray-400">Social d-flex
-                                    Campaign</h6>
-                            </div>
-                            <div class="h-4">
-                                <div
-                                    class="hs-dropdown relative inline-flex [--placement:left-top] rtl:[--placement:bottom-left]">
-                                    <button class="hs-dropdown-toggle rounded" type="button">
-                                        <i class="uil uil-ellipsis-v text-base"></i>
-                                    </button>
-
-                                    <div
-                                        class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 z-10 hidden w-52 rounded bg-white opacity-0 shadow transition-[opacity,margin] dark:divide-gray-600 dark:border dark:border-gray-700 dark:bg-gray-800">
-                                        <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                            href="javascript:;">
-                                            <i class="uil uil-edit-alt me-1.5"></i>
-                                            <span>Edit</span>
-                                        </a>
-                                        <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                            href="javascript:;">
-                                            <i class="uil uil-signout me-1.5"></i>
-                                            <span>Remove from Team</span>
-                                        </a>
-                                        <hr class="my-2 dark:border-gray-600">
-                                        <a class="text-danger flex items-center gap-x-3.5 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-                                            href="javascript:;">
-                                            <i class="uil uil-trash-alt me-1.5"></i>
-                                            <span>Delete</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex py-2.5">
-                            <img alt="shreyu" class="me-3 h-12 rounded" src="assets/images/users/avatar-4.jpg">
-                            <div class="flex-grow">
-                                <h5 class="mt-1 dark:text-gray-300">Nik G</h5>
-                                <h6 class="mt-1 font-normal text-gray-500 dark:text-gray-400">Inventory
-                                    Manager</h6>
-                            </div>
-                            <div class="h-4">
-                                <div
-                                    class="hs-dropdown relative inline-flex [--placement:left-top] rtl:[--placement:bottom-left]">
-                                    <button class="hs-dropdown-toggle rounded" type="button">
-                                        <i class="uil uil-ellipsis-v text-base"></i>
-                                    </button>
-
-                                    <div
-                                        class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 z-10 hidden w-52 rounded bg-white opacity-0 shadow transition-[opacity,margin] dark:divide-gray-600 dark:border dark:border-gray-700 dark:bg-gray-800">
-                                        <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                            href="javascript:;">
-                                            <i class="uil uil-edit-alt me-1.5"></i>
-                                            <span>Edit</span>
-                                        </a>
-                                        <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                            href="javascript:;">
-                                            <i class="uil uil-signout me-1.5"></i>
-                                            <span>Remove from Team</span>
-                                        </a>
-                                        <hr class="my-2 dark:border-gray-600">
-                                        <a class="text-danger flex items-center gap-x-3.5 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-                                            href="javascript:;">
-                                            <i class="uil uil-trash-alt me-1.5"></i>
-                                            <span>Delete</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex py-2.5">
-                            <img alt="shreyu" class="me-3 h-12 rounded" src="assets/images/users/avatar-1.jpg">
-                            <div class="flex-grow">
-                                <h5 class="mt-1 dark:text-gray-300">Hardik G</h5>
-                                <h6 class="mt-1 font-normal text-gray-500 dark:text-gray-400">Sales Person
-                                </h6>
-                            </div>
-                            <div class="h-4">
-                                <div
-                                    class="hs-dropdown relative inline-flex [--placement:left-top] rtl:[--placement:bottom-left]">
-                                    <button class="hs-dropdown-toggle rounded" type="button">
-                                        <i class="uil uil-ellipsis-v text-base"></i>
-                                    </button>
-
-                                    <div
-                                        class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 z-10 hidden w-52 rounded bg-white opacity-0 shadow transition-[opacity,margin] dark:divide-gray-600 dark:border dark:border-gray-700 dark:bg-gray-800">
-                                        <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                            href="javascript:;">
-                                            <i class="uil uil-edit-alt me-1.5"></i>
-                                            <span>Edit</span>
-                                        </a>
-                                        <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                            href="javascript:;">
-                                            <i class="uil uil-signout me-1.5"></i>
-                                            <span>Remove from Team</span>
-                                        </a>
-                                        <hr class="my-2 dark:border-gray-600">
-                                        <a class="text-danger flex items-center gap-x-3.5 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-                                            href="javascript:;">
-                                            <i class="uil uil-trash-alt me-1.5"></i>
-                                            <span>Delete</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex py-2.5">
-                            <img alt="shreyu" class="me-3 h-12 rounded" src="assets/images/users/avatar-8.jpg">
-                            <div class="flex-grow">
-                                <h5 class="mt-1 dark:text-gray-300">GB Patel G</h5>
-                                <h6 class="mt-1 font-normal text-gray-500 dark:text-gray-400">Sales Person
-                                </h6>
-                            </div>
-                            <div class="h-4">
-                                <div
-                                    class="hs-dropdown relative inline-flex [--placement:left-top] rtl:[--placement:bottom-left]">
-                                    <button class="hs-dropdown-toggle rounded" type="button">
-                                        <i class="uil uil-ellipsis-v text-base"></i>
-                                    </button>
-
-                                    <div
-                                        class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 z-10 hidden w-52 rounded bg-white opacity-0 shadow transition-[opacity,margin] dark:divide-gray-600 dark:border dark:border-gray-700 dark:bg-gray-800">
-                                        <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                            href="javascript:;">
-                                            <i class="uil uil-edit-alt me-1.5"></i>
-                                            <span>Edit</span>
-                                        </a>
-                                        <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                            href="javascript:;">
-                                            <i class="uil uil-signout me-1.5"></i>
-                                            <span>Remove from Team</span>
-                                        </a>
-                                        <hr class="my-2 dark:border-gray-600">
-                                        <a class="text-danger flex items-center gap-x-3.5 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-                                            href="javascript:;">
-                                            <i class="uil uil-trash-alt me-1.5"></i>
-                                            <span>Delete</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-span-12">
+                <div class="card dark:bg">
+                    <div class="p-5">
+                        <div id="chart"></div>
                     </div>
                 </div>
             </div>
-
-            <!-- tasks -->
-            <div class="card">
-                <div class="p-6">
-                    <div class="mb-6 flex items-start justify-between">
-                        <h6 class="uppercase dark:text-gray-300">Tasks</h6>
-                        <a class="btn bg-primary btn-sm text-white" href="task-list.html">View All</a>
-                    </div>
-
-                    <div class="h-[335px]" data-simplebar>
-                        <div class="space-y-6">
-                            <div>
-                                <div class="mb-1 flex items-center gap-3">
-                                    <input class="form-checkbox text-primary rounded" id="task1" type="checkbox">
-                                    <label for="task1">
-                                        Draft the new contract document for sales team
-                                    </label>
-                                </div>
-                                <p class="ms-7 text-gray-500 dark:text-gray-400">Due on 24 Aug, 2022</p>
-                            </div>
-
-                            <div>
-                                <div class="mb-1 flex items-center gap-3">
-                                    <input class="form-checkbox text-primary rounded" id="task2" type="checkbox">
-                                    <label for="task2">
-                                        iOS App home page
-                                    </label>
-                                </div>
-                                <p class="ms-7 text-gray-500 dark:text-gray-400">Due on 23 Aug, 2022</p>
-                            </div>
-
-                            <div>
-                                <div class="mb-1 flex items-center gap-3">
-                                    <input class="form-checkbox text-primary rounded" id="task3" type="checkbox">
-                                    <label for="task3">
-                                        Write a release note for Shreyu
-                                    </label>
-                                </div>
-                                <p class="ms-7 text-gray-500 dark:text-gray-400">Due on 05 Aug, 2022</p>
-                            </div>
-
-                            <div>
-                                <div class="mb-1 flex items-center gap-3">
-                                    <input class="form-checkbox text-primary rounded" id="task4" type="checkbox">
-                                    <label for="task4">
-                                        Invite Greeva to a project shreyu admin
-                                    </label>
-                                </div>
-                                <p class="ms-7 text-gray-500 dark:text-gray-400">Due on 05 Aug, 2022</p>
-                            </div>
-
-                            <div>
-                                <div class="mb-1 flex items-center gap-3">
-                                    <input class="form-checkbox text-primary rounded" id="task5" type="checkbox">
-                                    <label for="task5">
-                                        Enable analytics tracking for main website
-                                    </label>
-                                </div>
-                                <p class="ms-7 text-gray-500 dark:text-gray-400">Due on 18 Aug, 2022</p>
-                            </div>
-
-                            <div>
-                                <div class="mb-1 flex items-center gap-3">
-                                    <input class="form-checkbox text-primary rounded" id="task6" type="checkbox">
-                                    <label for="task6">
-                                        Invite user to a project
-                                    </label>
-                                </div>
-                                <p class="ms-7 text-gray-500 dark:text-gray-400">Due on 24 Aug, 2022</p>
-                            </div>
-                            <div>
-                                <div class="mb-1 flex items-center gap-3">
-                                    <input class="form-checkbox text-primary rounded" id="task7" type="checkbox">
-                                    <label for="task7">
-                                        Write a release note
-                                    </label>
-                                </div>
-                                <p class="ms-7 text-gray-500 dark:text-gray-400">Due on 24 Aug, 2022</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="p-6">
-                    <div class="flex items-center justify-between">
-                        <h4 class="uppercase dark:text-gray-300">Recent Conversation</h4>
-                        <div class="h-4">
-                            <div class="hs-dropdown relative inline-flex">
-                                <button class="hs-dropdown-toggle rounded" type="button">
-                                    <i class="uil uil-ellipsis-v text-base"></i>
-                                </button>
-
-                                <div
-                                    class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 z-10 hidden w-40 rounded bg-white opacity-0 shadow transition-[opacity,margin] dark:divide-gray-600 dark:border dark:border-gray-700 dark:bg-gray-800">
-                                    <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                        href="javascript:;">
-                                        <i class="uil uil-edit-alt me-1.5"></i>
-                                        <span>Edit</span>
-                                    </a>
-                                    <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                        href="javascript:;">
-                                        <i class="uil uil-refresh me-1.5"></i>
-                                        <span>Refresh</span>
-                                    </a>
-                                    <hr class="my-2 dark:border-gray-600">
-                                    <a class="text-danger flex items-center gap-x-3.5 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-                                        href="javascript:;">
-                                        <i class="uil uil-trash-alt me-1.5"></i>
-                                        <span>Delete</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="chat-conversation">
-                        <div class="h-[314px]" data-simplebar>
-                            <div class="space-y-6">
-                                <!-- Chat Left -->
-                                <div class="group flex items-start gap-3 pt-8 text-start">
-                                    <div class="text-center">
-                                        <img class="h-10 rounded-full" src="assets/images/users/avatar-5.jpg" />
-                                        <p class="pt-0.5 text-xs">10:00</p>
-                                    </div>
-
-                                    <div
-                                        class="max-w-3/4 bg-light dark:bg-secondary/30 relative rounded p-2 dark:text-gray-200">
-                                        <p class="relative text-xs font-bold">Geneva</p>
-                                        <p class="pt-1">Hello!</p>
-                                    </div>
-                                </div>
-
-                                <!-- Chat Right -->
-                                <div class="group flex flex-row-reverse items-start gap-3 text-end">
-                                    <div class="text-center">
-                                        <img class="h-10 rounded-full" src="assets/images/users/avatar-1.jpg" />
-                                        <p class="pt-0.5 text-xs">10:01</p>
-                                    </div>
-
-                                    <div
-                                        class="max-w-3/4 bg-warning/20 dark:bg-secondary/30 relative rounded p-2 dark:text-gray-200">
-                                        <p class="relative block text-xs font-bold">Dominic</p>
-                                        <p class="pt-1">
-                                            Hi, How are you? What about our next meeting?
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <!-- Chat Left -->
-                                <div class="group flex items-start gap-3 text-start">
-                                    <div class="text-center">
-                                        <img class="h-10 rounded-full" src="assets/images/users/avatar-5.jpg" />
-                                        <p class="pt-0.5 text-xs">10:01</p>
-                                    </div>
-
-                                    <div
-                                        class="max-w-3/4 bg-light dark:bg-secondary/30 relative rounded p-2 dark:text-gray-200">
-                                        <p class="relative text-xs font-bold">Geneva</p>
-                                        <p class="pt-1">Yeah everything is fine</p>
-                                    </div>
-                                </div>
-
-                                <!-- Chat Right -->
-                                <div class="group flex flex-row-reverse items-start gap-3 pb-8 text-end">
-                                    <div class="text-center">
-                                        <img class="h-10 rounded-full" src="assets/images/users/avatar-1.jpg" />
-                                        <p class="pt-0.5 text-xs">10:02</p>
-                                    </div>
-
-                                    <div
-                                        class="max-w-3/4 bg-warning/20 dark:bg-secondary/30 relative rounded p-2 dark:text-gray-200">
-                                        <p class="relative block text-xs font-bold">Dominic</p>
-                                        <p class="pt-1">
-                                            Wow that's great
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <form class="mt-4" id="chat-form" name="chat-form" novalidate="">
-                            <div class="flex items-center gap-5">
-                                <div class="flex-grow">
-                                    <input class="form-input w-full placeholder:text-gray-400 dark:bg-gray-600/20"
-                                        placeholder="Enter your text" required="" type="text">
-                                </div>
-                                <div>
-                                    <button class="btn bg-danger/90 hover:bg-danger text-white"
-                                        type="submit">Send</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div> <!-- end .chat-conversation-->
-                </div>
-            </div> <!-- end card-->
         </div>
         <!-- end row -->
     </div>
+@endsection
+@section('script')
+    <script>
+        Highcharts.chart('chart', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                align: 'center',
+                text: 'Grafik Penjualan'
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                }
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Total Penjualan'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>:Terjual <b>{point.y}</b><br/>'
+            },
+
+            series: [{
+                name: 'Browsers',
+                colorByPoint: true,
+                data: <?= json_encode($chart) ?>
+            }],
+        });
+    </script>
 @endsection

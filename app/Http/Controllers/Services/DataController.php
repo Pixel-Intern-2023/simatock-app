@@ -68,6 +68,7 @@ class DataController extends Controller
                 'products_name' => $request->productName,
                 'quantity' => $request->quantity,
                 'unit_id' => $request->unit,
+                'user_id' => $request->user()->id,
                 'category_id' => $request->category,
                 'purch_price' => $request->purchPrice,
                 'cust_price' => $request->custPrice,

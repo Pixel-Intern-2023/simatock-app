@@ -45,6 +45,6 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     });
     Route::prefix('profile')->group(function () {
         Route::get('/admin', [ProfileController::class, 'profile'])->name('Profile');
-        Route::post('/add-warehouse-profile', [ProfileController::class, 'addProfileWH'])->name('addWareProfile');
+        Route::match(['get', 'put'], '/edit-warehouse-name', [ProfileController::class, 'editWarehouseName'])->name('editWhName');
     });
 });

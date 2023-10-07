@@ -17,14 +17,14 @@ class ProfileController extends Controller
     {
         $context = [
             'productOut' => ProductOut::with(['product', 'users'])->where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get(),
-            'productIn' => Products::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get(),
-            'whProfile' => Profile_wh::get('warehouse_name'),
+            'productIn' => Products::where('user_id', auth()->user()->id)->orderByRaw('GREATEST(created_at,updated_at) DESC')->get(),
+            'whProfile' => Profile_wh::all(),
         ];
         return view('Services.profile.index', $context);
     }
-    public function addProfileWH(Request $request)
+    public function editWarehouseName(Request $request)
     {
-        if ($request->isMethod('POST')) {
+        if ($request->isMethod('PUT')) {
             $request->validate(
                 [
                     'whName' => 'required',
@@ -33,8 +33,7 @@ class ProfileController extends Controller
                     'whName.required' => 'Nama Gudang Harus Dimasukkan!'
                 ],
             );
-            Profile_wh::create([
-                'id' => Str::uuid(),
+            Profile_wh::where('id', $request->id)->update([
                 'warehouse_name' => $request->whName,
             ]);
             return to_route('Profile');

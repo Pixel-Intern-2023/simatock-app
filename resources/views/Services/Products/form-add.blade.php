@@ -27,7 +27,7 @@
                             style="border: 1px solid red"
                             @enderror
                             class="form-input" id="datetime-datepicker" name="receivingDate" type="text"
-                            value="{{ now()->format('Y-m-d') }}">
+                            value="{{ now()->format('Y-m-d H:s') }}">
                         <small>Silahkan Ganti tanggal sesuai barang masuk</small>
                         @error('receivingDate')
                             <small class="text-red-600">{{ $message }}</small>

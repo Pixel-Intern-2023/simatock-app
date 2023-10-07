@@ -31,10 +31,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <!-- Alpine Core -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @yield('scriptTop')
 </head>
-
 <body>
-
     <div class="wrapper flex">
 
         <!-- Sidenav Menu -->
@@ -44,13 +43,17 @@
             <a class="logo-box" href="{{ route('dashboard') }}">
                 <!-- Light Logo -->
                 <div class="logo-light">
-                    <h1 class="logo-lg text-xl">WareHouse</h1>
-                    <h1 class="logo-sm text-xl">WH</h1>
+                    @foreach ($data as $item)
+                        <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                    @endforeach
+                    <h1 class="logo-sm text-xl">{{ $item->warehouse_name }}</h1>
                 </div>
                 <!-- Dark Logo -->
                 <div class="logo-dark">
-                    <h1 class="logo-lg text-xl">WareHouse</h1>
-                    <h1 class="logo-sm text-xl">WH</h1>
+                    @foreach ($data as $item)
+                    <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                    <h1 class="logo-sm text-xl">{{ $item->warehouse_name }}</h1>
+                    @endforeach
                 </div>
             </a>
 
@@ -162,7 +165,7 @@
             <header class="app-header flex items-center gap-4 px-9">
 
                 <!-- App Logo -->
-                <a class="logo-box" href="index.html">
+                <a class="logo-box" href="{{ route('dashboard') }}">
                     <!-- Light Logo -->
                     <div class="logo-light">
                         <img alt="Light logo" class="logo-lg h-6" src="{{ asset('assets/images/logo-light.png') }}">
@@ -263,7 +266,7 @@
             <main class="p-6">
                 <!-- Page Title Start -->
                 <div class="mb-5 flex items-center justify-between">
-                    <h4 class="text-lg font-medium text-gray-900 first-letter:uppercase dark:text-gray-200">
+                    <h4 class="text-lg font-semibold text-gray-900 first-letter:uppercase dark:text-gray-200">
                         {{ Route::currentRouteName() }}
                     </h4>
                     <div class="hidden items-center gap-2.5 font-semibold md:flex">

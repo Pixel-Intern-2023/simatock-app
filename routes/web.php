@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Services\AdditionalDataController;
 use App\Http\Controllers\Services\DataController;
 use App\Http\Controllers\Services\DashboardController;
+use App\Http\Controllers\Services\InfoController;
 use App\Http\Controllers\Services\ProductOutController;
 use App\Http\Controllers\Services\ProfileController;
 
@@ -21,21 +22,22 @@ use App\Http\Controllers\Services\ProfileController;
 
 Route::middleware(['guest'])->group(function () {
     Route::match(['get', 'post'], '/', [AuthController::class, 'login'])->name('login');
-    Route::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('register');
 });
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
+    Route::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('register');
     Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/registered', [AuthController::class, 'registered'])->name('registered');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::prefix('main-data')->group(function () {
         Route::get('/list-barang', [DataController::class, 'list_product'])->name('list-barang');
         Route::post('/add-product', [DataController::class, 'store'])->name('addProduct');
         Route::get('/tambah-barang', [DataController::class, 'form_tambah'])->name('Tambah Barang');
-        Route::get('edit-form/{id}', [DataController::class, 'form_edit'])->name('Edit Data');
-        Route::put('edit/{id}', [DataController::class, 'edit'])->name('edit');
+        Route::match(['get', 'put'], 'edit-form/{id}', [DataController::class, 'form_edit'])->name('Edit Data');
         Route::match(['get', 'delete'], '/delete-product/{id}', [DataController::class, 'removeProduct'])->name('delete');
         Route::get('/data-tambahan', [AdditionalDataController::class, 'additional_data'])->name('Data Tambahan');
         Route::match(['get', 'post'], '/additional-data/{val}', [AdditionalDataController::class, 'addAdditional'])->name('Tambah Data Tambahan');
         Route::match(['get', 'delete'], 'delete-additional/{val},{id}', [AdditionalDataController::class, 'removeAdditionalData'])->name('Hapus Data Tambahan');
+        Route::get('export', [DataController::class, 'export'])->name('download');
     });
     Route::prefix('activities')->group(function () {
         Route::get('/product-keluar', [ProductOutController::class, 'product_out'])->name('Barang Keluar');
@@ -46,5 +48,10 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::prefix('profile')->group(function () {
         Route::get('/admin', [ProfileController::class, 'profile'])->name('Profile');
         Route::match(['get', 'put'], '/edit-warehouse-name', [ProfileController::class, 'editWarehouseName'])->name('editWhName');
+    });
+    Route::prefix('info')->group(function () {
+        Route::get('/list-admin', [InfoController::class, 'admin'])->name('List Admin');
+        Route::get('/list-stok-habis', [InfoController::class, 'infoStock'])->name('List Stok Habis');
+        Route::get('/activities', [InfoController::class, 'activities'])->name('Aktifitas');
     });
 });

@@ -29,9 +29,9 @@
                         <div class="p-5 py-8 text-start sm:px-20 lg:px-8">
                             <div class="mx-auto mb-3">
                                 <a href="index.html">
-                                    <img alt="" class="block h-6 dark:hidden" src="assets/images/logo-dark.png">
+                                    <img alt="" class="block h-6 dark:hidden" src="{{ asset('assets/images/logo-dark.png ')}}">
                                     <img alt="" class="hidden h-6 dark:block"
-                                        src="assets/images/logo-light.png">
+                                        src="{{ asset('assets/images/logo-light.png') }}">
                                 </a>
                                 <h4 class="mt-5 text-base dark:text-gray-300">Welcome Admin!</h4>
                                 <p class="mb-5 mt-1 text-gray-500 dark:text-gray-400">Masukkan Username dan Password untuk mendapatkan akses admin panel</p>

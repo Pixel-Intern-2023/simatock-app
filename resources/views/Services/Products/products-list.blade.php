@@ -10,11 +10,35 @@
                             href="{{ route('Tambah Barang') }}">
                             <i class='uil uil-plus me-1'></i> Tambah
                         </a>
-                        <a class="btn bg-primary/90 btn-sm text-white hover:bg-blue-800" href="#">
+                        <a class="btn bg-primary/90 btn-sm text-white hover:bg-blue-800" href="{{ route('download') }}">
                             <i class='uil uil-export me-1'></i> Export
                         </a>
                     </div>
                 </div>
+                @if (session()->has('failAdded'))
+                    <div class="bg-danger/10 text-danger border-danger/20 my-5 flex items-center justify-between rounded border px-5 py-3 text-sm"
+                        id="dismiss-example-success">
+                        <p>
+                            <span class="font-bold">{{ session('failAdded') }}</span>
+                        </p>
+                        <button class="text-xl/[0]" data-hs-remove-element="#dismiss-example-success" type="button">
+                            <i class="uil uil-multiply text-xl"></i>
+                        </button>
+                    </div>
+                @endif
+                @if (session()->has('successAdded'))
+                    <div class="bg-success/10 text-success border-success/20 flex items-center justify-between rounded border px-5 py-3 text-sm my-5"
+                        id="dismiss-alert">
+                        <p>
+                            <span class="font-bold">{{ session('successAdded') }}
+                        </p>
+
+                        <button class="text-xl/[0]" data-hs-remove-element="#dismiss-alert" type="button">
+                            <i class="uil uil-multiply text-xl"></i>
+                        </button> <!-- button end -->
+                    </div> <!-- dismiss-example-primary end -->
+                @endif
+
                 <div class="overflow-auto">
                     <div class="inline-block min-w-full align-middle"
                         x-data='{
@@ -68,8 +92,8 @@
                                 <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
                                     <template x-for="product in searchResults">
                                         <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                            <td class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400 uppercase"
-                                            x-text='"#"+product.id.slice(24,36)'>
+                                            <td class="whitespace-nowrap px-4 py-4 text-sm font-medium uppercase text-gray-500 dark:text-gray-400"
+                                                x-text='"#"+product.id.slice(24,36)'>
                                             </td>
                                             <td class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400"
                                                 x-text="product.products_name">
@@ -112,4 +136,3 @@
         </div> <!-- end card-->
     </div> <!-- end col-->
 @endsection
-

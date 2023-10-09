@@ -3,8 +3,7 @@
     <div class="card">
         <div class="p-6">
             <h4 class="mb-5 uppercase dark:text-gray-300">Form Tambah Barang</h4>
-            {{-- @dd($product->id) --}}
-            <form action="{{ route('edit', ['id' => $product->id]) }}" method="POST">
+            <form action="{{ route('Edit Data', ['id' => $product->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="flex gap-2">
@@ -44,7 +43,7 @@
                                 @error('quantity')
                                 style="border: 1px solid red"
                                 @enderror
-                                class="form-input w-full placeholder:text-gray-400" min="0" name="quantity"
+                                class="form-input w-full placeholder:text-gray-400" min="{{ $product->quantity }}" name="quantity"
                                 placeholder="Cth: 10" type="number" value="{{ $product->quantity }}">
                             <small>Tambah Stok Barang Di sini</small>
                             @error('quantity')

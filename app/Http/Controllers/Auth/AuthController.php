@@ -37,6 +37,7 @@ class AuthController extends Controller
                 'email' => 'required|email:dns',
                 'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:13',
                 'address' => 'required',
+                'gender' => 'required',
                 'password' => 'required|min:8',
                 'confirmPassword' => 'required|min:8',
             ]);
@@ -45,7 +46,7 @@ class AuthController extends Controller
             }
             $credentials['password'] = Hash::make($credentials['password']);
             User::create($credentials);
-            return redirect('/');
+            return to_route('registered');
         }
     }
     public function logout(Request $request)
@@ -54,5 +55,9 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
+    }
+    public function registered()
+    {
+        return view('info.registered');
     }
 }

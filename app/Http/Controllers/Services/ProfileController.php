@@ -17,7 +17,7 @@ class ProfileController extends Controller
     {
         $context = [
             'productOut' => ProductOut::with(['product', 'users'])->where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get(),
-            'productIn' => Products::where('user_id', auth()->user()->id)->orderByRaw('GREATEST(created_at,updated_at) DESC')->get(),
+            'productIn' => Products::where('user_id', auth()->user()->id)->where('quantity', '!=', 0)->orderByRaw('GREATEST(created_at,updated_at) DESC')->get(),
             'whProfile' => Profile_wh::all(),
         ];
         return view('Services.profile.index', $context);

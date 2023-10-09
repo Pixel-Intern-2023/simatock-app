@@ -22,7 +22,7 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/libs/%40iconscout/unicons/css/line.css') }}" rel="stylesheet" type="text/css">
     <link href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
-    rel="stylesheet">
+        rel="stylesheet">
     <!-- Theme Config Js -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
     <!-- Alpine Plugins -->
@@ -33,6 +33,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @yield('scriptTop')
 </head>
+
 <body>
     <div class="wrapper flex">
 
@@ -51,8 +52,8 @@
                 <!-- Dark Logo -->
                 <div class="logo-dark">
                     @foreach ($data as $item)
-                    <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
-                    <h1 class="logo-sm text-xl">{{ $item->warehouse_name }}</h1>
+                        <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                        <h1 class="logo-sm text-xl">{{ $item->warehouse_name }}</h1>
                     @endforeach
                 </div>
             </a>
@@ -128,30 +129,33 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-title">Components</li>
                     <li class="menu-item">
                         <a class="menu-link" data-hs-collapse="#menuTables" href="javascript:void(0)">
                             <span class="menu-icon">
-                                <i data-lucide="grid"></i>
+                                <i data-lucide="alert-circle"></i>
                             </span>
-                            <span class="menu-text"> Tables </span>
+                            <span class="menu-text"> Info </span>
                             <span class="menu-arrow"></span>
                         </a>
                         <ul class="sub-menu hidden" id="menuTables">
                             <li class="menu-item">
-                                <a class="menu-link" href="tables-basic.html">
-                                    <span class="menu-text">Basic</span>
+                                <a class="menu-link" href="{{ route('List Stok Habis') }}">
+                                    <span class="menu-text">Stok Habis</span>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a class="menu-link" href="tables-datatables.html">
-                                    <span class="menu-text">Data Tables</span>
+                                <a class="menu-link" href="{{ route('List Admin') }}">
+                                    <span class="menu-text">List Admin</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a class="menu-link" href="{{ route('Aktifitas') }}">
+                                    <span class="menu-text">Aktifitas</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
                 </ul>
-
             </div>
         </div>
         <!-- Sidenav Menu End  -->
@@ -190,19 +194,19 @@
                 <div class="me-auto">
                     <div class="hs-dropdown relative hidden lg:block">
                         <button class="hs-dropdown-toggle nav-link" type="button">
-                            Create New <i class="uil uil-angle-down"></i>
+                            Tambah Data <i class="uil uil-angle-down"></i>
                         </button>
                         <div
                             class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 !mt-1 hidden rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800">
                             <a class="flex items-center px-4 py-1.5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                href="javascript:void(0)">
-                                <i class="uil uil-bag me-1 text-base"></i>
-                                <span>New Projects</span>
+                                href="{{ route('Tambah Barang') }}">
+                                <i class="uil uil-box me-1 text-base"></i>
+                                <span>Tambah Data Barang</span>
                             </a>
                             <a class="flex items-center px-4 py-1.5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                href="javascript:void(0)">
+                                href="{{ route('register') }}">
                                 <i class="uil uil-user-plus me-1 text-base"></i>
-                                <span>Create Users</span>
+                                <span>Daftar Admin</span>
                             </a>
                         </div>
                     </div>
@@ -232,7 +236,7 @@
                     <div class="hs-dropdown relative">
                         <button class="hs-dropdown-toggle nav-link flex items-center gap-2" type="button">
                             <img alt="user-image" class="h-8 rounded-full"
-                                src="{{ asset('assets/images/users/avatar-1.jpg') }}">
+                                src="{{ asset('assets/images/profile/' . (Auth::user()->gender == 'p' ? 'female.jpg' : 'male.jpg')) }}">
                             <span class="hidden gap-0.5 text-start md:flex">
                                 <h5 class="text-sm">{{ Auth::user()->name }}</h5>
                                 <i class="uil uil-angle-down"></i>
@@ -240,9 +244,10 @@
                         </button>
 
                         <div
-                            class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 !mt-4  hidden rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800">
+                            class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 !mt-4 hidden rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800">
                             <!-- item-->
-                            <h6 class="flex items-center px-3 py-2 text-gray-800 dark:text-gray-400">Welcome {{ Auth::user()->name }}!</h6>
+                            <h6 class="flex items-center px-3 py-2 text-gray-800 dark:text-gray-400">Welcome
+                                {{ Auth::user()->name }}!</h6>
 
                             <!-- item-->
                             <a class="flex items-center gap-2 px-4 py-1.5 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"

@@ -2,9 +2,9 @@
 @section('content')
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 xl:grid-cols-12">
         <div class="lg:col-span-5 xl:col-span-3">
-            <div class="card mb-6 p-6 text-center">
-                <img alt="" class="mx-auto h-20 rounded-full bg-gray-100 p-1 dark:bg-gray-700"
-                    src="{{ asset('assets/images/users/avatar-7.jpg') }}">
+            <div class="card mb-6 p-6 text-center ">
+                        <img alt="" class="mx-auto h-20 rounded-full bg-gray-100 p-1 dark:bg-gray-700"
+                        src="{{ asset('assets/images/profile/' . (Auth::user()->gender == 'p' ? 'female.jpg' : 'male.jpg')) }}">
                 <h4 class="mb-1 mt-3 text-lg dark:text-gray-300">{{ Auth::user()->name }}</h4>
                 <p class="mb-4 text-gray-400 dark:text-gray-400">Admin</p>
                 <hr class="mt-5 dark:border-gray-600">
@@ -12,10 +12,9 @@
                     <div class="space-y-7" x-data="{ open: false }">
                         <p class="text-zinc-400 dark:text-gray-400"><strong>Email :</strong> <span
                                 class="ms-2">{{ Auth::user()->email }}</span></p>
-                        <p class="text-zinc-400 dark:text-gray-400"><strong>Phone :</strong> <span class="ms-2"> (123) 123
-                                1234</span></p>
+                        <p class="text-zinc-400 dark:text-gray-400"><strong>No. Hp :</strong> <span class="ms-2">{{ Auth::user()->phone_number }}</span></p>
                         <p class="flex items-start gap-1 text-zinc-400 dark:text-gray-400"><strong
-                                class="flex-shrink">Address:{{ Auth::user()->address }}</strong>
+                                class="flex-shrink">Address: </strong> <span class="ms2">{{ Auth::user()->address }}</span>
                         </p>
                     </div>
                 </div>
@@ -199,59 +198,10 @@
                                             @endforeach
                                         </form>
                                     </div>
-                                    <div class="relative overflow-hidden py-2.5">
-                                        <div class="float-left me-3.5 block">
-                                            <h2
-                                                class="text-primary bg-primary/20 flex h-14 w-14 items-center justify-center rounded-full text-xl">
-                                                M</h2>
-                                        </div>
-                                        <p class="mb-0.5 block font-semibold text-gray-700 dark:text-gray-300">Michael</p>
-                                        <p class="text-gray-400">To an English person, it will seem like simplified</p>
-                                    </div>
-                                    <div class="relative overflow-hidden py-2.5">
-                                        <div class="float-left me-3.5 block"><img alt=""
-                                                class="h-14 rounded-full" src="assets/images/users/avatar-5.jpg"></div>
-                                        <p class="mb-0.5 block font-semibold text-gray-700 dark:text-gray-300">Tony Lindsey
-                                        </p>
-                                        <p class="text-gray-400">If several languages coalesce the grammar</p>
-                                    </div>
-                                    <div class="relative overflow-hidden py-2.5">
-                                        <div class="float-left me-3.5 block">
-                                            <h2
-                                                class="text-primary bg-primary/20 flex h-14 w-14 items-center justify-center rounded-full text-xl">
-                                                R</h2>
-                                        </div>
-                                        <p class="mb-0.5 block font-semibold text-gray-700 dark:text-gray-300">Robert Wilke
-                                        </p>
-                                        <p class="text-gray-400">Their separate existence is a myth</p>
-                                    </div>
-                                    <div class="relative overflow-hidden py-2.5">
-                                        <div class="float-left me-3.5 block"><img alt=""
-                                                class="h-14 rounded-full" src="assets/images/users/avatar-7.jpg"></div>
-                                        <p class="mb-0.5 block font-semibold text-gray-700 dark:text-gray-300">James</p>
-                                        <p class="text-gray-400">The European languages are members.</p>
-                                    </div>
-                                    <div class="relative overflow-hidden py-2.5">
-                                        <div class="float-left me-3.5 block">
-                                            <h2
-                                                class="text-primary bg-primary/20 flex h-14 w-14 items-center justify-center rounded-full text-xl">
-                                                B</h2>
-                                        </div>
-                                        <p class="mb-0.5 block font-semibold text-gray-700 dark:text-gray-300">Brian</p>
-                                        <p class="text-gray-400">At vero eos et accusamus et iusto odio</p>
-                                    </div>
-                                    <div class="relative overflow-hidden py-2.5">
-                                        <div class="float-left me-3.5 block"><img alt=""
-                                                class="h-14 rounded-full" src="assets/images/users/avatar-5.jpg"></div>
-                                        <p class="mb-0.5 block font-semibold text-gray-700 dark:text-gray-300">Aaron Nickel
-                                        </p>
-                                        <p class="text-gray-400">Itaque earum rerum hic tenetur a sapiente</p>
-                                    </div>
                                 </div>
-
-                                <div class="text-center">
+                                {{-- <div class="text-center">
                                     <a class="btn bg-primary btn-sm rounded text-white" href="#">Load more</a>
-                                </div>
+                                </div> --}}
                             </div> <!-- tabs-with-underline-2 end -->
 
 

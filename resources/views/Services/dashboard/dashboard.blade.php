@@ -4,21 +4,17 @@
 @extends('Layouts.base')
 @section('content')
     <div class="space-y-5">
-        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             <a href="{{ route('list-barang') }}">
                 <div class="card">
                     <div class="p-5">
-                        <div class="flex">
-                            <div class="flex-grow">
-                                <span class="text-xs font-bold uppercase text-gray-500 dark:text-gray-400">Total
-                                    Barang</span>
-                                <h3 class="text-2xl dark:text-gray-300">{{ $product }}</h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex-grow-1">
+                                <span class="text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">Total Barang</span>
+                                <h3 class="text-2xl mt-2 dark:text-gray-300">{{ $product }}</h3>
                             </div>
-                            <div class="flex-shrink-0 text-center">
-                                <div class="apex-charts" id="today-revenue-chart"></div>
-                                <span class="text-success fw-bold fs-13"><i class='uil uil-box'></i>
-                                    {{ $product }}
-                                </span>
+                            <div class="align-self-center flex-shrink-0">
+                                <i data-lucide="shopping-bag" class="w-10 h-10 fill-primary/20 stroke-primary"></i>
                             </div>
                         </div>
                     </div>
@@ -27,64 +23,167 @@
             <a href="{{ route('Barang Keluar') }}">
                 <div class="card">
                     <div class="p-5">
-                        <div class="flex">
-                            <div class="flex-grow">
-                                <span class="text-xs font-bold uppercase text-gray-500 dark:text-gray-400">Transaksi Barang
-                                    Keluar</span>
-                                <h3 class="text-2xl dark:text-gray-300">{{ $productOut }}</h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex-grow-1">
+                                <span class="text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">Total Barang Keluar</span>
+                                <h3 class="text-2xl mt-2 dark:text-gray-300">{{ $productOut }}</h3>
                             </div>
                             <div class="align-self-center flex-shrink-0">
-                                <div class="apex-charts" id="today-product-sold-chart">
-                                </div>
-                                <span class="text-danger fw-bold fs-13"><i class='uil uil-truck'></i>
-                                    {{ $productOut }}</span>
+                                <i data-lucide="truck" class="w-10 h-10 fill-success/20 stroke-success"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </a>
-            <a href="">
+            <a href="{{ route('List Stok Habis') }}">
                 <div class="card">
                     <div class="p-5">
-                        <div class="flex">
-                            <div class="flex-grow">
-                                <span class="text-xs font-bold uppercase text-gray-500 dark:text-gray-400">Stok Habis</span>
-                                <h3 class="text-2xl dark:text-gray-300">{{ $outOfProduct }}</h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex-grow-1">
+                                <span class="text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">stok hampir habis</span>
+                                <h3 class="text-2xl mt-2 dark:text-gray-300">{{ $outOfProduct }}</h3>
                             </div>
                             <div class="align-self-center flex-shrink-0">
-                                <div class="apex-charts" id="today-new-visitors-chart">
-                                </div>
-                                <span class="text-danger fw-bold fs-13"><i class='uil uil-arrow-down'></i>
-
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <div class="card">
-                    <div class="p-5">
-                        <div class="flex">
-                            <div class="flex-grow">
-                                <span class="text-xs font-bold uppercase text-gray-500 dark:text-gray-400">Total
-                                    Penjualan</span>
-                                <h3 class="text-xl dark:text-gray-300">{{ 'IDR. ' . number_format($totalMoney) }}</h3>
-                            </div>
-                            <div class="align-self-center flex-shrink-0">
-                                <div class="apex-charts" id="today-new-customer-chart">
-                                </div>
-                                <span class="text-success fw-bold fs-13"><i class='uil uil-money-bill'></i>
-                                </span>
+                                <i data-lucide="arrow-down-square" class="w-10 h-10 fill-red-500/20 stroke-red-600"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
+        <!-- stats + charts -->
+        <div class="grid gap-5 xl:grid-cols-3">
+            <!-- overview -->
+            <div class="card">
+                <div>
+                    <div class="flex items-center justify-between p-5">
+                        <h5 class="mb-0 uppercase dark:text-gray-300">Info</h5>
+                        <div class="h-4">
+                            <div
+                                class="hs-dropdown relative inline-flex [--placement:left-top] rtl:[--placement:right-top]">
+                                <button class="hs-dropdown-toggle rounded" type="button">
+                                    <i class="uil uil-ellipsis-v text-base"></i>
+                                </button>
+                                <div
+                                    class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 z-10 hidden w-40 rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:divide-gray-600 dark:border dark:border-gray-700 dark:bg-gray-800">
+                                    <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                        href="javascript:;">
+                                        <i class="uil uil-edit-alt me-1.5"></i>
+                                        <span>Edit</span>
+                                    </a>
+                                    <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                        href="javascript:;">
+                                        <i class="uil uil-refresh me-1.5"></i>
+                                        <span>Refresh</span>
+                                    </a>
+                                    <hr class="my-2 dark:border-gray-600">
+                                    <a class="text-danger flex items-center gap-x-3.5 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        href="javascript:;">
+                                        <i class="uil uil-trash-alt me-1.5"></i>
+                                        <span>Delete</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- stat 1 -->
+                    <div class="flex border-b p-5 dark:border-gray-600">
+                        <div class="flex-grow">
+                            <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ $totalAdmin }}</h4>
+                            <span class="text-gray-500 dark:text-gray-400">Total Admin</span>
+                        </div>
+                        <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="users"></i>
+                    </div>
+                    <!-- stat 2 -->
+                    <div class="flex border-b p-5 dark:border-gray-600">
+                        <div class="flex-grow">
+                            <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">21,000</h4>
+                            <span class="text-gray-500 dark:text-gray-400">Total Product Views</span>
+                        </div>
+                        <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="image"></i>
+                    </div>
+                    <!-- stat 3 -->
+                    <div class="flex border-b p-5 dark:border-gray-600">
+                        <div class="flex-grow">
+                            <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ 'IDR. ' . number_format($totalMoney) }}
+                            </h4>
+                            <span class="text-gray-500 dark:text-gray-400">Penjualan Hari Ini</span>
+                        </div>
+                        <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="shopping-bag"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="xl:col-span-2">
+                <div class="card">
+                    <div class="p-6">
+                        <h5 class="uppercase">stok hampir habis</h5>
+                        <div class="overflow-auto">
+                            <div class="inline-block min-w-full align-middle">
+                                <div class="overflow-hidden">
+                                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                                        <thead>
+                                            <tr>
+                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
+                                                    scope="col">
+                                                    #</th>
+                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
+                                                    scope="col">
+                                                    Product</th>
+                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
+                                                    scope="col">
+                                                    Suplier</th>
+                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
+                                                    scope="col">
+                                                    Stok</th>
+                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
+                                                    scope="col">
+                                                    Satuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
+                                            @forelse ($stockAlmostOut as $item)
+                                                <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
+                                                        {{ $loop->iteration }}</td>
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                                        {{ $item->products_name }}</td>
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                                        {{ $item->suplier->suplier }}</td>
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                                        {{ $item->quantity }}</td>
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                                        {{ $item->unit->unit }}</td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td class="mt-3 text-center font-bold uppercase" colspan="5">
+                                                        no data
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                    <div class="flex items-center justify-center">
+                                        <a class="btn bg-primary/90 btn-sm hover:bg-primary text-white" href="{{ route('List Stok Habis') }}">
+                                            Selengkapnya
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end table-responsive-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
         <!-- products -->
         <div class="grid gap-5 xl:grid-cols-12">
-            <div class="xl:col-span-6">
+            <div class="xl:col-span-5">
                 <div class="card">
                     <div class="p-5">
                         <div class="flex items-center justify-between">
@@ -133,99 +232,14 @@
                                                     </td>
                                                 </tr>
                                             @empty
-                                                no data
-                                            @endforelse
-                                            {{-- <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                    #98754</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    ASOS Ridley High</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Otto B</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    <span
-                                                        class="bg-warning/10 text-warning inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-xs font-medium">Pending</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                    #98752</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Half Sleeve Shirt</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                    Dave B</td>
-                                                <td
-                                                    class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                    <span
-                                                        class="bg-danger/10 text-danger inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-xs font-medium">Declined</span>
-                                                </td>
-                                            </tr> --}}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div><!-- end table-responsive-->
-                    </div>
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-            <div class="xl:col-span-6">
-                <div class="card">
-                    <div class="p-5">
-                        <div class="flex items-center justify-between">
-                            <h5 class="uppercase">Stok Hampir Habis</h5>
-                        </div>
-                        <div class="overflow-auto">
-                            <div class="inline-block min-w-full align-middle">
-                                <div class="overflow-hidden">
-                                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                                        <thead>
-                                            <tr>
-                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
-                                                    scope="col">
-                                                    #</th>
-                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
-                                                    scope="col">
-                                                    Product</th>
-                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
-                                                    scope="col">
-                                                    Suplier</th>
-                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
-                                                    scope="col">
-                                                    Stok</th>
-                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
-                                                    scope="col">
-                                                    Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
-                                            @forelse ($stockAlmostOut as $item)
-                                                <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                                    <td
-                                                        class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                        {{ $loop->iteration }}</td>
-                                                    <td
-                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                        {{ $item->products_name }}</td>
-                                                    <td
-                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                        {{ $item->suplier->suplier }}</td>
-                                                    <td
-                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                        {{ $item->quantity }}</td>
-                                                    <td class="whitespace-nowrap px-4 py-4 text-start text-white">
-                                                        <a class="rounded bg-yellow-400 px-3 py-1 font-semibold"
-                                                            href="{{ route('Edit Data', ['id' => $item->id]) }}">Detail</a>
+                                                <tr>
+                                                    <td class="mt-3 text-center font-bold uppercase" colspan="5">
+                                                        <a class="btn bg-primary/90 btn-sm hover:bg-primary text-white"
+                                                            href="#">
+                                                            <i class='uil uil-export me-1'></i> Export
+                                                        </a>
                                                     </td>
                                                 </tr>
-                                            @empty
-                                                no Data
                                             @endforelse
                                         </tbody>
                                     </table>
@@ -235,13 +249,13 @@
                     </div>
                 </div> <!-- end card-->
             </div> <!-- end col-->
-            <div class="col-span-12">
+            <div class="xl:col-span-7">
                 <div class="card dark:bg">
                     <div class="p-5">
                         <div id="chart"></div>
                     </div>
                 </div>
-            </div>
+            </div> <!-- end col-->
         </div>
         <!-- end row -->
     </div>
@@ -289,7 +303,7 @@
             },
 
             series: [{
-                name: 'Browsers',
+                name: 'Produk',
                 colorByPoint: true,
                 data: <?= json_encode($chart) ?>
             }],

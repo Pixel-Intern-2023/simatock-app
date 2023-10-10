@@ -41,6 +41,12 @@
                     </div>
                 </div>
             @empty
+            <div>
+                <div class="mt-3 text-center flex items-center flex-col font-bold uppercase" colspan="5">
+                    <img src="{{ asset('assets/images/empty.png') }}" alt="empty" class="w-80">
+                    No Data
+                </div>
+            </div>
             @endforelse
         </div>
     </div>

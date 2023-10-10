@@ -47,6 +47,12 @@
                 </div>
             </div>
         @empty
+            <div>
+                <div class="mt-3 flex flex-col items-center text-center font-bold uppercase" colspan="5">
+                    <img alt="empty" class="w-80" src="{{ asset('assets/images/truck.png') }}">
+                    Tidak ada barang keluar
+                </div>
+            </div>
         @endforelse
         <!-- right -->
         @forelse ($productIn as $item)
@@ -84,6 +90,12 @@
                 </div>
             </div>
         @empty
+            <div>
+                <div class="mt-3 flex flex-col items-center text-center font-bold uppercase" colspan="5">
+                    <img alt="empty" class="w-80" src="{{ asset('assets/images/empty.png') }}">
+                    Tidak ada barang Masuk
+                </div>
+            </div>
         @endforelse
 
     </div>

@@ -236,10 +236,7 @@
                                             @empty
                                                 <tr>
                                                     <td class="mt-3 text-center font-bold uppercase" colspan="5">
-                                                        <a class="btn bg-primary/90 btn-sm hover:bg-primary text-white"
-                                                            href="#">
-                                                            <i class='uil uil-export me-1'></i> Export
-                                                        </a>
+                                                        No Data
                                                     </td>
                                                 </tr>
                                             @endforelse

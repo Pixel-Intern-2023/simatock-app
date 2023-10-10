@@ -41,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
-                        @foreach ($suplier as $item)
+                        @forelse ($suplier as $item)
                             <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
                                 <td
                                     class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -63,7 +63,13 @@
                                     </a>
                                 </td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td class="mt-3 text-center font-bold uppercase" colspan="5">
+                                    No Data
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

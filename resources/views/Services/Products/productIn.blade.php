@@ -65,9 +65,11 @@
                            </td>
                     </tr>
                     @empty
-                        <tr>
-                            <td>No Data</td>
-                        </tr>
+                    <tr>
+                        <td class="mt-3 text-center font-bold uppercase" colspan="7">
+                            No Data
+                        </td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>

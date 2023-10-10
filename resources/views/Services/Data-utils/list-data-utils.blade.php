@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
-                            @foreach ($unit as $item)
+                            @forelse ($unit as $item)
                                 <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
                                     <td
                                         class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -39,7 +39,13 @@
                                                 class="uil uil-trash-alt"></i></a>
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                <tr>
+                                    <td class="mt-3 text-center font-bold uppercase" colspan="5">
+                                        No Data
+                                    </td>
+                                </tr>
+                            @endforelse
                             <tr>
                                 <td colspan="3">
                                     <div class="flex" x-data="{ open: false }">
@@ -92,7 +98,7 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
-                            @foreach ($category as $item)
+                            @forelse ($category as $item)
                                 <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
                                     <td
                                         class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -105,7 +111,13 @@
                                                 class="uil uil-trash-alt"></i></a>
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                <tr>
+                                    <td class="mt-3 text-center font-bold uppercase" colspan="5">
+                                        No Data
+                                    </td>
+                                </tr>
+                            @endforelse
                             <tr>
                                 <td colspan="3">
                                     <div class="flex" x-data="{ open: false }">

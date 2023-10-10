@@ -25,5 +25,9 @@ class AppServiceProvider extends ServiceProvider
             $data = Profile_wh::all();
             $view->with('data', $data);
         });
+        view()->composer('Layouts.authBase', function ($view) {
+            $data = Profile_wh::all();
+            $view->with('data', $data);
+        });
     }
 }

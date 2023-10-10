@@ -17,24 +17,12 @@ class AdditionalDataController extends Controller
         $context = [
             'unit' => Unit::orderBy('created_at', 'DESC')->paginate(4),
             'category' => Category::orderBy('created_at', 'DESC')->paginate(4),
-            'suplier' => Suplier::orderBy('created_at', 'DESC')->paginate(4),
         ];
         return view('Services.Data-utils.list-data-utils', $context);
     }
     public function addAdditional(Request $request, $val)
     {
-        // 1 represent to suplier
-        if ($val == 1) {
-            $request->validate([
-                'suplier' => 'required',
-            ]);
-            Suplier::create([
-                'id' => Str::uuid(),
-                'suplier' => $request->suplier,
-            ]);
-            return to_route('Data Tambahan');
-            // 2 represent to unit
-        } elseif ($val == 2) {
+        if ($val == 2) {
             $request->validate([
                 'unit' => 'required',
             ]);
@@ -57,16 +45,7 @@ class AdditionalDataController extends Controller
     }
     public function removeAdditionalData($val, $id)
     {
-        if ($val == 1) {
-            $suplier = Suplier::findOrFail($id);
-            $products = $suplier->products;
-            foreach ($products as $product) {
-                $product->suplier_id = null;
-                $product->save();
-            }
-            $suplier->delete();
-            return to_route('Data Tambahan');
-        } elseif ($val == 2) {
+        if ($val == 2) {
             $unit = Unit::findOrFail($id);
             $products = $unit->products;
             foreach ($products as $product) {
@@ -75,7 +54,7 @@ class AdditionalDataController extends Controller
             }
             $unit->delete();
             return to_route('Data Tambahan');
-        } else if ($val == 3) {
+        } elseif ($val == 3) {
             $category = Category::findOrFail($id);
             $products = $category->products;
             foreach ($products as $product) {

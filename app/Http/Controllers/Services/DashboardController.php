@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Services;
 
 use App\Models\User;
+use App\Models\Suplier;
 use App\Models\Products;
 use App\Models\ProductOut;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ class DashboardController extends Controller
                 ->get(),
             'chart' => ProductOut::chart(),
             'totalAdmin' => User::count(),
+            'totalSuplier' => Suplier::count(),
         ];
         return view('Services.dashboard.dashboard', $context);
     }

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->uuid('suplier_id')->nullable();
             $table->integer('purch_price');
             $table->integer('cust_price');
-            $table->date('receiving_date');
             $table->timestamps();
             // define foreign
             $table->foreign('category_id')->references('id')->on('tb_category');

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Login | Shreyu - Responsive Tailwind CSS 3 Admin Dashboard</title>
+    <title>{{ Route::currentRouteName() }} | Simatock Web App</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta
         content="A fully featured admin theme which can be used to build CRM, CMS, etc., Tailwind, TailwindCSS, Tailwind CSS 3"
@@ -22,24 +22,32 @@
 
 <body class="relative flex flex-col">
     <div class="container">
-        <div class="flex items-center justify-center px-5 sm:px-0" style="{{ Route::currentRouteName() == 'register' ? 'padding-top:9px' :'padding-top:80px' }}">
+        <div class="flex items-center justify-center px-5 sm:px-0"
+            style="{{ Route::currentRouteName() == 'register' ? 'padding-top:9px' : 'padding-top:80px' }}">
             <div class="xl:max-w-6xl">
                 <div class="card">
                     <div class="grid gap-5 lg:grid-cols-2">
                         <div class="p-5 py-8 text-start sm:px-20 lg:px-8">
                             <div class="mx-auto mb-3">
-                                <a href="index.html">
-                                    <img alt="" class="block h-6 dark:hidden" src="{{ asset('assets/images/logo-dark.png ')}}">
+                                <a href="#">
+                                    @foreach ($data as $item)
+                                        <h1 class="block text-xl dark:hidden">{{ $item->warehouse_name }}</h1>
+                                        <h1 class="hidden text-xl dark:block text-white">{{ $item->warehouse_name }}</h1>
+                                    @endforeach
+                                    {{-- <img alt="" class="block h-6 dark:hidden"
+                                        src="{{ asset('assets/images/logo-dark.png ') }}">
                                     <img alt="" class="hidden h-6 dark:block"
-                                        src="{{ asset('assets/images/logo-light.png') }}">
+                                        src="{{ asset('assets/images/logo-light.png') }}"> --}}
                                 </a>
                                 <h4 class="mt-5 text-base dark:text-gray-300">Welcome Admin!</h4>
-                                <p class="mb-5 mt-1 text-gray-500 dark:text-gray-400">Masukkan Username dan Password untuk mendapatkan akses admin panel</p>
+                                <p class="mb-5 mt-1 text-gray-500 dark:text-gray-400">Masukkan Username dan Password
+                                    untuk mendapatkan akses admin panel</p>
                             </div>
                             @yield('content')
                         </div>
                         <div class="hidden lg:block">
-                            <div class="relative h-full bg-cover bg-no-repeat bg-center flex items-center flex-col" style="background-image: url('{{ asset('assets/images/auth-bg.jpg') }}')">
+                            <div class="relative flex h-full flex-col items-center bg-cover bg-center bg-no-repeat"
+                                style="background-image: url('{{ asset('assets/images/auth-bg.jpg') }}')">
                                 <div class="bg-dark/50 absolute inset-0"></div>
                                 <div class="absolute bottom-0 pb-4 text-center">
                                     <p class="mb-1 text-xl font-semibold text-white">I simply love it!</p>

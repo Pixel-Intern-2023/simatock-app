@@ -32,11 +32,11 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
-                    @foreach ($productOut as $item)
+                    @forelse ($productOut as $item)
                     <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
                         <td
                             class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                            {{ $loop->iteration }}
+                            {{ '#' . Str::substr($item->id, 0, 8) }}
                             </td>
                         <td
                             class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -59,7 +59,11 @@
                             {{ date('D, d-M-Y',strtotime($item->created_at)) }}
                            </td>
                     </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td>No Data</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
             {{ $productOut->links() }}

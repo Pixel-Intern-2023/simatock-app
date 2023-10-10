@@ -46,14 +46,18 @@
                 <div class="logo-light">
                     @foreach ($data as $item)
                         <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                        <h1 class="logo-sm text-xl">
+                            {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
+                        </h1>
                     @endforeach
-                    <h1 class="logo-sm text-xl">{{ $item->warehouse_name }}</h1>
                 </div>
                 <!-- Dark Logo -->
                 <div class="logo-dark">
                     @foreach ($data as $item)
                         <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
-                        <h1 class="logo-sm text-xl">{{ $item->warehouse_name }}</h1>
+                        <h1 class="logo-sm text-xl">
+                            {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
+                        </h1>
                     @endforeach
                 </div>
             </a>
@@ -84,6 +88,11 @@
                             <li class="menu-item">
                                 <a class="menu-link" href="{{ route('list-barang') }}">
                                     <span class="menu-text">Data Barang</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a class="menu-link" href="{{ route('List Suplier') }}">
+                                    <span class="menu-text">Data Suplier</span>
                                 </a>
                             </li>
                             <li class="menu-item">
@@ -172,14 +181,22 @@
                 <a class="logo-box" href="{{ route('dashboard') }}">
                     <!-- Light Logo -->
                     <div class="logo-light">
-                        <img alt="Light logo" class="logo-lg h-6" src="{{ asset('assets/images/logo-light.png') }}">
-                        <img alt="Small logo" class="logo-sm h-6" src="{{ asset('assets/images/logo-sm.png') }}">
+                        @foreach ($data as $item)
+                            <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                            <h1 class="logo-sm text-xl">
+                                {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
+                            </h1>
+                        @endforeach
                     </div>
 
                     <!-- Dark Logo -->
                     <div class="logo-dark">
-                        <img alt="Dark logo" class="logo-lg h-6" src="{{ asset('assets/images/logo-dark.png') }}">
-                        <img alt="Small logo" class="logo-sm h-6" src="{{ asset('assets/images/logo-sm.png') }}">
+                        @foreach ($data as $item)
+                            <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                            <h1 class="logo-sm text-xl">
+                                {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
+                            </h1>
+                        @endforeach
                     </div>
                 </a>
 

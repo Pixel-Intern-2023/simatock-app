@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 // Main data controller
 class DataController extends Controller
@@ -133,5 +134,54 @@ class DataController extends Controller
     public function export()
     {
         return Excel::download(new UsersExport(), 'products.xlsx');
+    }
+    // SUPLIER METHOD
+    public function list_suplier()
+    {
+        $suplier = Suplier::all();
+        return view('Services.Products.list-suplier', compact('suplier'));
+    }
+    public function addSuplier(Request $request)
+    {
+        if ($request->isMethod('GET')) {
+            return view('Services.Products.form-add-suplier');
+        } elseif ($request->isMethod('POST')) {
+            $request->validate([
+                'suplierName' => 'required',
+                'noTelp' => 'required|max:13|min:11',
+                'address' => 'required'
+            ]);
+            Suplier::create([
+                'id' => Str::uuid(),
+                'suplier' => $request->suplierName,
+                'phone_number' => $request->noTelp,
+                'address' => $request->address
+            ]);
+            session()->flash('success', 'Data Suplier Berhasil Di Tambahkakn');
+            return to_route('List Suplier');
+        }
+    }
+    public function editSuplier(Request $request, $id)
+    {
+        if ($request->isMethod('GET')) {
+            $context = [
+                'productBySuplier' => Products::with(['unit'])->where('suplier_id', $id)->select('id', 'products_name', 'quantity', 'purch_price', 'created_at', 'unit_id')->get(),
+                'suplier' => Suplier::find($id),
+            ];
+            return view('Services.Products.detail-suplier', $context);
+        } elseif ($request->isMethod('PUT')) {
+            $request->validate([
+                'suplierName' => 'required',
+                'noTelp' => 'required|max:13|min:11',
+                'address' => 'required'
+            ]);
+            Suplier::where('id', $id)->update([
+                'suplier' => $request->suplierName,
+                'phone_number' => $request->noTelp,
+                'address' => $request->address
+            ]);
+            session()->flash('success', 'Data Suplier Berhasil Di Edit');
+            return to_route('List Suplier');
+        }
     }
 }

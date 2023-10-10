@@ -10,11 +10,12 @@
                     <div class="p-5">
                         <div class="flex items-center justify-between">
                             <div class="flex-grow-1">
-                                <span class="text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">Total Barang</span>
-                                <h3 class="text-2xl mt-2 dark:text-gray-300">{{ $product }}</h3>
+                                <span class="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Total
+                                    Barang</span>
+                                <h3 class="mt-2 text-2xl dark:text-gray-300">{{ $product }}</h3>
                             </div>
                             <div class="align-self-center flex-shrink-0">
-                                <i data-lucide="shopping-bag" class="w-10 h-10 fill-primary/20 stroke-primary"></i>
+                                <i class="fill-primary/20 stroke-primary h-10 w-10" data-lucide="shopping-bag"></i>
                             </div>
                         </div>
                     </div>
@@ -25,11 +26,12 @@
                     <div class="p-5">
                         <div class="flex items-center justify-between">
                             <div class="flex-grow-1">
-                                <span class="text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">Total Barang Keluar</span>
-                                <h3 class="text-2xl mt-2 dark:text-gray-300">{{ $productOut }}</h3>
+                                <span class="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Total Barang
+                                    Keluar</span>
+                                <h3 class="mt-2 text-2xl dark:text-gray-300">{{ $productOut }}</h3>
                             </div>
                             <div class="align-self-center flex-shrink-0">
-                                <i data-lucide="truck" class="w-10 h-10 fill-success/20 stroke-success"></i>
+                                <i class="fill-success/20 stroke-success h-10 w-10" data-lucide="truck"></i>
                             </div>
                         </div>
                     </div>
@@ -40,11 +42,12 @@
                     <div class="p-5">
                         <div class="flex items-center justify-between">
                             <div class="flex-grow-1">
-                                <span class="text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">stok hampir habis</span>
-                                <h3 class="text-2xl mt-2 dark:text-gray-300">{{ $outOfProduct }}</h3>
+                                <span class="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">stok hampir
+                                    habis</span>
+                                <h3 class="mt-2 text-2xl dark:text-gray-300">{{ $outOfProduct }}</h3>
                             </div>
                             <div class="align-self-center flex-shrink-0">
-                                <i data-lucide="arrow-down-square" class="w-10 h-10 fill-red-500/20 stroke-red-600"></i>
+                                <i class="h-10 w-10 fill-red-500/20 stroke-red-600" data-lucide="arrow-down-square"></i>
                             </div>
                         </div>
                     </div>
@@ -89,18 +92,18 @@
                     <!-- stat 1 -->
                     <div class="flex border-b p-5 dark:border-gray-600">
                         <div class="flex-grow">
-                            <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ $totalAdmin }}</h4>
-                            <span class="text-gray-500 dark:text-gray-400">Total Admin</span>
+                            <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ $totalSuplier }}</h4>
+                            <span class="text-gray-500 dark:text-gray-400">Total Mitra Suplier</span>
                         </div>
-                        <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="users"></i>
+                        <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="heart-handshake"></i>
                     </div>
                     <!-- stat 2 -->
                     <div class="flex border-b p-5 dark:border-gray-600">
                         <div class="flex-grow">
-                            <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">21,000</h4>
-                            <span class="text-gray-500 dark:text-gray-400">Total Product Views</span>
+                            <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ $totalAdmin }}</h4>
+                            <span class="text-gray-500 dark:text-gray-400">Total Admin</span>
                         </div>
-                        <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="image"></i>
+                        <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="users"></i>
                     </div>
                     <!-- stat 3 -->
                     <div class="flex border-b p-5 dark:border-gray-600">
@@ -145,7 +148,7 @@
                                                 <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
                                                     <td
                                                         class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                        {{ $loop->iteration }}</td>
+                                                        {{ '#' . Str::substr($item->id, 0, 8) }}</td>
                                                     <td
                                                         class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
                                                         {{ $item->products_name }}</td>
@@ -169,7 +172,8 @@
                                         </tbody>
                                     </table>
                                     <div class="flex items-center justify-center">
-                                        <a class="btn bg-primary/90 btn-sm hover:bg-primary text-white" href="{{ route('List Stok Habis') }}">
+                                        <a class="btn bg-primary/90 btn-sm hover:bg-primary text-white"
+                                            href="{{ route('List Stok Habis') }}">
                                             Selengkapnya
                                         </a>
                                     </div>

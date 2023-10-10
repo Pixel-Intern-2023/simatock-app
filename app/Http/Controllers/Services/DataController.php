@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Services;
 
 use App\Exports\ProductsExport;
-use App\Exports\UsersExport;
 use App\Models\Unit;
 use App\Models\Suplier;
 use App\Models\Category;
 use App\Models\Products;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 // Main data controller
 class DataController extends Controller
@@ -30,7 +27,6 @@ class DataController extends Controller
             $request->validate(
                 [
                     'productName' => 'required',
-                    'receivingDate' => 'required',
                     'quantity' => 'required|min:0',
                     'unit' => 'required',
                     'category' => 'required',
@@ -40,7 +36,6 @@ class DataController extends Controller
                 ],
                 [
                     'productName.required' => 'Kolom Nama barang harus diisi.',
-                    'receivingDate.required' => 'Kolom Tanggal barang masuk harus diisi.',
                     'quantity.required' => 'Kolom Stok barang harus diisi.',
                     'unit.required' => 'Kolom Satuan barang harus diisi.',
                     'quantity.min' => 'Kolom Stok barang harus diatas 0.',
@@ -60,7 +55,6 @@ class DataController extends Controller
                 'category_id' => $request->category,
                 'purch_price' => $purch_price,
                 'cust_price' => $cust_price,
-                'receiving_date' => $request->receivingDate,
                 'suplier_id' => $request->suplier,
                 'user_id' => $request->user()->id,
             ]);
@@ -91,8 +85,7 @@ class DataController extends Controller
             $request->validate(
                 [
                     'productName' => 'required',
-                    'receivingDate' => 'required',
-                    'quantity' => 'required|min:' . $context['product']['quantity'],
+                    'quantity' => 'required|gte:' . $context['product']['quantity'],
                     'unit' => 'required',
                     'category' => 'required',
                     'purchPrice' => 'required',
@@ -101,10 +94,8 @@ class DataController extends Controller
                 ],
                 [
                     'productName.required' => 'Kolom Nama barang harus diisi.',
-                    'receivingDate.required' => 'Kolom Tanggal barang masuk harus diisi.',
-                    'quantity.required' => 'Kolom Stok barang harus diisi.',
                     'unit.required' => 'Kolom Satuan barang harus diisi.',
-                    'quantity.min' => 'Stok barang tidak boleh kurang dari ' . $context['product']['quantity'],
+                    'quantity.gte' => 'Stok barang tidak boleh kurang dari ' . $context['product']['quantity'],
                     'category.required' => 'Kolom Kategori barang harus diisi.',
                     'purchPrice.required' => 'Kolom Harga beli barang harus diisi.',
                     'custPrice.required' => 'Kolom harga jual barang harus diisi.',
@@ -119,7 +110,6 @@ class DataController extends Controller
                 'category_id' => $request->category,
                 'purch_price' => $request->purchPrice,
                 'cust_price' => $request->custPrice,
-                'receiving_date' => $request->receivingDate,
                 'suplier_id' => $request->suplier,
             ]);
 

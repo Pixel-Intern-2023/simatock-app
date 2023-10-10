@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Services;
 
 use App\Models\Unit;
-use App\Models\Suplier;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -49,7 +48,7 @@ class AdditionalDataController extends Controller
             $unit = Unit::findOrFail($id);
             $products = $unit->products;
             foreach ($products as $product) {
-                $product->unit_id = null;
+                $product->unit_id = ' ';
                 $product->save();
             }
             $unit->delete();

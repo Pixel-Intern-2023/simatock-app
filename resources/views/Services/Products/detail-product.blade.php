@@ -6,8 +6,7 @@
             <form action="{{ route('Edit Data', ['id' => $product->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <div class="flex gap-2">
-                    <div class="mb-3 w-3/4">
+                    <div class="mb-3 w-full">
                         <label class="mb-2 block font-semibold" for="example-email">Nama Barang</label>
                         <div>
                             <input
@@ -21,20 +20,6 @@
                             <small class="text-red-600">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="mb-3 w-1/4">
-                        <label class="mb-2 font-semibold">Tanggal Masuk</label>
-                        <input
-                            @error('receivingDate')
-                            style="border: 1px solid red"
-                            @enderror
-                            class="form-input" id="datetime-datepicker" name="receivingDate" type="text"
-                            value="{{ $product->receiving_date }}">
-                        <small>Silahkan Ganti tanggal sesuai barang masuk</small>
-                        @error('receivingDate')
-                            <small class="text-red-600">{{ $message }}</small>
-                        @enderror
-                    </div>
-                </div>
                 <div class="mb-3 flex gap-2">
                     <div class="w-1/2">
                         <label class="mb-2 block font-semibold" for="example-password">Stok</label>

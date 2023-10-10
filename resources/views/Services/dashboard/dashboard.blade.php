@@ -160,7 +160,8 @@
                                                         {{ $item->quantity }}</td>
                                                     <td
                                                         class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                        {{ $item->unit->unit }}</td>
+                                                        {{ $item->unit->unit }}
+                                                        </td>
                                                 </tr>
                                             @empty
                                                 <tr>
@@ -192,9 +193,6 @@
                     <div class="p-5">
                         <div class="flex items-center justify-between">
                             <h5 class="uppercase">Barang Terlaris</h5>
-                            <a class="btn bg-primary/90 btn-sm hover:bg-primary text-white" href="#">
-                                <i class='uil uil-export me-1'></i> Export
-                            </a>
                         </div>
                         <div class="overflow-auto">
                             <div class="inline-block min-w-full align-middle">

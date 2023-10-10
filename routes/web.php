@@ -31,6 +31,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::prefix('main-data')->group(function () {
         Route::get('/list-barang', [DataController::class, 'list_product'])->name('list-barang');
         Route::get('/list-suplier', [DataController::class, 'list_suplier'])->name('List Suplier');
+        Route::get('/recently-added', [DataController::class, 'recentlyAdded'])->name('Baru Ditambahkan');
         Route::match(['get', 'put'], 'edit-suplier{id}', [DataController::class, 'editSuplier'])->name('Edit Suplier');
         Route::match(['get', 'post'], 'tambah-suplier', [DataController::class, 'addSuplier'])->name('Form Tambah Suplier');
         Route::post('/add-product', [DataController::class, 'store'])->name('addProduct');

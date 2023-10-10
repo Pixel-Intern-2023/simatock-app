@@ -106,34 +106,18 @@
                     <li class="menu-item">
                         <a class="menu-link" data-hs-collapse="#menuPages" href="javascript:void(0)">
                             <span class="menu-icon"><i data-lucide="truck"></i></span>
-                            <span class="menu-text"> Barang Masuk </span>
+                            <span class="menu-text"> Pelayanan </span>
                             <span class="menu-arrow"></span>
                         </a>
                         <ul class="sub-menu hidden" id="menuPages">
                             <li class="menu-item">
-                                <a class="menu-link" href="#">
-                                    <span class="menu-text">History Barang Masuk</span>
+                                <a class="menu-link" href="{{ route('Baru Ditambahkan') }}">
+                                    <span class="menu-text">Barang Masuk</span>
                                 </a>
                             </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a class="menu-link" data-hs-collapse="#menuProjects" href="javascript:void(0)">
-                            <span class="menu-icon">
-                                <i data-lucide="arrow-left-from-line"></i>
-                            </span>
-                            <span class="menu-text"> Barang Keluar </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <ul class="sub-menu hidden" id="menuProjects">
                             <li class="menu-item">
                                 <a class="menu-link" href="{{ route('Barang Keluar') }}">
                                     <span class="menu-text">Barang Keluar</span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="menu-link" href="project-detail.html">
-                                    <span class="menu-text">Details</span>
                                 </a>
                             </li>
                         </ul>

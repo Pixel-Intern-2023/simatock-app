@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Services;
 
+use App\Exports\ProductsExport;
 use App\Exports\UsersExport;
 use App\Models\Unit;
 use App\Models\Suplier;
@@ -133,7 +134,7 @@ class DataController extends Controller
     // download
     public function export()
     {
-        return Excel::download(new UsersExport(), 'products.xlsx');
+        return Excel::download(new ProductsExport(), 'products.xlsx');
     }
     // SUPLIER METHOD
     public function list_suplier()
@@ -183,5 +184,14 @@ class DataController extends Controller
             session()->flash('success', 'Data Suplier Berhasil Di Edit');
             return to_route('List Suplier');
         }
+    }
+    // product recently added
+    public function recentlyAdded()
+    {
+        $products = Products::with(['suplier', 'unit', 'user'])
+            ->select('id', 'products_name', 'unit_id', 'suplier_id', 'user_id', 'quantity', 'purch_price', 'created_at')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('Services.Products.productIn', compact('products'));
     }
 }

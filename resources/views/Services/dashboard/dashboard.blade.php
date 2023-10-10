@@ -160,7 +160,7 @@
                                                         {{ $item->quantity }}</td>
                                                     <td
                                                         class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                        {{ $item->unit->unit }}
+                                                        {{ optional($item->unit)->unit ?? 'Satuan tidak tersedia' }}
                                                         </td>
                                                 </tr>
                                             @empty

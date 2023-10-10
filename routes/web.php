@@ -8,6 +8,7 @@ use App\Http\Controllers\Services\DashboardController;
 use App\Http\Controllers\Services\InfoController;
 use App\Http\Controllers\Services\ProductOutController;
 use App\Http\Controllers\Services\ProfileController;
+use App\Models\ProductOut;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,13 +42,14 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::get('/data-tambahan', [AdditionalDataController::class, 'additional_data'])->name('Data Tambahan');
         Route::match(['get', 'post'], '/additional-data/{val}', [AdditionalDataController::class, 'addAdditional'])->name('Tambah Data Tambahan');
         Route::match(['get', 'delete'], 'delete-additional/{val},{id}', [AdditionalDataController::class, 'removeAdditionalData'])->name('Hapus Data Tambahan');
-        Route::get('export', [DataController::class, 'export'])->name('download');
+        Route::get('export-data-produk', [DataController::class, 'exportProductIn'])->name('downloadDataProduct');
     });
     Route::prefix('activities')->group(function () {
         Route::get('/product-keluar', [ProductOutController::class, 'product_out'])->name('Barang Keluar');
         Route::match(['get', 'post'], '/form-produk-keluar', [ProductOutController::class, 'formProductOut'])->name('Form Barang Keluar');
         Route::post('/add-cart', [ProductOutController::class, 'addToCart'])->name('addToCart');
         Route::match(['delete', 'get'], '/delete-cart/{id}', [ProductOutController::class, 'deleteCart'])->name('deleteCart');
+        Route::get('export-data-produk-keluar', [ProductOutController::class, 'exportProductOut'])->name('downloadDataOut');
     });
     Route::prefix('profile')->group(function () {
         Route::get('/admin', [ProfileController::class, 'profile'])->name('Profile');

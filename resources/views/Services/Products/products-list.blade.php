@@ -6,11 +6,11 @@
                 <div class="flex items-center justify-between">
                     <h5 class="uppercase">Data Barang</h5>
                     <div>
-                        <a class="btn btn-sm bg-green-600/80 text-white hover:bg-green-800"
-                            href="{{ route('Tambah Barang') }}">
+                        <a class="btn btn-sm bg-success text-white" href="{{ route('Tambah Barang') }}">
                             <i class='uil uil-plus me-1'></i> Tambah
                         </a>
-                        <a class="btn bg-primary/90 btn-sm text-white hover:bg-blue-800" href="{{ route('download') }}">
+                        <a class="btn bg-primary/90 btn-sm text-white hover:bg-blue-800"
+                            href="{{ route('downloadDataProduct') }}">
                             <i class='uil uil-export me-1'></i> Export
                         </a>
                     </div>
@@ -27,7 +27,7 @@
                     </div>
                 @endif
                 @if (session()->has('successAdded'))
-                    <div class="bg-success/10 text-success border-success/20 flex items-center justify-between rounded border px-5 py-3 text-sm my-5"
+                    <div class="bg-success/10 text-success border-success/20 my-5 flex items-center justify-between rounded border px-5 py-3 text-sm"
                         id="dismiss-alert">
                         <p>
                             <span class="font-bold">{{ session('successAdded') }}
@@ -99,13 +99,13 @@
                                                 x-text="product.products_name">
                                             </td>
                                             <td class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400"
-                                                x-text="product.category.category">
+                                            x-text="product.category.category ? product.category.category : 'Kategory Tidak Tersedia'">
                                             </td>
                                             <td class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400"
                                                 x-text="product.quantity">
                                             </td>
                                             <td class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400"
-                                                x-text="product.unit.unit">
+                                            x-text="product.unit.unit ? product.unit.unit : 'Satuan Tidak Tersedia'">
                                             </td>
                                             <td class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400"
                                                 x-text="new Intl.NumberFormat('idP-ID', { style: 'currency', currency: 'idr' }).format(product.purch_price)">

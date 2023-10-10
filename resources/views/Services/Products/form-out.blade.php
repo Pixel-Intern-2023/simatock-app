@@ -1,5 +1,10 @@
 @extends('Layouts.base')
 @section('content')
+    <a href="#" onclick="history.back()">
+        <div class="card mb-3 px-4 py-3">
+            <h1><i class="uil uil-angle-left"></i>Kembali</h1>
+        </div>
+    </a>
     <div class="card mb-5 w-full">
         <div class="p-6">
             <div class="mb-6 flex items-start justify-between">
@@ -88,7 +93,8 @@
                                 <td>
                                     <label class="mb-2 block font-semibold" for="picker">Picker</label>
                                     <input class="form-input w-full" name="picker" placeholder="Cth: Ali" type="text">
-                                    <button type="submit" class="mt-2 btn bg-primary/90 btn-sm text-white hover:bg-blue-800">kirim</button>
+                                    <button class="btn bg-primary/90 btn-sm mt-2 text-white hover:bg-blue-800"
+                                        type="submit">kirim</button>
                                 </td>
                             </tr>
                         </form>

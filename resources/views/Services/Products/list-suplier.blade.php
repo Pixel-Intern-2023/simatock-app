@@ -4,8 +4,8 @@
         <div class="p-6">
             <div class="mb-6 flex items-start justify-between">
                 <h6 class="uppercase dark:text-gray-300">Data Suplier</h6>
-                <a class="btn btn-sm btn-sm bg-green-600/80 text-white hover:bg-green-800" href="{{ route('Form Tambah Suplier') }}"><i
-                        class='uil uil-plus me-1'></i> Tambah</a>
+                <a class="btn btn-sm btn-sm bg-success hover:bg-success text-white"
+                    href="{{ route('Form Tambah Suplier') }}"><i class='uil uil-plus me-1'></i> Tambah</a>
             </div>
             @if (session()->has('success'))
                 <div class="bg-success/10 text-success border-success/20 my-2 flex items-center justify-between rounded border px-5 py-3 text-sm"
@@ -63,7 +63,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            @empty
+                        @empty
                             <tr>
                                 <td class="mt-3 text-center font-bold uppercase" colspan="5">
                                     No Data

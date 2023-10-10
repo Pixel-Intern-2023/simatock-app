@@ -48,7 +48,7 @@ class AdditionalDataController extends Controller
             $unit = Unit::findOrFail($id);
             $products = $unit->products;
             foreach ($products as $product) {
-                $product->unit_id = ' ';
+                $product->unit_id = null;
                 $product->save();
             }
             $unit->delete();

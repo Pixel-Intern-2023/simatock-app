@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Services;
 
+use App\Exports\ProductOutExport;
 use App\Models\Orders;
 use App\Models\Products;
 use App\Models\ProductOut;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductOutController extends Controller
 {
@@ -45,11 +47,12 @@ class ProductOutController extends Controller
                     'total' => $productDetails['total'],
                     'picker' => $request->input('picker'),
                     'user_id' => $request->user()->id,
+                    'created_at' => date('Y-m-d H:s:i'),
                 ];
             }
             ProductOut::insert($insertData);
             Orders::truncate();
-            return to_route('Form Barang Keluar');
+            return to_route('Barang Keluar');
         }
     }
     public function addToCart(Request $request)
@@ -66,11 +69,8 @@ class ProductOutController extends Controller
         Orders::find($id)->delete();
         return to_route('Form Barang Keluar');
     }
-    public function cart()
+    public function exportProductOut()
     {
-    }
-    public function list_unit()
-    {
-        return view('Services.units.units');
+        return Excel::download(new ProductOutExport, 'Data Produk Keluar.xlsx');
     }
 }

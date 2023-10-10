@@ -122,7 +122,7 @@ class DataController extends Controller
         return to_route('list-barang');
     }
     // download
-    public function export()
+    public function exportProductIn()
     {
         return Excel::download(new ProductsExport(), 'products.xlsx');
     }

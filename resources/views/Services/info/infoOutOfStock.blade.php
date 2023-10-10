@@ -29,10 +29,16 @@
                                             <span class="font-semibold">{{ $item->suplier->suplier }}</span></a>
                                     </div>
                                 </div>
+                                <div class="sm:col-span-5 sm:block xl:col-span-6 2xl:col-span-8">
+                                    <div class="overflow-hidden">
+                                        <a class="text-gray-500 dark:text-gray-300" href="#">
+                                            <span class="font-semibold">Sisa Stok : {{ $item->quantity }}</span></a>
+                                    </div>
+                                </div>
                             </div>
                             <!-- Email Time -->
                             <div class="whitespace-nowrap sm:block">
-                                <div class="text-gray-500 dark:text-gray-400 flex">
+                                <div class="flex text-gray-500 dark:text-gray-400">
                                     <i class="fill-dark/20 stroke-dark me-4 h-6 w-6" data-lucide="phone"></i>
                                     <h1>{{ $item->suplier->phone_number }}</h1>
                                 </div>
@@ -41,12 +47,12 @@
                     </div>
                 </div>
             @empty
-            <div>
-                <div class="mt-3 text-center flex items-center flex-col font-bold uppercase" colspan="5">
-                    <img src="{{ asset('assets/images/empty.png') }}" alt="empty" class="w-80">
-                    No Data
+                <div>
+                    <div class="mt-3 flex flex-col items-center text-center font-bold uppercase" colspan="5">
+                        <img alt="empty" class="w-80" src="{{ asset('assets/images/empty.png') }}">
+                        No Data
+                    </div>
                 </div>
-            </div>
             @endforelse
         </div>
     </div>

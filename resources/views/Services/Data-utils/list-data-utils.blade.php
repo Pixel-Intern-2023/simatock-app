@@ -1,13 +1,16 @@
 @extends('Layouts.base')
 @section('content')
+<a href="#" onclick="history.back()">
+    <div class="px-4 py-3 card mb-3">
+        <h1><i class="uil uil-angle-left"></i>Kembali</h1>
+    </div>
+</a>
     <div class="flex flex-wrap gap-4 sm:flex-nowrap">
         <!-- Unit -->
         <div class="card w-full">
             <div class="p-6">
                 <div class="mb-6 flex items-start justify-between">
                     <h6 class="uppercase dark:text-gray-300">Data Satuan</h6>
-                    <a class="btn btn-sm btn-sm bg-green-600/80 text-white hover:bg-green-800" href="task-list.html"><i
-                            class='uil uil-plus me-1'></i> Tambah</a>
                 </div>
                 <div class="overflow-auto">
                     <table class="w-full divide-y divide-gray-200 dark:divide-gray-600">
@@ -48,8 +51,8 @@
                             @endforelse
                             <tr>
                                 <td colspan="3">
-                                    <div class="flex" x-data="{ open: false }">
-                                        <a class="btn btn-sm btn-sm float-right text-green-600"
+                                    <div class="flex mt-3" x-data="{ open: false }">
+                                        <a class="btn btn-sm btn-sm float-right text-success"
                                             data-hs-overlay="#hs-basic-modal" href="#" x-on:click="open=!open"><i
                                                 class="uil uil-plus-circle text-xl"></i></a>
                                         <form action="{{ route('Tambah Data Tambahan', ['val' => 2]) }}" class="flex"
@@ -58,7 +61,7 @@
                                             <input class="form-input w-full placeholder:text-gray-400" name="unit"
                                                 placeholder="type here...">
                                             <button
-                                                class="bg-green-600/90 px-5 text-white hover:bg-green-700">Tambah</button>
+                                                class="bg-success px-5 text-white hover:bg-success">Tambah</button>
                                         </form>
                                     </div>
                                     @error('unit')
@@ -77,8 +80,6 @@
             <div class="p-6">
                 <div class="mb-6 flex items-start justify-between">
                     <h6 class="uppercase dark:text-gray-300">Data Kategori</h6>
-                    <a class="btn btn-sm btn-sm bg-green-600/80 text-white hover:bg-green-800" href="task-list.html"><i
-                            class='uil uil-plus me-1'></i> Tambah</a>
                 </div>
 
                 <div class="overflow-auto">
@@ -120,8 +121,8 @@
                             @endforelse
                             <tr>
                                 <td colspan="3">
-                                    <div class="flex" x-data="{ open: false }">
-                                        <a class="btn btn-sm btn-sm float-right text-green-600"
+                                    <div class="flex mt-3" x-data="{ open: false }">
+                                        <a class="btn btn-sm btn-sm float-right text-success"
                                             data-hs-overlay="#hs-basic-modal" href="#" x-on:click="open=!open"><i
                                                 class="uil uil-plus-circle text-xl"></i></a>
                                         <form action="{{ route('Tambah Data Tambahan', ['val' => 3]) }}" class="flex"
@@ -130,7 +131,7 @@
                                             <input class="form-input w-full placeholder:text-gray-400" name="category"
                                                 placeholder="type here...">
                                             <button
-                                                class="bg-green-600/90 px-5 text-white hover:bg-green-700">Tambah</button>
+                                                class="bg-success/90 px-5 text-white hover:bg-success">Tambah</button>
                                         </form>
                                     </div>
                                     @error('category')

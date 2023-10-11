@@ -24,41 +24,46 @@ class DataController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
+            $request->merge([
+                'custPrice' => str_replace(',', '', $request->input('custPrice')),
+                'purchPrice' => str_replace(',', '', $request->input('purchPrice')),
+            ]);
             $request->validate(
                 [
                     'productName' => 'required',
-                    'quantity' => 'required|min:0',
+                    'quantity' => 'required|gt:0',
                     'unit' => 'required',
                     'category' => 'required',
-                    'purchPrice' => 'required',
-                    'custPrice' => 'required',
+                    'purchPrice' => 'required|gt:0',
+                    'custPrice' => 'required|gt:' . $request->purchPrice,
                     'suplier' => 'required',
                 ],
                 [
                     'productName.required' => 'Kolom Nama barang harus diisi.',
                     'quantity.required' => 'Kolom Stok barang harus diisi.',
                     'unit.required' => 'Kolom Satuan barang harus diisi.',
-                    'quantity.min' => 'Kolom Stok barang harus diatas 0.',
+                    'quantity.gt' => 'Kolom Stok barang harus diatas 0.',
                     'category.required' => 'Kolom Kategori barang harus diisi.',
                     'purchPrice.required' => 'Kolom Harga beli barang harus diisi.',
+                    'purchPrice.gt' => 'Kolom Harga beli harus lebih dari 0',
                     'custPrice.required' => 'Kolom harga jual barang harus diisi.',
+                    'custPrice.gt' => 'Harga beli harus lebih dari harga jual',
                     'suplier.required' => 'Kolom suplier harus diisi',
                 ],
             );
-            $purch_price = str_replace(',', '', $request->purchPrice);
-            $cust_price = str_replace(',', '', $request->custPrice);
+
             Products::create([
                 'id' => Str::uuid(),
                 'products_name' => $request->productName,
                 'quantity' => $request->quantity,
                 'unit_id' => $request->unit,
                 'category_id' => $request->category,
-                'purch_price' => $purch_price,
-                'cust_price' => $cust_price,
+                'purch_price' => $request->purchPrice,
+                'cust_price' => $request->custPrice,
                 'suplier_id' => $request->suplier,
                 'user_id' => $request->user()->id,
             ]);
-            session()->flash('successAdded', 'Produk Berhasil Ditambahkan!');
+            session()->flash('success', 'Produk Berhasil Ditambahkan!');
             return to_route('list-barang');
         }
     }
@@ -88,8 +93,8 @@ class DataController extends Controller
                     'quantity' => 'required|gte:' . $context['product']['quantity'],
                     'unit' => 'required',
                     'category' => 'required',
-                    'purchPrice' => 'required',
-                    'custPrice' => 'required',
+                    'purchPrice' => 'required|gt:0',
+                    'custPrice' => 'required|gt:' . $request->purchPrice,
                     'suplier' => 'required',
                 ],
                 [
@@ -99,6 +104,7 @@ class DataController extends Controller
                     'category.required' => 'Kolom Kategori barang harus diisi.',
                     'purchPrice.required' => 'Kolom Harga beli barang harus diisi.',
                     'custPrice.required' => 'Kolom harga jual barang harus diisi.',
+                    'custPrice.gt' => 'Kolom harga jual harus melebihi harga beli',
                     'suplier.required' => 'Kolom suplier harus diisi',
                 ],
             );
@@ -112,13 +118,17 @@ class DataController extends Controller
                 'cust_price' => $request->custPrice,
                 'suplier_id' => $request->suplier,
             ]);
+            session()->flash('success', 'Data Berhasil diedit');
 
             return to_route('list-barang');
         }
     }
     public function removeProduct($id)
     {
-        Products::find($id)->delete();
+        $product = Products::findOrFail($id);
+        $product->productOut()->delete();
+        $product->delete();
+        session()->flash('success', 'Data Berhasil Dihapus!');
         return to_route('list-barang');
     }
     // download
@@ -174,6 +184,19 @@ class DataController extends Controller
             session()->flash('success', 'Data Suplier Berhasil Di Edit');
             return to_route('List Suplier');
         }
+    }
+    public function removeSuplier($id)
+    {
+        $suplier = Suplier::findOrFail($id);
+        $products = $suplier->products;
+        // dd($products);
+        foreach ($products as $product) {
+            $product->suplier_id = null;
+            $product->save();
+        }
+        $suplier->delete();
+        session()->flash('successUnit', 'Data Satuan Berhasil dihapus');
+        return to_route('List Suplier');
     }
     // product recently added
     public function recentlyAdded()

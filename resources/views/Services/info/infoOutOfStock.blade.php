@@ -10,7 +10,6 @@
                 <i class="uil uil-multiply text-xl"></i>
             </button>
         </div>
-
         <div>
             @forelse ($stockAlmostOut as $item)
                 <div class="card divide-y dark:divide-gray-600">
@@ -26,7 +25,9 @@
                                 <div class="sm:col-span-5 sm:block xl:col-span-6 2xl:col-span-8">
                                     <div class="overflow-hidden">
                                         <a class="text-gray-500 dark:text-gray-300" href="#">Hubungi Suplier
-                                            <span class="font-semibold">{{ $item->suplier->suplier }}</span></a>
+                                            <span class="font-semibold">
+                                                {{ optional($item->suplier)->suplier ?? 'tidak tersedia' }}
+                                            </span></a>
                                     </div>
                                 </div>
                                 <div class="sm:col-span-5 sm:block xl:col-span-6 2xl:col-span-8">
@@ -40,7 +41,8 @@
                             <div class="whitespace-nowrap sm:block">
                                 <div class="flex text-gray-500 dark:text-gray-400">
                                     <i class="fill-dark/20 stroke-dark me-4 h-6 w-6" data-lucide="phone"></i>
-                                    <h1>{{ $item->suplier->phone_number }}</h1>
+                                    <h1> {{ optional($item->suplier)->phone_number ?? 'Suplier tidak tersedia' }}
+                                    </h1>
                                 </div>
                             </div>
                         </div>

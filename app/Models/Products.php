@@ -30,4 +30,8 @@ class Products extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function productOut()
+    {
+        return $this->hasMany(ProductOut::class);
+    }
 }

@@ -5,7 +5,7 @@
 @section('content')
     <div class="space-y-5">
         <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            <a href="{{ route('list-barang') }}">
+            <a href="{{ route('List Barang') }}">
                 <div class="card">
                     <div class="p-5">
                         <div class="flex items-center justify-between">
@@ -154,7 +154,8 @@
                                                         {{ $item->products_name }}</td>
                                                     <td
                                                         class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                        {{ $item->suplier->suplier }}</td>
+                                                        {{ optional($item->suplier)->suplier ?? 'Suplier tidak tersedia' }}
+                                                    </td>
                                                     <td
                                                         class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
                                                         {{ $item->quantity }}</td>

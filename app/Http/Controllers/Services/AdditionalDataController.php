@@ -29,6 +29,7 @@ class AdditionalDataController extends Controller
                 'id' => Str::uuid(),
                 'unit' => $request->unit,
             ]);
+            session()->flash('successUnit', 'Data Satuan Berhasil ditambahkan');
             return to_route('Data Tambahan');
             // 3 represent to category
         } elseif ($val == 3) {
@@ -39,6 +40,7 @@ class AdditionalDataController extends Controller
                 'id' => Str::uuid(),
                 'category' => $request->category,
             ]);
+            session()->flash('successCategory', 'Data Kategori Berhasil ditambahkan');
             return to_route('Data Tambahan');
         }
     }
@@ -52,6 +54,7 @@ class AdditionalDataController extends Controller
                 $product->save();
             }
             $unit->delete();
+            session()->flash('successUnit', 'Data Satuan Berhasil dihapus');
             return to_route('Data Tambahan');
         } elseif ($val == 3) {
             $category = Category::findOrFail($id);
@@ -61,6 +64,7 @@ class AdditionalDataController extends Controller
                 $product->save();
             }
             $category->delete();
+            session()->flash('successCategory', 'Data Satuan Berhasil dihapus');
             return to_route('Data Tambahan');
         }
     }

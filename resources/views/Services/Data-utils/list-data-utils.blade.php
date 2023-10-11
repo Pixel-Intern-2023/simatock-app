@@ -1,10 +1,10 @@
 @extends('Layouts.base')
 @section('content')
-<a href="#" onclick="history.back()">
-    <div class="px-4 py-3 card mb-3">
-        <h1><i class="uil uil-angle-left"></i>Kembali</h1>
-    </div>
-</a>
+    <a href="#" onclick="history.back()">
+        <div class="card mb-3 px-4 py-3">
+            <h1><i class="uil uil-angle-left"></i>Kembali</h1>
+        </div>
+    </a>
     <div class="flex flex-wrap gap-4 sm:flex-nowrap">
         <!-- Unit -->
         <div class="card w-full">
@@ -12,6 +12,18 @@
                 <div class="mb-6 flex items-start justify-between">
                     <h6 class="uppercase dark:text-gray-300">Data Satuan</h6>
                 </div>
+                @if (session()->has('successUnit'))
+                <div class="bg-success/10 text-success border-success/20 my-5 flex items-center justify-between rounded border px-5 py-3 text-sm"
+                        id="dismiss-alert">
+                        <p>
+                            <span class="font-bold">{{ session('successUnit') }}
+                        </p>
+
+                        <button class="text-xl/[0]" data-hs-remove-element="#dismiss-alert" type="button">
+                            <i class="uil uil-multiply text-xl"></i>
+                        </button> <!-- button end -->
+                    </div> <!-- dismiss-example-primary end -->
+                @endif
                 <div class="overflow-auto">
                     <table class="w-full divide-y divide-gray-200 dark:divide-gray-600">
                         <thead>
@@ -38,11 +50,12 @@
                                         class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                                         {{ $item->unit }}</td>
                                     <td class="text-starts flex gap-3 whitespace-nowrap px-4 py-4 text-white">
-                                        <a class="rounded bg-red-500 px-3 py-1 font-semibold" href="{{ route('Hapus Data Tambahan',['id'=>$item->id,'val'=>2]) }}"><i
-                                                class="uil uil-trash-alt"></i></a>
+                                        <a class="btn-delete rounded bg-red-500 px-3 py-1 font-semibold"
+                                            href="{{ route('Hapus Data Tambahan', ['id' => $item->id, 'val' => 2]) }}"
+                                            id="#btn-delete"><i class="uil uil-trash-alt"></i></a>
                                     </td>
                                 </tr>
-                                @empty
+                            @empty
                                 <tr>
                                     <td class="mt-3 text-center font-bold uppercase" colspan="5">
                                         No Data
@@ -51,8 +64,8 @@
                             @endforelse
                             <tr>
                                 <td colspan="3">
-                                    <div class="flex mt-3" x-data="{ open: false }">
-                                        <a class="btn btn-sm btn-sm float-right text-success"
+                                    <div class="mt-3 flex" x-data="{ open: false }">
+                                        <a class="btn btn-sm btn-sm text-success float-right"
                                             data-hs-overlay="#hs-basic-modal" href="#" x-on:click="open=!open"><i
                                                 class="uil uil-plus-circle text-xl"></i></a>
                                         <form action="{{ route('Tambah Data Tambahan', ['val' => 2]) }}" class="flex"
@@ -60,8 +73,7 @@
                                             @csrf
                                             <input class="form-input w-full placeholder:text-gray-400" name="unit"
                                                 placeholder="type here...">
-                                            <button
-                                                class="bg-success px-5 text-white hover:bg-success">Tambah</button>
+                                            <button class="bg-success hover:bg-success px-5 text-white">Tambah</button>
                                         </form>
                                     </div>
                                     @error('unit')
@@ -81,7 +93,18 @@
                 <div class="mb-6 flex items-start justify-between">
                     <h6 class="uppercase dark:text-gray-300">Data Kategori</h6>
                 </div>
+                @if (session()->has('successCategory'))
+                <div class="bg-success/10 text-success border-success/20 my-5 flex items-center justify-between rounded border px-5 py-3 text-sm"
+                        id="dismiss-alert">
+                        <p>
+                            <span class="font-bold">{{ session('successCategory') }}
+                        </p>
 
+                        <button class="text-xl/[0]" data-hs-remove-element="#dismiss-alert" type="button">
+                            <i class="uil uil-multiply text-xl"></i>
+                        </button> <!-- button end -->
+                    </div> <!-- dismiss-example-primary end -->
+                @endif
                 <div class="overflow-auto">
                     <table class="w-full divide-y divide-gray-200 dark:divide-gray-600">
                         <thead>
@@ -108,11 +131,12 @@
                                         class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                                         {{ $item->category }}</td>
                                     <td class="text-starts flex gap-3 whitespace-nowrap px-4 py-4 text-white">
-                                        <a class="rounded bg-red-500 px-3 py-1 font-semibold" href="{{ route('Hapus Data Tambahan',['id'=>$item->id,'val'=>3]) }}"><i
-                                                class="uil uil-trash-alt"></i></a>
+                                        <a class="btn-delete rounded bg-red-500 px-3 py-1 font-semibold"
+                                            href="{{ route('Hapus Data Tambahan', ['id' => $item->id, 'val' => 3]) }}"
+                                            id="#btn-delete"><i class="uil uil-trash-alt"></i></a>
                                     </td>
                                 </tr>
-                                @empty
+                            @empty
                                 <tr>
                                     <td class="mt-3 text-center font-bold uppercase" colspan="5">
                                         No Data
@@ -121,8 +145,8 @@
                             @endforelse
                             <tr>
                                 <td colspan="3">
-                                    <div class="flex mt-3" x-data="{ open: false }">
-                                        <a class="btn btn-sm btn-sm float-right text-success"
+                                    <div class="mt-3 flex" x-data="{ open: false }">
+                                        <a class="btn btn-sm btn-sm text-success float-right"
                                             data-hs-overlay="#hs-basic-modal" href="#" x-on:click="open=!open"><i
                                                 class="uil uil-plus-circle text-xl"></i></a>
                                         <form action="{{ route('Tambah Data Tambahan', ['val' => 3]) }}" class="flex"
@@ -130,8 +154,7 @@
                                             @csrf
                                             <input class="form-input w-full placeholder:text-gray-400" name="category"
                                                 placeholder="type here...">
-                                            <button
-                                                class="bg-success/90 px-5 text-white hover:bg-success">Tambah</button>
+                                            <button class="bg-success/90 hover:bg-success px-5 text-white">Tambah</button>
                                         </form>
                                     </div>
                                     @error('category')
@@ -146,4 +169,26 @@
             </div>
         </div>
     </div>
+    @section('script')
+        <script>
+            $(document).on('click', '.btn-delete', function(e) {
+                e.preventDefault();
+                // console.log('halo');
+                var link = $(this).attr('href');
+                Swal.fire({
+                    title: 'Yakin Ingin hapus data ini?',
+                    text: 'Data ini akan terhapus di tabel produk',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus data!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = link;
+                    }
+                });
+            });
+        </script>
+    @endsection
 @endsection

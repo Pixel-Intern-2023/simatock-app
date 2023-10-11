@@ -59,7 +59,7 @@
                                     <a class="bg-warning rounded px-3 py-1 font-semibold"
                                         href="{{ route('Edit Suplier', ['id' => $item->id]) }}">Detail
                                     </a>
-                                    <a class="rounded bg-red-500 px-3 py-1 font-semibold" href="">Hapus
+                                    <a class="rounded bg-red-500 px-3 py-1 font-semibold btn-delete" data-suplier-name="{{ $item->suplier }}" href="{{ route('Hapus Suplier',['id'=>$item->id]) }}">Hapus
                                     </a>
                                 </td>
                             </tr>
@@ -75,4 +75,26 @@
             </div>
         </div>
     </div>
+    @section('script')
+    <script>
+        $(document).on('click', '.btn-delete', function(e) {
+            e.preventDefault();
+            let suplierName = $(this).data('suplier-name');
+            var link = $(this).attr('href');
+            Swal.fire({
+                title: 'Yakin Ingin hapus data ini?',
+                text: 'Suplier ' +  suplierName + ' akan terhapus di seluruh data barang!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus data!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = link;
+                }
+            });
+        });
+    </script>
+@endsection
 @endsection

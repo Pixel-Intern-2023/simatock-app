@@ -26,11 +26,15 @@
     <!-- Theme Config Js -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
     <!-- Alpine Plugins -->
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <!-- Alpine Core -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {{-- sweet alert --}}
+    <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     @yield('scriptTop')
 </head>
 
@@ -45,7 +49,7 @@
                 <!-- Light Logo -->
                 <div class="logo-light">
                     @foreach ($data as $item)
-                        <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                    <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
                         <h1 class="logo-sm text-xl">
                             {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
                         </h1>
@@ -54,7 +58,7 @@
                 <!-- Dark Logo -->
                 <div class="logo-dark">
                     @foreach ($data as $item)
-                        <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                    <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
                         <h1 class="logo-sm text-xl">
                             {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
                         </h1>
@@ -86,7 +90,7 @@
                         </a>
                         <ul class="sub-menu hidden" id="menuEmail">
                             <li class="menu-item">
-                                <a class="menu-link" href="{{ route('list-barang') }}">
+                                <a class="menu-link" href="{{ route('List Barang') }}">
                                     <span class="menu-text">Data Barang</span>
                                 </a>
                             </li>
@@ -166,21 +170,21 @@
                     <!-- Light Logo -->
                     <div class="logo-light">
                         @foreach ($data as $item)
-                            <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                        <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
                             <h1 class="logo-sm text-xl">
                                 {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
                             </h1>
-                        @endforeach
-                    </div>
+                            @endforeach
+                        </div>
 
-                    <!-- Dark Logo -->
-                    <div class="logo-dark">
-                        @foreach ($data as $item)
+                        <!-- Dark Logo -->
+                        <div class="logo-dark">
+                            @foreach ($data as $item)
                             <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
                             <h1 class="logo-sm text-xl">
                                 {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
                             </h1>
-                        @endforeach
+                            @endforeach
                     </div>
                 </a>
 
@@ -200,7 +204,7 @@
                         <div
                             class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 !mt-1 hidden rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800">
                             <a class="flex items-center px-4 py-1.5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                href="{{ route('Tambah Barang') }}">
+                            href="{{ route('Tambah Barang') }}">
                                 <i class="uil uil-box me-1 text-base"></i>
                                 <span>Tambah Data Barang</span>
                             </a>
@@ -245,12 +249,12 @@
                         </button>
 
                         <div
-                            class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 !mt-4 hidden rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800">
+                        class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 !mt-4 hidden rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800">
                             <!-- item-->
                             <h6 class="flex items-center px-3 py-2 text-gray-800 dark:text-gray-400">Welcome
                                 {{ Auth::user()->name }}!</h6>
 
-                            <!-- item-->
+                                <!-- item-->
                             <a class="flex items-center gap-2 px-4 py-1.5 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
                                 href="{{ route('Profile') }}">
                                 <i class="fill-secondary/20 h-4 w-4" data-lucide="user-2"></i>
@@ -315,14 +319,11 @@
     <!-- Flatpickr Demo js -->
     <script src="{{ asset('assets/js/pages/form-flatpickr.js') }}"></script>
     <!-- Plugin Js -->
-    <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
     <script src="{{ asset('assets/libs/preline/preline.js') }}"></script>
     <!-- App Js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <!-- page js -->
-    <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 
 </body>
 

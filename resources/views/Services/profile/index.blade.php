@@ -91,7 +91,7 @@
                                                                 <div class="relative me-5 ps-10 md:ps-0">
                                                                     <div class="pt-3">
                                                                         <h4 class="mb-1.5 text-base dark:text-gray-300">
-                                                                            {{ $item->quantity . ' ' . $item->unit->unit . ' ' . $item->products_name }}
+                                                                            {{ $item->quantity . ' ' . $item->products_name }}
                                                                         </h4>
                                                                         <p class="mb-4 text-gray-500 dark:text-gray-400">
                                                                             Menerima barang dari suplier <span
@@ -150,7 +150,7 @@
                                                                 <div class="relative me-5 ps-10 md:ps-0">
                                                                     <div class="pt-3">
                                                                         <h4 class="mb-1.5 text-base dark:text-gray-300">
-                                                                            {{ $item->amount_out . ' ' . $item->product->unit->unit . ' ' . $item->product->products_name }}
+                                                                            {{ $item->amount_out . ' ' . $item->product->products_name }}
                                                                         </h4>
                                                                         <p class="mb-4 text-gray-500 dark:text-gray-400">
                                                                             Mengirim barang ke <span

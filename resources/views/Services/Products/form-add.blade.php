@@ -1,6 +1,6 @@
 @extends('Layouts.base')
 @section('content')
-<a href="#" onclick="history.back()">
+<a href="{{ route('List Barang') }}">
     <div class="px-4 py-3 card mb-3">
         <h1><i class="uil uil-angle-left"></i>Kembali</h1>
     </div>

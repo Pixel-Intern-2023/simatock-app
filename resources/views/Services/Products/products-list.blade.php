@@ -15,22 +15,11 @@
                         </a>
                     </div>
                 </div>
-                @if (session()->has('failAdded'))
-                    <div class="bg-danger/10 text-danger border-danger/20 my-5 flex items-center justify-between rounded border px-5 py-3 text-sm"
-                        id="dismiss-example-success">
-                        <p>
-                            <span class="font-bold">{{ session('failAdded') }}</span>
-                        </p>
-                        <button class="text-xl/[0]" data-hs-remove-element="#dismiss-example-success" type="button">
-                            <i class="uil uil-multiply text-xl"></i>
-                        </button>
-                    </div>
-                @endif
-                @if (session()->has('successAdded'))
+                @if (session()->has('success'))
                     <div class="bg-success/10 text-success border-success/20 my-5 flex items-center justify-between rounded border px-5 py-3 text-sm"
                         id="dismiss-alert">
                         <p>
-                            <span class="font-bold">{{ session('successAdded') }}
+                            <span class="font-bold">{{ session('success') }}
                         </p>
 
                         <button class="text-xl/[0]" data-hs-remove-element="#dismiss-alert" type="button">
@@ -119,7 +108,7 @@
                                                 <a class="rounded bg-yellow-400 px-3 py-1 font-semibold"
                                                     x-bind:href="'{{ route('Edit Data', ['id' => 'idbrg']) }}'.replace('idbrg',
                                                         product.id)">Detail</a>
-                                                <a class="rounded bg-red-500 px-3 py-1 font-semibold"
+                                                <a class="rounded bg-red-500 px-3 py-1 font-semibold btn-delete"
                                                     x-bind:href="'{{ route('delete', ['id' => 'idbrg']) }}'.replace('idbrg', product
                                                         .id)">Hapus</a>
                                             </td>
@@ -135,4 +124,26 @@
             </div>
         </div> <!-- end card-->
     </div> <!-- end col-->
+    @section('script')
+    <script>
+        $(document).on('click', '.btn-delete', function(e) {
+            e.preventDefault();
+            // console.log('halo');
+            var link = $(this).attr('href');
+            Swal.fire({
+                title: 'Yakin Ingin hapus data ini?',
+                text: 'Seluruh Aktifitas yang berkaitan dengan tabel barang akan terhapus!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus data!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = link;
+                }
+            });
+        });
+    </script>
+@endsection
 @endsection

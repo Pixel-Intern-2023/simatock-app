@@ -45,7 +45,7 @@
                            </td>
                         <td
                             class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                            {{ $item->suplier->suplier }}
+                            {{ optional($item->suplier)->suplier ?? 'Suplier tidak tersedia' }}
                            </td>
                         <td
                             class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">

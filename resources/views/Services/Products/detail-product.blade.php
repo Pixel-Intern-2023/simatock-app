@@ -1,5 +1,10 @@
 @extends('Layouts.base')
 @section('content')
+<a href="{{ route('List Barang') }}">
+    <div class="px-4 py-3 card mb-3">
+        <h1><i class="uil uil-angle-left"></i>Kembali</h1>
+    </div>
+</a>
     <div class="card">
         <div class="p-6">
             <h4 class="mb-5 uppercase dark:text-gray-300">Form Tambah Barang</h4>

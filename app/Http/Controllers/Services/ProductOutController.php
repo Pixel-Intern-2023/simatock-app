@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Services;
 
-use App\Exports\ProductOutExport;
 use App\Models\Orders;
 use App\Models\Products;
 use App\Models\ProductOut;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Exports\ProductOutExport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Validator;
 
 class ProductOutController extends Controller
 {
@@ -32,6 +33,26 @@ class ProductOutController extends Controller
             ];
             return view('Services.Products.form-out', $context);
         } elseif ($request->isMethod('POST')) {
+            // Validate the 'items' input
+            $validator = Validator::make($request->all(), [
+                'items' => 'required|array|min:1',
+                'items.*.product_id' => 'required|exists:tb_products,id',
+                'items.*.amount_out' => 'required|numeric|min:1',
+                // 'items.*.total' => 'required|numeric|min:1',
+                'picker' => 'required', // Assuming 'picker' is a required field
+            ], [
+                'items' => 'Pilih barang yang akan dikirim!',
+                'items.*.product_id.required' => 'id tidak boleh kosong!',
+                'items.*.amount_out.required' => 'barang keluar tidak boleh kosong',
+                // 'items.*.total.required' => 'total harga tidak boleh kosong!',
+                'picker.required' => 'picker tidak boleh kosong!',
+            ]);
+
+            // Check if validation fails
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
             $productsData = $request->input('items');
             $insertData = [];
             foreach ($productsData as $productDetails) {
@@ -71,6 +92,6 @@ class ProductOutController extends Controller
     }
     public function exportProductOut()
     {
-        return Excel::download(new ProductOutExport, 'Data Produk Keluar.xlsx');
+        return Excel::download(new ProductOutExport(), 'Data Produk Keluar.xlsx');
     }
 }

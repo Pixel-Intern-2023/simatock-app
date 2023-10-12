@@ -44,7 +44,7 @@
                         <form action="{{ route('Form Barang Keluar') }}"method="POST">
                             @csrf
                             @foreach ($orders as $item)
-                                <tr class="hover:bg-gray-100 dark:hover:bg-transparent" x-data="{ data: { qty: {{ $item->products->quantity }}, unit: {{ $item->products->unit }}, inputQty: '', price: {{ $item->products->cust_price }} } }">
+                                <tr class="hover:bg-gray-100 dark:hover:bg-transparent" x-data="{ data: { qty: {{ $item->products->quantity }}, unit: {{ $item->products->unit ? $item->products->unit : 'null' }}, inputQty: '', price: {{ $item->products->cust_price }} } }">
                                     <td
                                         class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                                         {{ $loop->iteration }}
@@ -53,14 +53,28 @@
                                         class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                                         <input class="form-input w-1/4 border-none" disabled
                                             value="{{ $item->products->products_name }}">
-                                        <input name="items[{{ $loop->index }}][product_id]" type="hidden"
+                                        <input
+                                            @error('items.' . $loop->index . '.product_id')
+                                        style="border: 1px solid red"
+                                        @enderror
+                                            name="items[{{ $loop->index }}][product_id]" type="hidden"
                                             value="{{ $item->product_id }}">
+                                        @error('items.' . $loop->index . '.product_id')
+                                            <small class="text-red-600">{{ $message }}</small>
+                                        @enderror
                                     </td>
                                     <td
                                         class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                        <input class="form-input" max="{{ $item->products->quantity }}" min="1"
+                                        <input
+                                            @error('items.' . $loop->index . '.amount_out')
+                                        style="border: 1px solid red"
+                                        @enderror
+                                            class="form-input" max="{{ $item->products->quantity }}" min="1"
                                             name="items[{{ $loop->index }}][amount_out]" type="number"
                                             x-model.number="data.inputQty" x-on:input="validateInput">
+                                        @error('items.' . $loop->index . '.amount_out')
+                                            <small class="text-red-600">{{ $message }}</small>
+                                        @enderror
                                     </td>
                                     <td
                                         class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -75,9 +89,16 @@
                                         x-text="new Intl.NumberFormat('idP-ID', { style: 'currency', currency: 'idr' }).format(data.price)">
                                     </td>
                                     <td>
-                                        <input class="form-input border-none" name="items[{{ $loop->index }}][total]"
+                                        <input
+                                            {{-- @error('items.' . $loop->index . '.total')
+                                        style="border: 1px solid red"
+                                        @enderror --}}
+                                            class="form-input border-none" name="items[{{ $loop->index }}][total]"
                                             readonly
                                             x-model="new Intl.NumberFormat('idP-ID', { style: 'currency', currency: 'idr' }).format(data.price * Math.min({{ $item->products->quantity }}, data.inputQty))">
+                                        {{-- @error('items.' . $loop->index . '.amount_out')
+                                            <small class="text-red-600">{{ $message }}</small>
+                                        @enderror --}}
                                     </td>
                                     <td>
                                         <a class="rounded bg-red-500 px-3 py-1"
@@ -86,15 +107,21 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            <td class="" colspan="6">
-                                <input class="form-input float-right w-24 border-none" value="">
-                            </td>
                             <tr>
                                 <td>
                                     <label class="mb-2 block font-semibold" for="picker">Picker</label>
-                                    <input class="form-input w-full" name="picker" placeholder="Cth: Ali" type="text">
-                                    <button class="btn bg-primary/90 btn-sm mt-2 text-white hover:bg-blue-800"
-                                        type="submit">kirim</button>
+                                    <div class="flex items-center gap-3">
+                                        <input
+                                            @error('picker')
+                                        style="border: 1px solid red"
+                                        @enderror
+                                            class="form-input w-full" name="picker" placeholder="Cth: Ali" type="text">
+                                        <button class="btn bg-primary/90 btn-md text-white hover:bg-blue-800"
+                                            type="submit">kirim</button>
+                                    </div>
+                                    @error('picker')
+                                        <small class="text-red-600">{{ $message }}</small>
+                                    @enderror
                                 </td>
                             </tr>
                         </form>

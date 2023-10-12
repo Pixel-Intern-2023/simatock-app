@@ -24,7 +24,7 @@ use App\Models\ProductOut;
 Route::middleware(['guest'])->group(function () {
     Route::match(['get', 'post'], '/', [AuthController::class, 'login'])->name('login');
 });
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'prevent-back']], function () {
     Route::prefix('dashboard')->group(function () {
         Route::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('register');
         Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->name('logout');

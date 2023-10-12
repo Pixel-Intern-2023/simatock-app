@@ -28,6 +28,7 @@ class ProductOut extends Model
             ->groupBy('tb_products.id', 'tb_products.products_name')
             ->havingRaw('SUM(tb_out_product.amount_out) > 0')
             ->orderBy('total_keluar', 'DESC')
+            ->take(5)
             ->get();
     }
     public static function chart()

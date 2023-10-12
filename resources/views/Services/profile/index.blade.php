@@ -95,7 +95,7 @@
                                                                         </h4>
                                                                         <p class="mb-4 text-gray-500 dark:text-gray-400">
                                                                             Menerima barang dari suplier <span
-                                                                                class="font-bold">{{ $item->suplier->suplier }}</span>
+                                                                                class="font-bold">{{ optional($item->suplier)->suplier ?? ' Data Suplier Terhapus' }}</span>
                                                                         </p>
                                                                     </div>
                                                                 </div>

@@ -19,14 +19,14 @@ class DashboardController extends Controller
             'productOut' => ProductOut::count(),
             'outOfProduct' => Products::with('suplier')
                 ->where('quantity', '<=', 3)
-                ->where('quantity', '!=', 0)
+                ->where('quantity', '==', 0)
                 ->orderBy('quantity', 'DESC')
                 ->count(),
             'totalMoney' => ProductOut::where(DB::raw('DATE(created_at)'), date('Y-m-d'))->sum('total'),
             'bestSell' => ProductOut::mostSoldProduct(),
             'stockAlmostOut' => Products::with(['unit', 'suplier'])
                 ->where('quantity', '<=', 3)
-                ->where('quantity', '!=', 0)
+                ->where('quantity', '==', 0)
                 ->orderBy('quantity', 'DESC')
                 ->take(5)
                 ->get(),

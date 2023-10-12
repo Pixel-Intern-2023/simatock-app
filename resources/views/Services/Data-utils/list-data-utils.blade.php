@@ -1,10 +1,5 @@
 @extends('Layouts.base')
 @section('content')
-    <a href="#" onclick="history.back()">
-        <div class="card mb-3 px-4 py-3">
-            <h1><i class="uil uil-angle-left"></i>Kembali</h1>
-        </div>
-    </a>
     <div class="flex flex-wrap gap-4 sm:flex-nowrap">
         <!-- Unit -->
         <div class="card w-full">

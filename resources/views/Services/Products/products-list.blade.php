@@ -128,7 +128,6 @@
     <script>
         $(document).on('click', '.btn-delete', function(e) {
             e.preventDefault();
-            // console.log('halo');
             var link = $(this).attr('href');
             Swal.fire({
                 title: 'Yakin Ingin hapus data ini?',

@@ -36,7 +36,7 @@
                                 <div class="card p-5">
                                     <h4 class="mb-1.5 text-base dark:text-gray-300">Produk Keluar</h4>
                                     <p class="mb-4 text-gray-500 dark:text-gray-400">
-                                        {{ $item->product->products_name . ' ' . $item->product->unit->unit }} dikeluarkan
+                                        {{ $item->product->products_name . ' ' . optional($item->product->unit)->unit ?? 'Unit tidak tersedia' }} dikeluarkan
                                         oleh admin {{ $item->users->name }} dan diterima oleh {{ $item->picker }}</p>
                                     <a class="btn bg-primary/90 hover:bg-primary py-1 text-white" href="#">Pukul :
                                         {{ $item->created_at->format('H:s') }}</a>

@@ -16,7 +16,7 @@ class InfoController extends Controller
         $context = [
             'stockAlmostOut' => Products::with('suplier')
                 ->where('quantity', '<=', 3)
-                ->where('quantity', '!=', 0)
+                ->where('quantity', '==', 0)
                 ->orderBy('quantity', 'DESC')
                 ->get(),
         ];

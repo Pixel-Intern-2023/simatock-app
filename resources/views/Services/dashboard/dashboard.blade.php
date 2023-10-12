@@ -54,75 +54,75 @@
                 </div>
             </a>
         </div>
+        @if ($totalSuplier == 0)
+            <div class="bg-warning/10 text-warning border-warning/20 my-5 flex items-center justify-between rounded border px-5 py-3 text-sm"
+                id="dismiss-alert">
+                <p>
+                    <span class="font-bold">Data Suplier Kosong! Silahkan isi data suplier terlebih dahulu <a href="{{ route('Form Tambah Suplier') }}" class="underline">Klik Di sini!</a>
+                </p>
+
+                <button class="text-xl/[0]" data-hs-remove-element="#dismiss-alert" type="button">
+                    <i class="uil uil-multiply text-xl"></i>
+                </button> <!-- button end -->
+            </div> <!-- dismiss-example-primary end -->
+        @endif
+        @if ($product == 0)
+            <div class="bg-warning/10 text-warning border-warning/20 my-5 flex items-center justify-between rounded border px-5 py-3 text-sm"
+                id="dismiss-alert">
+                <p>
+                    <span class="font-bold">Data Barang Kosong! Silahkan tambahkan data barang <a href="{{ route('Tambah Barang') }}" class="underline">Klik Di sini!</a>
+                </p>
+
+                <button class="text-xl/[0]" data-hs-remove-element="#dismiss-alert" type="button">
+                    <i class="uil uil-multiply text-xl"></i>
+                </button> <!-- button end -->
+            </div> <!-- dismiss-example-primary end -->
+        @endif
         <!-- stats + charts -->
-        <div class="grid gap-5 xl:grid-cols-3">
-            <!-- overview -->
-            <div class="card">
-                <div>
-                    <div class="flex items-center justify-between p-5">
-                        <h5 class="mb-0 uppercase dark:text-gray-300">Info</h5>
-                        <div class="h-4">
-                            <div
-                                class="hs-dropdown relative inline-flex [--placement:left-top] rtl:[--placement:right-top]">
-                                <button class="hs-dropdown-toggle rounded" type="button">
-                                    <i class="uil uil-ellipsis-v text-base"></i>
-                                </button>
-                                <div
-                                    class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 z-10 hidden w-40 rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:divide-gray-600 dark:border dark:border-gray-700 dark:bg-gray-800">
-                                    <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                        href="javascript:;">
-                                        <i class="uil uil-edit-alt me-1.5"></i>
-                                        <span>Edit</span>
-                                    </a>
-                                    <a class="flex items-center gap-x-3.5 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                        href="javascript:;">
-                                        <i class="uil uil-refresh me-1.5"></i>
-                                        <span>Refresh</span>
-                                    </a>
-                                    <hr class="my-2 dark:border-gray-600">
-                                    <a class="text-danger flex items-center gap-x-3.5 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-                                        href="javascript:;">
-                                        <i class="uil uil-trash-alt me-1.5"></i>
-                                        <span>Delete</span>
-                                    </a>
-                                </div>
+        <div class="grid gap-5 md:grid-cols-1 xl:grid-cols-3">
+            <!-- info -->
+            <div class="overflow-auto">
+                <div class="card">
+                    <div>
+                        <div class="flex items-center justify-between p-5">
+                            <h5 class="mb-0 uppercase dark:text-gray-300">Info</h5>
+                        </div>
+                        <!-- stat 1 -->
+                        <div class="flex border-b p-5 dark:border-gray-600">
+                            <div class="flex-grow">
+                                <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ $totalSuplier }}</h4>
+                                <span class="text-gray-500 dark:text-gray-400">Total Mitra Suplier</span>
                             </div>
+                            <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="heart-handshake"></i>
                         </div>
-                    </div>
-                    <!-- stat 1 -->
-                    <div class="flex border-b p-5 dark:border-gray-600">
-                        <div class="flex-grow">
-                            <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ $totalSuplier }}</h4>
-                            <span class="text-gray-500 dark:text-gray-400">Total Mitra Suplier</span>
+                        <!-- stat 2 -->
+                        <div class="flex border-b p-5 dark:border-gray-600">
+                            <div class="flex-grow">
+                                <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ $totalAdmin }}</h4>
+                                <span class="text-gray-500 dark:text-gray-400">Total Admin</span>
+                            </div>
+                            <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="users"></i>
                         </div>
-                        <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="heart-handshake"></i>
-                    </div>
-                    <!-- stat 2 -->
-                    <div class="flex border-b p-5 dark:border-gray-600">
-                        <div class="flex-grow">
-                            <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ $totalAdmin }}</h4>
-                            <span class="text-gray-500 dark:text-gray-400">Total Admin</span>
+                        <!-- stat 3 -->
+                        <div class="flex border-b p-5 dark:border-gray-600">
+                            <div class="flex-grow">
+                                <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ 'IDR. ' . number_format($totalMoney) }}
+                                </h4>
+                                <span class="text-gray-500 dark:text-gray-400">Penjualan Hari Ini</span>
+                            </div>
+                            <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="shopping-bag"></i>
                         </div>
-                        <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="users"></i>
-                    </div>
-                    <!-- stat 3 -->
-                    <div class="flex border-b p-5 dark:border-gray-600">
-                        <div class="flex-grow">
-                            <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ 'IDR. ' . number_format($totalMoney) }}
-                            </h4>
-                            <span class="text-gray-500 dark:text-gray-400">Penjualan Hari Ini</span>
-                        </div>
-                        <i class="fill-secondary/20 stroke-secondary h-10 w-10" data-lucide="shopping-bag"></i>
                     </div>
                 </div>
             </div>
+            {{-- almost Out of stock --}}
             <div class="xl:col-span-2">
                 <div class="card">
                     <div class="p-6">
                         <h5 class="uppercase">stok hampir habis</h5>
                         <div class="overflow-auto">
                             <div class="inline-block min-w-full align-middle">
-                                <div class="overflow-hidden">
+                                <div class="overflow-x-auto">
                                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                                         <thead>
                                             <tr>
@@ -162,7 +162,7 @@
                                                     <td
                                                         class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
                                                         {{ optional($item->unit)->unit ?? 'Satuan tidak tersedia' }}
-                                                        </td>
+                                                    </td>
                                                 </tr>
                                             @empty
                                                 <tr>
@@ -186,8 +186,7 @@
                 </div>
             </div>
         </div>
-        <!-- row -->
-        <!-- products -->
+        <!-- best sell + chart -->
         <div class="grid gap-5 xl:grid-cols-12">
             <div class="xl:col-span-5">
                 <div class="card">
@@ -197,7 +196,7 @@
                         </div>
                         <div class="overflow-auto">
                             <div class="inline-block min-w-full align-middle">
-                                <div class="overflow-hidden">
+                                <div class="overflow-auto">
                                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                                         <thead>
                                             <tr>

@@ -64,7 +64,7 @@ class DataController extends Controller
                 'user_id' => $request->user()->id,
             ]);
             session()->flash('success', 'Produk Berhasil Ditambahkan!');
-            return to_route('list-barang');
+            return redirect()->route('List Barang');
         }
     }
     public function form_tambah()
@@ -120,7 +120,7 @@ class DataController extends Controller
             ]);
             session()->flash('success', 'Data Berhasil diedit');
 
-            return to_route('list-barang');
+            return to_route('List Barang');
         }
     }
     public function removeProduct($id)
@@ -129,7 +129,7 @@ class DataController extends Controller
         $product->productOut()->delete();
         $product->delete();
         session()->flash('success', 'Data Berhasil Dihapus!');
-        return to_route('list-barang');
+        return to_route('List Barang');
     }
     // download
     public function exportProductIn()
@@ -147,11 +147,20 @@ class DataController extends Controller
         if ($request->isMethod('GET')) {
             return view('Services.Products.form-add-suplier');
         } elseif ($request->isMethod('POST')) {
-            $request->validate([
-                'suplierName' => 'required',
-                'noTelp' => 'required|max:13|min:11',
-                'address' => 'required'
-            ]);
+            $request->validate(
+                [
+                    'suplierName' => 'required',
+                    'noTelp' => 'required|min:10|max:13|regex:/^[0-9]{11,13}$/',
+                    'address' => 'required'
+                ],
+                [
+                    'suplierName.required' => 'Nama mitra suplier harus diisi!',
+                    'noTelp.required' => 'No Telp Wajib Diisi!',
+                    'noTelp.max' => 'No Telp Tidak Boleh melebihi 13 Karakter',
+                    'noTelp.min' => 'No Telp Tidak boleh Kurang dari 10 Karakter',
+                    'address.required' => 'Alamat Wajib Diisi!'
+                ]
+            );
             Suplier::create([
                 'id' => Str::uuid(),
                 'suplier' => $request->suplierName,
@@ -171,11 +180,20 @@ class DataController extends Controller
             ];
             return view('Services.Products.detail-suplier', $context);
         } elseif ($request->isMethod('PUT')) {
-            $request->validate([
-                'suplierName' => 'required',
-                'noTelp' => 'required|max:13|min:11',
-                'address' => 'required'
-            ]);
+            $request->validate(
+                [
+                    'suplierName' => 'required',
+                    'noTelp' => 'required|min:10|max:13|regex:/^[0-9]{11,13}$/',
+                    'address' => 'required'
+                ],
+                [
+                    'suplierName.required' => 'Nama mitra suplier harus diisi!',
+                    'noTelp.required' => 'No Telp Wajib Diisi!',
+                    'noTelp.max' => 'No Telp Tidak Boleh melebihi 13 Karakter',
+                    'noTelp.min' => 'No Telp Tidak Kurang dari 10 Karakter',
+                    'address.required' => 'Alamat Wajib Diisi!'
+                ]
+            );
             Suplier::where('id', $id)->update([
                 'suplier' => $request->suplierName,
                 'phone_number' => $request->noTelp,

@@ -30,7 +30,7 @@ class AdditionalDataController extends Controller
                 'unit' => $request->unit,
             ]);
             session()->flash('successUnit', 'Data Satuan Berhasil ditambahkan');
-            return to_route('Data Tambahan');
+            return redirect()->back();
             // 3 represent to category
         } elseif ($val == 3) {
             $request->validate([
@@ -41,7 +41,7 @@ class AdditionalDataController extends Controller
                 'category' => $request->category,
             ]);
             session()->flash('successCategory', 'Data Kategori Berhasil ditambahkan');
-            return to_route('Data Tambahan');
+            return redirect()->back();
         }
     }
     public function removeAdditionalData($val, $id)

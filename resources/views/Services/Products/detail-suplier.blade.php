@@ -92,7 +92,7 @@
                                 </td>
                                 <td
                                     class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                    {{ 'IDR. ' . number_format($product->purch_price) . '/' . $product->unit->unit }}
+                                    {{ 'IDR. ' . number_format($product->purch_price) . '/' . optional($product->unit)->unit ?? 'Data satuan tidak tersedia' }}
                                 </td>
                                 <td
                                     class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -101,7 +101,9 @@
                             </tr>
                         @empty
                             <tr>
-                                <td>No Data</td>
+                                <td class="mt-3 text-center font-bold uppercase" colspan="5">
+                                    no data
+                                </td>
                             </tr>
                         @endforelse
                     </tbody>

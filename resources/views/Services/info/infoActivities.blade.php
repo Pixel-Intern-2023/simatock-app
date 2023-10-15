@@ -1,15 +1,20 @@
 @extends('Layouts.base')
 @section('content')
-    <h2 class="text-center text-xl dark:text-gray-300">Aktifitas Hari Ini</h2>
+    <h2 class="text-center text-xl dark:text-gray-300">Aktifitas {{ old('selectedDate') == date('Y-m-d') ? 'Hari Ini' : old('selectedDate') }}</h2>
     <div class="relative space-y-12 pb-6">
         <!-- Center Border Line -->
         <div
             class="absolute start-10 top-0 -z-10 h-full -translate-x-1/2 border border-s-2 border-gray-300 rtl:translate-x-1/2 dark:border-white/10 md:start-1/2">
         </div>
         <div class="md:text-center">
-            <h5 class="bg-primary inline rounded px-10 py-2 text-white">
-                {{ date('D, d-m-Y') }}
-            </h5>
+            <form id="chooseDate" action="{{ route('date-activities') }}" method="post">
+                @csrf
+                <input type="text" id="basic-datepicker" class="form-input bg-primary inline rounded px-10 py-2 text-white" name="selectedDate" oninput='chooseDate.submit()' value="{{ old('selectedDate') ? old('selectedDate') : date('Y-m-d') }}" style="width: 17%" placeholder="Basic datepicker">
+                <noscript>
+                    <input type="submit" value="Submit">
+                </noscript>
+            </form>
+            <small>Ubah tanggal untuk melihat aktivitas sebelumnya</small>
         </div>
         <!-- left -->
         @forelse ($productOut as $item)
@@ -29,8 +34,8 @@
                             <div class="ms-20 mt-4 md:order-last md:me-10 md:ms-0">
                                 <h2
                                     class="bg-primary/20 text-primary flex h-9 w-9 items-center justify-center rounded-full">
-                                    02</h2>
-                                <p class="pt-2 text-center">Jun</p>
+                                    {{ $item->created_at->format('d') }}</h2>
+                                <p class="pt-2 text-center">{{ $item->created_at->format('M') }}</p>
                             </div>
                             <div class="relative me-5 md:me-0 md:ms-10">
                                 <div class="card p-5">

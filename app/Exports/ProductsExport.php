@@ -24,12 +24,15 @@ class ProductsExport implements FromCollection, WithMapping, WithHeadings
      */
     public function map($product): array
     {
+        $unit = optional($product->unit)->unit ?? 'Satuan tidak tersedia';
+        $suplier = optional($product->unit)->unit ?? 'Suplier tidak tersedia';
+        $category = optional($product->category)->category ?? 'Kategori tidak tersedia';
         return [
             $product->products_name,
-            $product->category->category,  // Assuming category name is the field you want to display
+            $category,
             $product->quantity,  // Assuming category name is the field you want to display
-            $product->unit->unit,      // Assuming unit name is the field you want to display
-            $product->suplier->suplier,   // Assuming supplier name is the field you want to display
+            $unit,
+            $suplier,
             $product->created_at
         ];
     }

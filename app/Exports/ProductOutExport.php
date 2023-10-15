@@ -22,10 +22,11 @@ class ProductOutExport implements FromCollection, WithHeadings, WithMapping
      */
     public function map($productOut): array
     {
+        $unit = optional($productOut->product->unit)->unit ?? 'Satuan tidak tersedia';
         return [
             $productOut->product->products_name,
             $productOut->amount_out,
-            $productOut->product->unit->unit,
+            $unit,
             $productOut->total,
             $productOut->picker,
             $productOut->users->name,

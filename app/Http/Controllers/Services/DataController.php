@@ -18,7 +18,7 @@ class DataController extends Controller
     // Product method
     public function list_product()
     {
-        $products = Products::with(['category', 'unit', 'suplier'])->get();
+        $products = Products::with(['category', 'unit', 'suplier'])->orderByRaw('GREATEST(created_at,updated_at) DESC')->get();
         return view('Services.Products.products-list', compact('products'));
     }
     public function store(Request $request)
@@ -221,7 +221,7 @@ class DataController extends Controller
     {
         $products = Products::with(['suplier', 'unit', 'user'])
             ->select('id', 'products_name', 'unit_id', 'suplier_id', 'user_id', 'quantity', 'purch_price', 'created_at')
-            ->orderBy('created_at', 'DESC')
+            ->orderByRaw('GREATEST(created_at,updated_at) DESC')
             ->get();
         return view('Services.Products.productIn', compact('products'));
     }

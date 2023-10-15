@@ -35,7 +35,7 @@ class AuthController extends Controller
                 'name' => 'required',
                 'username' => 'required',
                 'email' => 'required|email:dns',
-                'noTelp' => 'required|min:10|max:13|regex:/^[0-9]{11,13}$/',
+                'phone_number' => 'required|min:10|max:13|regex:/^[0-9]{11,13}$/',
                 'address' => 'required',
                 'gender' => 'required',
                 'password' => 'required|min:8',

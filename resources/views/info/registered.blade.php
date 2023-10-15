@@ -53,14 +53,12 @@
                     </div>
                 </div>
                 <!-- end card -->
-
                 <div class="row mt-3">
                     <div class="col-12 text-center">
-                        <p class="text-gray-500 dark:text-gray-400"><a href="#" onclick="history.back()" class="text-primary font-semibold ms-1">Back</a></p>
+                        <p class="text-gray-500 dark:text-gray-400"><a href="{{ route('dashboard') }}" class="text-primary font-semibold ms-1">Back</a></p>
                     </div> <!-- end col -->
                 </div>
                 <!-- end row -->
-
             </div> <!-- end col -->
         </div>
     </div>

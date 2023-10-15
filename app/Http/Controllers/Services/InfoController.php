@@ -16,7 +16,7 @@ class InfoController extends Controller
         $context = [
             'stockAlmostOut' => Products::with('suplier')
                 ->where('quantity', '<=', 3)
-                ->where('quantity', '==', 0)
+                ->orWhere('quantity', '==', 0)
                 ->orderBy('quantity', 'DESC')
                 ->get(),
         ];
@@ -29,7 +29,7 @@ class InfoController extends Controller
         ];
         return view('Services.info.infoAdmin', $context);
     }
-    public function activities()
+    public function activities(Request $request)
     {
         $context = [
             'productOut' => ProductOut::with(['product', 'users'])
@@ -41,6 +41,17 @@ class InfoController extends Controller
                 ->orderByRaw('GREATEST(created_at, updated_at) DESC')
                 ->get(),
         ];
+        if ($request->input('selectedDate')) {
+            $context['productOut'] = ProductOut::with(['product', 'users'])
+                ->whereDate('created_at', $request->input('selectedDate'))
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $context['productIn'] =  Products::with(['user'])->whereDate('created_at', $request->input('selectedDate'))
+                ->orWhereDate('updated_at', $request->input('selectedDate'))
+                ->orderByRaw('GREATEST(created_at, updated_at) DESC')
+                ->get();
+        }
+        redirect()->back()->withInput();
         return view('Services.info.infoActivities', $context);
     }
 }

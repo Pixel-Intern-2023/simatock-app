@@ -85,32 +85,30 @@
                 <small class="mt-1 block" style="color:red;">{{ $message }}</small>
             @enderror
         </div>
-        <div class="flex gap-3">
-            <div class="mb-3 flex flex-col">
-                <label class="text-start font-semibold dark:text-gray-300">Alamat</label>
-                <div @error('address')
+
+        <div class="mb-3 flex flex-col">
+            <label class="text-start font-semibold dark:text-gray-300">Alamat</label>
+            <div @error('address')
                 style="border:1px solid red;"
                 @enderror
-                    class="mt-2 flex items-center rounded border dark:border-gray-600">
-                    <textarea class="form-input border-none dark:bg-transparent" id="address" name="address"
-                        placeholder="Masukkan alamat">{{ old('address') }}</textarea>
-                </div>
-                @error('address')
-                    <small class="mt-1 block" style="color:red;">{{ $message }}</small>
-                @enderror
+                class="mt-2 flex items-center rounded border dark:border-gray-600">
+                <textarea class="form-input border-none dark:bg-transparent" id="address" name="address"
+                    placeholder="Masukkan alamat">{{ old('address') }}</textarea>
             </div>
-            <div class="mt-7">
-                <div class="flex flex-col gap-2 justify-center">
-                    <div class="flex items-center">
-                        <input type="radio" class="form-radio text-primary" name="gender"
-                            id="formRadio01" checked value="l">
-                        <label class="ms-1.5" for="formRadio01">Laki Laki</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="radio" class="form-radio text-primary" name="gender"
-                            id="formRadio02" value="p">
-                        <label class="ms-1.5" for="formRadio02">Perempuan</label>
-                    </div>
+            @error('address')
+                <small class="mt-1 block" style="color:red;">{{ $message }}</small>
+            @enderror
+        </div>
+        <div class="mt-7">
+            <div class="flex gap-2">
+                <div class="flex items-center">
+                    <input checked class="form-radio text-primary" id="formRadio01" name="gender" type="radio"
+                        value="l">
+                    <label class="ms-1.5" for="formRadio01">Laki Laki</label>
+                </div>
+                <div class="flex items-center">
+                    <input class="form-radio text-primary" id="formRadio02" name="gender" type="radio" value="p">
+                    <label class="ms-1.5" for="formRadio02">Perempuan</label>
                 </div>
             </div>
         </div>

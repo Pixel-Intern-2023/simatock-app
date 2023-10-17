@@ -58,7 +58,8 @@
             <div class="bg-warning/10 text-warning border-warning/20 my-5 flex items-center justify-between rounded border px-5 py-3 text-sm"
                 id="dismiss-alert">
                 <p>
-                    <span class="font-bold">Data Suplier Kosong! Silahkan isi data suplier terlebih dahulu <a href="{{ route('Form Tambah Suplier') }}" class="underline">Klik Di sini!</a>
+                    <span class="font-bold">Data Suplier Kosong! Silahkan isi data suplier terlebih dahulu <a
+                            class="underline" href="{{ route('Form Tambah Suplier') }}">Klik Di sini!</a>
                 </p>
 
                 <button class="text-xl/[0]" data-hs-remove-element="#dismiss-alert" type="button">
@@ -70,7 +71,8 @@
             <div class="bg-warning/10 text-warning border-warning/20 my-5 flex items-center justify-between rounded border px-5 py-3 text-sm"
                 id="dismiss-alert">
                 <p>
-                    <span class="font-bold">Data Barang Kosong! Silahkan tambahkan data barang <a href="{{ route('Tambah Barang') }}" class="underline">Klik Di sini!</a>
+                    <span class="font-bold">Data Barang Kosong! Silahkan tambahkan data barang <a class="underline"
+                            href="{{ route('Tambah Barang') }}">Klik Di sini!</a>
                 </p>
 
                 <button class="text-xl/[0]" data-hs-remove-element="#dismiss-alert" type="button">
@@ -78,6 +80,77 @@
                 </button> <!-- button end -->
             </div> <!-- dismiss-example-primary end -->
         @endif
+        <!-- best sell + chart -->
+        <div class="grid gap-5 xl:grid-cols-12">
+            <div class="xl:col-span-5">
+                <div class="card">
+                    <div class="p-5">
+                        <div class="flex items-center justify-between">
+                            <h5 class="uppercase">Barang Terlaris</h5>
+                        </div>
+                        <div class="overflow-auto">
+                            <div class="inline-block min-w-full align-middle">
+                                <div class="overflow-auto">
+                                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                                        <thead>
+                                            <tr>
+                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
+                                                    scope="col">
+                                                    #</th>
+                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
+                                                    scope="col">
+                                                    Produk</th>
+                                                {{-- <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
+                                                    scope="col">
+                                                    Jumlah Terjual</th> --}}
+                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
+                                                    scope="col">
+                                                    Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
+                                            @forelse ($bestSell as $item)
+                                                <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
+                                                        {{ $loop->iteration }}</td>
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                                        {{ $item->products_name }}</td>
+                                                    {{-- <td
+                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                                        {{ $item->total_keluar }}</td> --}}
+                                                    <td
+                                                        class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
+                                                        <span
+                                                            class="bg-success/10 text-success inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-xs font-medium"><i
+                                                                class="uil uil-arrow-up"></i>Terlaris</span>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td class="mt-3 text-center font-bold uppercase" colspan="5">
+                                                        No Data
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><!-- end table-responsive-->
+                    </div>
+                </div> <!-- end card-->
+            </div> <!-- end col-->
+            <div class="xl:col-span-7">
+                <div class="card dark:bg">
+                    <div class="p-5">
+                        <div id="chart"></div>
+                    </div>
+                </div>
+            </div> <!-- end col-->
+        </div>
+        <!-- end row -->
         <!-- stats + charts -->
         <div class="grid gap-5 md:grid-cols-1 xl:grid-cols-3">
             <!-- info -->
@@ -106,7 +179,8 @@
                         <!-- stat 3 -->
                         <div class="flex border-b p-5 dark:border-gray-600">
                             <div class="flex-grow">
-                                <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">{{ 'IDR. ' . number_format($totalMoney) }}
+                                <h4 class="mb-1 mt-0 text-2xl dark:text-gray-300">
+                                    {{ 'IDR. ' . number_format($totalMoney) }}
                                 </h4>
                                 <span class="text-gray-500 dark:text-gray-400">Penjualan Hari Ini</span>
                             </div>
@@ -186,77 +260,6 @@
                 </div>
             </div>
         </div>
-        <!-- best sell + chart -->
-        <div class="grid gap-5 xl:grid-cols-12">
-            <div class="xl:col-span-5">
-                <div class="card">
-                    <div class="p-5">
-                        <div class="flex items-center justify-between">
-                            <h5 class="uppercase">Barang Terlaris</h5>
-                        </div>
-                        <div class="overflow-auto">
-                            <div class="inline-block min-w-full align-middle">
-                                <div class="overflow-auto">
-                                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                                        <thead>
-                                            <tr>
-                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
-                                                    scope="col">
-                                                    #</th>
-                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
-                                                    scope="col">
-                                                    Produk</th>
-                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
-                                                    scope="col">
-                                                    Jumlah Terjual</th>
-                                                <th class="px-4 py-4 text-start text-sm font-semibold text-gray-500 dark:text-gray-400"
-                                                    scope="col">
-                                                    Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
-                                            @forelse ($bestSell as $item)
-                                                <tr class="hover:bg-gray-100 dark:hover:bg-transparent">
-                                                    <td
-                                                        class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                                        {{ $loop->iteration }}</td>
-                                                    <td
-                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                        {{ $item->products_name }}</td>
-                                                    <td
-                                                        class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                                        {{ $item->total_keluar }}</td>
-                                                    <td
-                                                        class="whitespace-nowrap px-4 py-4 text-start text-gray-500 dark:text-gray-400">
-                                                        <span
-                                                            class="bg-success/10 text-success inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-xs font-medium"><i
-                                                                class="uil uil-arrow-up"></i>Terlaris</span>
-                                                    </td>
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td class="mt-3 text-center font-bold uppercase" colspan="5">
-                                                        No Data
-                                                    </td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div><!-- end table-responsive-->
-                    </div>
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-            <div class="xl:col-span-7">
-                <div class="card dark:bg">
-                    <div class="p-5">
-                        <div id="chart"></div>
-                    </div>
-                </div>
-            </div> <!-- end col-->
-        </div>
-        <!-- end row -->
     </div>
 @endsection
 @section('script')

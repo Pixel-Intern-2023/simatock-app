@@ -1,30 +1,30 @@
 @extends('Layouts.base')
 @section('content')
-<a href="{{ route('List Barang') }}">
-    <div class="px-4 py-3 card mb-3">
-        <h1><i class="uil uil-angle-left"></i>Kembali</h1>
-    </div>
-</a>
+    <a href="{{ route('List Barang') }}">
+        <div class="card mb-3 px-4 py-3">
+            <h1><i class="uil uil-angle-left"></i>Kembali</h1>
+        </div>
+    </a>
     <div class="card">
         <div class="p-6">
             <h4 class="mb-5 uppercase dark:text-gray-300">Form Tambah Barang</h4>
             <form action="{{ route('Edit Data', ['id' => $product->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
-                    <div class="mb-3 w-full">
-                        <label class="mb-2 block font-semibold" for="example-email">Nama Barang</label>
-                        <div>
-                            <input
-                                @error('productName')
+                <div class="mb-3 w-full">
+                    <label class="mb-2 block font-semibold" for="example-email">Nama Barang</label>
+                    <div>
+                        <input
+                            @error('productName')
                                 style="border: 1px solid red"
                                 @enderror
-                                class="form-input w-full" name="productName" placeholder="Cth: Beras" type="text"
-                                value="{{ $product->products_name }}">
-                        </div>
-                        @error('productName')
-                            <small class="text-red-600">{{ $message }}</small>
-                        @enderror
+                            class="form-input w-full" name="productName" placeholder="Cth: Beras" type="text"
+                            value="{{ $product->products_name }}">
                     </div>
+                    @error('productName')
+                        <small class="text-red-600">{{ $message }}</small>
+                    @enderror
+                </div>
                 <div class="mb-3 flex gap-2">
                     <div class="w-1/2">
                         <label class="mb-2 block font-semibold" for="example-password">Stok</label>
@@ -33,8 +33,8 @@
                                 @error('quantity')
                                 style="border: 1px solid red"
                                 @enderror
-                                class="form-input w-full placeholder:text-gray-400" min="{{ $product->quantity }}" name="quantity"
-                                placeholder="Cth: 10" type="number" value="{{ $product->quantity }}">
+                                class="form-input w-full placeholder:text-gray-400" min="{{ $product->quantity }}"
+                                name="quantity" placeholder="Cth: 10" type="number" value="{{ $product->quantity }}">
                             <small>Tambah Stok Barang Di sini</small>
                             @error('quantity')
                                 <small class="text-red-600">{{ $message }}</small>
@@ -48,8 +48,10 @@
                         style="border: 1px solid red"
                         @enderror
                             class="form-select mb-3" name="unit">
-                            @foreach ($unit as $item)
-                                <option value="{{ $item->id }}">{{ $item->unit }}</option>
+                            <option value=""></option>
+                            @foreach ($unit as $unt)
+                                <option {{ ($product->unit->id ?? null) === $unt->id ? 'selected' : ' ' }}
+                                    value="{{ $unt->id }}">{{ $unt->unit }}</option>
                             @endforeach
                         </select>
 
@@ -64,8 +66,10 @@
                         style="border: 1px solid red"
                         @enderror
                             class="form-select mb-3" name="category">
-                            @foreach ($category as $item)
-                                <option value="{{ $item->id }}">{{ $item->category }}</option>
+                            <option value=""></option>
+                            @foreach ($category as $cate)
+                                <option {{ ($product->category->id ?? null) === $cate->id ? 'selected' : ' ' }}
+                                    value="{{ $cate->id }}">{{ $cate->category }}</option>
                             @endforeach
                         </select>
                         @error('category')
@@ -110,8 +114,10 @@
                     style="border: 1px solid red"
                     @enderror
                         class="form-select mb-3" name="suplier">
-                        @foreach ($suplier as $item)
-                            <option value="{{ $item->id }}">{{ $item->suplier }}</option>
+                        @foreach ($suplier as $spl)
+                            <option value=""></option>
+                            <option {{ ($product->suplier->id ?? null) === $spl->id ? 'selected' : ' ' }}
+                                value="{{ $spl->id }}">{{ $spl->suplier }}</option>
                         @endforeach
                     </select>
                     <small>Ubah Suplier Jika Suplier barang berubah</small>

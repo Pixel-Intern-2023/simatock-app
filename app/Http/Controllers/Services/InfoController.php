@@ -25,7 +25,7 @@ class InfoController extends Controller
     public function admin()
     {
         $context = [
-            'listAdmin' => User::select('name', 'email', 'phone_number', 'gender')->get(),
+            'listAdmin' => User::select('name', 'email', 'phone_number', 'gender', 'address')->get(),
         ];
         return view('Services.info.infoAdmin', $context);
     }

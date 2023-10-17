@@ -1,27 +1,37 @@
 @extends('Layouts.base')
 @section('content')
-    <!-- activities -->
-    <div class="card">
-        <div class="p-6">
-            <div class="mb-5 flex items-start justify-between gap-5">
-                <h6 class="uppercase dark:text-gray-300">Admin</h6>
-            </div>
-
-            <div class="space-y-8">
-                @forelse ($listAdmin as $item)
-                <div class="flex gap-3">
-                    <img alt="shreyu" class="h-12 rounded-full" src="{{ asset('assets/images/profile/' . ($item->gender == 'p' ? 'female.jpg' : 'male.jpg')) }}">
+<div class="grid xl:grid-cols-4 md:grid-cols-2 gap-5">
+    @foreach ($listAdmin as $admin)
+    <div>
+        <div class="card">
+            <div class="p-6">
+                <div class="gap-5" style="display:flex; flex-direction: column; justify-content: center; align-items:center;"  >
+                    <img src="{{ asset('assets/images/profile/' . ($admin->gender == 'p' ? 'female.jpg' : 'male.jpg')) }}" class="h-20 rounded-full" alt="shreyu">
                     <div class="flex-grow">
-                        <h6 class="mb-1 mt-0 text-gray-500 dark:text-gray-300">
-                            <a class="text-primary" href="#">Admin {{ $item->name }}</a>
-                        </h6>
-                        <span class="block font-semibold">Email : {{ $item->email }}</span>
-                        <span class="block font-semibold">No. Telp :{{ $item->phone_number }}</span>
+                        <h4 class="text-lg mt-2 mb-0 dark:text-gray-300">{{ $admin->name }}</h4>
+                        <h6 class="text-gray-500 font-normal mt-1 mb-4 dark:text-gray-400">admin</h6>
                     </div>
                 </div>
-                @empty
-                @endforelse
+                <div class="mt-1 pt-2 border-t text-start dark:border-gray-600">
+                    <label for="">Email :</label>
+                    <p class="text-gray-500 mb-2 dark:text-gray-400">{{ $admin->email }}</p>
+                    <label for="">No Telp :</label>
+                    <p class="text-gray-500 mb-2 dark:text-gray-400">{{ $admin->phone_number }}</p>
+                    <label for="">Alamat : </label>
+                    <p class="text-gray-500 mb-2 dark:text-gray-400">{{ $admin->address }}</p>
+                </div>
+                <div class="flex items-center gap-5 mt-10">
+                    <div class="w-full">
+                        <button type="button" class="btn btn-sm w-full bg-primary/90 text-white hover:bg-primary me-1">Follow</button>
+                    </div>
+                    <div class="w-full">
+                        <button type="button" class="btn w-full btn-sm bg-white border border-gray-200 hover:bg-light hover:border-transparent dark:bg-transparent dark:border-gray-600 dark:hover:bg-secondary/20">Message</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    @endforeach
+</div>
+
 @endsection

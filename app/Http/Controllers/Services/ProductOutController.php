@@ -17,7 +17,7 @@ class ProductOutController extends Controller
     // issuing product method
     public function product_out()
     {
-        $productOut = ProductOut::with(['product', 'users'])->orderBy('created_at', 'DESC')->paginate(5);
+        $productOut = ProductOut::with(['product', 'users'])->orderBy('created_at', 'DESC')->paginate(10);
         return view('Services.Products.issuing', compact('productOut'));
     }
     public function formProductOut(Request $request)

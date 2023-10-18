@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth', 'prevent-back']], function () {
             Route::get('/list-stok-habis', [InfoController::class, 'infoStock'])->name('List Stok Habis');
             Route::get('/activities', [InfoController::class, 'activities'])->name('Aktifitas');
             Route::match(['get', 'post'], '/date-pick', [InfoController::class, 'activities'])->name('date-activities');
+            Route::get('aktifitas-admin/{id}', [InfoController::class, 'activitiesByAdmin'])->name('Aktifitas Admin');
         });
     });
 });

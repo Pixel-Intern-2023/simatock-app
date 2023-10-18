@@ -49,7 +49,7 @@
                 <!-- Light Logo -->
                 <div class="logo-light">
                     @foreach ($data as $item)
-                    <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                        <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
                         <h1 class="logo-sm text-xl">
                             {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
                         </h1>
@@ -58,7 +58,7 @@
                 <!-- Dark Logo -->
                 <div class="logo-dark">
                     @foreach ($data as $item)
-                    <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                        <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
                         <h1 class="logo-sm text-xl">
                             {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
                         </h1>
@@ -170,21 +170,21 @@
                     <!-- Light Logo -->
                     <div class="logo-light">
                         @foreach ($data as $item)
-                        <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
-                            <h1 class="logo-sm text-xl">
-                                {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
-                            </h1>
-                            @endforeach
-                        </div>
-
-                        <!-- Dark Logo -->
-                        <div class="logo-dark">
-                            @foreach ($data as $item)
                             <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
                             <h1 class="logo-sm text-xl">
                                 {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
                             </h1>
-                            @endforeach
+                        @endforeach
+                    </div>
+
+                    <!-- Dark Logo -->
+                    <div class="logo-dark">
+                        @foreach ($data as $item)
+                            <h1 class="logo-lg text-xl">{{ $item->warehouse_name }}</h1>
+                            <h1 class="logo-sm text-xl">
+                                {{ substr($item->warehouse_name, 0, 1) . substr(strstr($item->warehouse_name, ' '), 1, 1) }}
+                            </h1>
+                        @endforeach
                     </div>
                 </a>
 
@@ -204,7 +204,7 @@
                         <div
                             class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 !mt-1 hidden rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800">
                             <a class="flex items-center px-4 py-1.5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                            href="{{ route('Tambah Barang') }}">
+                                href="{{ route('Tambah Barang') }}">
                                 <i class="uil uil-box me-1 text-base"></i>
                                 <span>Tambah Data Barang</span>
                             </a>
@@ -249,12 +249,12 @@
                         </button>
 
                         <div
-                        class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 !mt-4 hidden rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800">
+                            class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 !mt-4 hidden rounded bg-white py-2 opacity-0 shadow transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800">
                             <!-- item-->
                             <h6 class="flex items-center px-3 py-2 text-gray-800 dark:text-gray-400">Welcome
                                 {{ Auth::user()->name }}!</h6>
 
-                                <!-- item-->
+                            <!-- item-->
                             <a class="flex items-center gap-2 px-4 py-1.5 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
                                 href="{{ route('Profile') }}">
                                 <i class="fill-secondary/20 h-4 w-4" data-lucide="user-2"></i>
@@ -277,7 +277,12 @@
                 <!-- Page Title Start -->
                 <div class="mb-5 flex items-center justify-between">
                     <h4 class="text-lg font-semibold text-gray-900 first-letter:uppercase dark:text-gray-200">
-                        {{ Route::currentRouteName() }}
+                        @if (Route::currentRouteName() == 'Aktifitas Admin')
+                            <a href="#" onclick="history.back()"><i
+                                    class="uil uil-angle-left"></i>{{ Route::currentRouteName() }}</a>
+                        @else
+                            {{ Route::currentRouteName() }}
+                        @endif
                     </h4>
                     <div class="hidden items-center gap-2.5 font-semibold md:flex">
                         <div class="flex items-center gap-2">

@@ -22,10 +22,7 @@
                 </div>
                 <div class="flex items-center gap-5 mt-10">
                     <div class="w-full">
-                        <button type="button" class="btn btn-sm w-full bg-primary/90 text-white hover:bg-primary me-1">Follow</button>
-                    </div>
-                    <div class="w-full">
-                        <button type="button" class="btn w-full btn-sm bg-white border border-gray-200 hover:bg-light hover:border-transparent dark:bg-transparent dark:border-gray-600 dark:hover:bg-secondary/20">Message</button>
+                        <a href="{{ route('Aktifitas Admin', ['id' => $admin->id]) }}" type="button" class="btn btn-sm w-full bg-primary/90 text-white hover:bg-primary me-1">Lihat Aktifitas</a>
                     </div>
                 </div>
             </div>

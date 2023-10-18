@@ -25,7 +25,7 @@ class InfoController extends Controller
     public function admin()
     {
         $context = [
-            'listAdmin' => User::select('name', 'email', 'phone_number', 'gender', 'address')->get(),
+            'listAdmin' => User::select('name', 'email', 'phone_number', 'gender', 'address', 'id')->get(),
         ];
         return view('Services.info.infoAdmin', $context);
     }
@@ -53,5 +53,14 @@ class InfoController extends Controller
         }
         redirect()->back()->withInput();
         return view('Services.info.infoActivities', $context);
+    }
+    public function activitiesByAdmin($id)
+    {
+        $context = [
+            'productOut' => ProductOut::with(['product', 'users'])->where('user_id', $id)->orderBy('created_at', 'desc')->get(),
+            'productIn' => Products::where('user_id', $id)->where('quantity', '!=', 0)->orderByRaw('GREATEST(created_at,updated_at) DESC')->get(),
+            'admin' => User::find($id),
+        ];
+        return view('Services.info.infoActivitiesByAdmin', $context);
     }
 }
